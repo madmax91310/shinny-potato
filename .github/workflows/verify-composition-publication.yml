@@ -1,0 +1,111 @@
+name: Verify public composition consumers
+on:
+  push:
+    branches: [verify/public-compositions-20261124]
+    paths: [.github/workflows/verify-composition-publication.yml]
+permissions:
+  contents: read
+jobs:
+  public-consumers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci && npx playwright install --with-deps chromium
+      - name: Verify published holdings, limited overlap and PNG
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {mkdir,readFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          import {setTimeout as wait} from 'node:timers/promises';
+          import {chromium} from 'playwright';
+          const base='https://madmax91310.github.io/shinny-potato/';
+          const repo='https://api.github.com/repos/madmax91310/shinny-potato/';
+          const merged='fb9623f204eb07b0b1d89ad3f70ded16559ad6df';
+          async function json(url,headers={}){
+            const r=await fetch(url,{headers,cache:'no-store',signal:AbortSignal.timeout(12000)});
+            if(!r.ok)throw Error('HTTP '+r.status+' for '+url);
+            return r.json();
+          }
+          const branchInfo=()=>json(base+'build-info.json?verify='+Date.now());
+          const headers={Authorization:'Bearer '+process.env.GH_TOKEN};
+          async function has(needle,sha){
+            assert.match(sha,/^[a-f0-9]{40}$/);
+            return ['identical','ahead'].includes((await json(repo+'compare/'+needle+'...'+sha,headers)).status);
+          }
+          const cut=Date.parse('2026-11-24T11:14:00Z');
+          let build;
+          for(let i=0;i<55;i++){
+            try{
+              const current=await branchInfo();
+              if(await has(merged,current.sha)){
+                const commits=await json(repo+'commits?sha=master&per_page=20',headers);
+                const find=message=>commits.find(c=>c.commit.message.startsWith(message)&&Date.parse(c.commit.author.date)>cut);
+                const required=[find('Refresh Vanguard LifeStrategy issuer data'),find('Refresh qualified exact-share exposure data')];
+                if(required.every(Boolean)&&(await Promise.all(required.map(c=>has(c.sha,current.dataSha??current.sha)))).every(Boolean)){build=current;break;}
+              }
+            }catch(e){console.log(String(e))}
+            if(i<54)await wait(50000);
+          }
+          assert.ok(build,'Public version must include both producer records');
+          console.log('Verified actual Pages versions',JSON.stringify(build));
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const lines=[
+            {asset:'lifestrategy20',isin:'IE00BMVB5K07',label:'Vanguard LifeStrategy 20% Equity UCITS ETF',weight:50,amount:0},
+            {asset:'IE000NDWFGA5',isin:'IE000NDWFGA5',label:'Global X Uranium UCITS ETF',weight:50,amount:0},
+          ];
+          await mkdir('test-artifacts/composition-public',{recursive:true});
+          const browser=await chromium.launch();
+          try{
+            for(const width of [1440,390]){
+              const context=await browser.newContext({viewport:{width,height:1000},acceptDownloads:true});
+              await context.addInitScript(lines=>localStorage.setItem('epargnant-publication:v1:simple-exposure-draft',
+                JSON.stringify({lines,field:'overlap',exposureLimit:4})),lines);
+              const page=await context.newPage(), responses=[], errors=[];
+              page.on('pageerror',e=>errors.push(e.message));
+              page.on('response',r=>{if(new URL(r.url()).pathname.includes('/data/')&&r.ok()&&r.headers()['content-type']?.includes('json'))responses.push(r.json().catch(()=>null));});
+              await page.goto(base+'le-dca-de');
+              await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click();
+              const panel=page.getByRole('region',{name:'Analyse du portefeuille',exact:true});
+              await panel.getByRole('heading',{name:'Ce que tu détiens vraiment',exact:true}).waitFor();
+              await panel.getByText('Chargement de l’analyse des détentions…',{exact:true}).waitFor({state:'hidden'});
+              await panel.locator('summary').filter({hasText:'Recouvrement entre les supports'}).click();
+              const overlap=await panel.locator('.dca-pair-grid article strong').allTextContents();
+              assert.ok(overlap.every(t=>t.trim()==='Partiel'),'No full overlap from a partial book');
+              const image=page.getByRole('img',{name:'Répartition et expositions du portefeuille',exact:true});
+              await image.waitFor();await image.evaluate(img=>img.decode());
+              const preview=Buffer.from(await image.evaluate(async img=>Array.from(new Uint8Array(await(await fetch(img.src)).arrayBuffer()))));
+              const download=page.waitForEvent('download');
+              await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click();
+              const path='test-artifacts/composition-public/dca-'+width+'.png';
+              await (await download).saveAs(path);
+              assert.equal(hash(await readFile(path)),hash(preview));
+              const observed=(await Promise.all(responses)).filter(Boolean);
+              const snapshots=observed.flatMap(o=>[o,...Object.values(o).filter(v=>v&&typeof v==='object'&&!Array.isArray(v))]);
+              const sleeve=snapshots.find(r=>r.isin==='IE00BMVB5K07'&&r.equitySleeve);
+              const uranium=snapshots.find(r=>r.partialSourceProof?.subjectIsin==='IE000NDWFGA5');
+              assert.equal(sleeve?.equitySleeve.asOf,'2026-09-30');
+              assert.ok(Math.abs(sleeve.equitySleeve.weightPct-20.36421)<1e-7);
+              assert.equal(uranium?.complete,false);
+              assert.ok(uranium.unvaluedPositions.some(p=>p.weightPct===null&&p.published?.NAME==='CURRENCY CONTRACT - USD'));
+              assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+              assert.deepEqual(errors,[]);
+              await panel.screenshot({path:'test-artifacts/composition-public/consumer-'+width+'.png'});
+              console.log(JSON.stringify({width,sleeve:sleeve.equitySleeve.asOf,uranium:uranium.asOf,rows:uranium.rows.length,overlap,pngSha256:hash(preview)}));
+              await context.close();
+            }
+          }finally{await browser.close();}
+          assert.deepEqual(await branchInfo(),build,'Production changed during the test');
+          JS
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: public-composition-consumers
+          path: test-artifacts/composition-public
+          if-no-files-found: ignore
