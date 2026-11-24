@@ -92,6 +92,13 @@ jobs:
               print(json.dumps(report))
               (folder / 'exh8-cash-inspection.json').write_text(json.dumps(report, indent=2))
           PY
+      - name: Exercise the ordinary monthly producer and consumers with the qualified Amundi routes
+        if: always() && github.head_ref == 'fix/qualified-six-monthly-20261124'
+        run: |
+          node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/monthly-window-baseline.json"
+          python scripts/refresh_monthly_history.py --only etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav --baseline "$RUNNER_TEMP/monthly-window-baseline.json" --output "$RUNNER_TEMP/monthly-window-observation.json" --evidence-output "$RUNNER_TEMP/monthly-window-evidence.json" --apply
+          node scripts/test-monthly-window-nav-consumers.mjs etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav
+          npm run build
       - name: Preserve real results even after a failure
         if: always()
         uses: actions/upload-artifact@v7.0.1
@@ -101,4 +108,6 @@ jobs:
             ${{ runner.temp }}/nav.json
             ${{ runner.temp }}/nav-raw
             ${{ runner.temp }}/exh8-cash-inspection.json
+            ${{ runner.temp }}/monthly-window-observation.json
+            ${{ runner.temp }}/monthly-window-evidence.json
           retention-days: 35

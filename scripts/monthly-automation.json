@@ -16626,6 +16626,84 @@
       "yahooInstrumentType": "ETF",
       "periodStart": "2015-01",
       "verifyMonthlyDisagreements": true
+    },
+    {
+      "id": "etfFR0010755611Nav",
+      "isin": "FR0010755611",
+      "label": "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc · VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "navCurrency": "EUR",
+      "periodStart": "2020-12",
+      "method": "Série ajustée officielle de la part exacte, recoupée avec les valeurs liquidatives et les calendriers de l’émetteur. Rendement en EUR net des frais du fonds, avec contrôle des unités, sans deuxième ajustement. Cotation conservée séparément.",
+      "navProvider": "amundi",
+      "navHistoryKind": "official-adjusted-nav-with-unit-checks",
+      "amundiDeclaredPolicy": "Capitalisation and/or distribution",
+      "amundiInception": "2009-06-16",
+      "requiredQualifiedCalendarYears": [
+        2021,
+        2024
+      ],
+      "amundiShareSplit": {
+        "date": "2023-10-10",
+        "ratio": 300,
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/download/9ec1d71c-7939-4ff8-b80e-794d32d92c5b/NoticeToShareholders_FR0010755611_FRA_FRA_20230908.pdf"
+      },
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "etfFR0013411998Nav",
+      "isin": "FR0013411998",
+      "label": "Amundi PEA Japon TOPIX (couvert EUR) UCITS ETF · VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "navCurrency": "EUR",
+      "periodStart": "2020-12",
+      "method": "Série ajustée officielle de la part exacte, recoupée avec les valeurs liquidatives et les calendriers de l’émetteur. Rendement en EUR net des frais du fonds, avec contrôle des unités, sans deuxième ajustement. Cotation conservée séparément.",
+      "navProvider": "amundi",
+      "navHistoryKind": "official-adjusted-nav-with-unit-checks",
+      "amundiDeclaredPolicy": "Capitalisation and/or distribution",
+      "amundiInception": "2019-04-25",
+      "requiredQualifiedCalendarYears": [
+        2025
+      ],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "etfFR0013412004Nav",
+      "isin": "FR0013412004",
+      "label": "Amundi PEA Amérique Latine UCITS ETF · VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "navCurrency": "EUR",
+      "periodStart": "2020-12",
+      "method": "Série ajustée officielle de la part exacte, recoupée avec les valeurs liquidatives et les calendriers de l’émetteur. Rendement en EUR net des frais du fonds, avec contrôle des unités, sans deuxième ajustement. Cotation conservée séparément.",
+      "navProvider": "amundi",
+      "navHistoryKind": "official-adjusted-nav-with-unit-checks",
+      "amundiDeclaredPolicy": "Capitalisation and/or distribution",
+      "amundiInception": "2019-04-25",
+      "requiredQualifiedCalendarYears": [
+        2025
+      ],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     }
   ]
 }
