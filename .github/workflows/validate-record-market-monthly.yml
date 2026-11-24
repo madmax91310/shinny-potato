@@ -341,11 +341,11 @@ jobs:
       - name: Install recording dependencies
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         run: |
+          npm ci
           bash scripts/ensure-ci-runtime.sh poppler
           bash scripts/ensure-ci-runtime.sh chromium
           python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
           python -m pip install -c scripts/python-constraints.txt beautifulsoup4
-          npm ci
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
