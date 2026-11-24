@@ -4,6 +4,7 @@ import datetime as dt
 import hashlib
 import json
 import re
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -23,6 +24,19 @@ def french_date(value, now):
     if not m or m[2] not in MONTHS:
         raise ValueError('Missing French observation date')
     return document_date(dt.date(int(m[3]), MONTHS[m[2]], int(m[1])).isoformat(), now)
+
+class IncompleteCompositionTable(ValueError):
+    """The exact source had an empty or duplicate composition table."""
+
+
+def validate_composition_table(rows, name):
+    try:
+        validated_rows(rows)
+    except ValueError as error:
+        if str(error) != 'Empty or duplicate official composition':
+            raise
+        raise IncompleteCompositionTable(f'{name}: {error}') from error
+
 
 def parse_sources(html, pdf, api, config, now):
     equity, code, isin = config
@@ -50,7 +64,7 @@ def parse_sources(html, pdf, api, config, now):
         m = re.match(r'\s*(Vanguard .+?)\s{2,}(\d+[,.]\d+)%?\s*$', line)
         if m:
             holdings.append({'name': m[1], 'weightPct': float(m[2].replace(',', '.'))})
-    validated_rows(holdings)
+    validate_composition_table(holdings, 'Vanguard underlying-fund factsheet')
     allocation = soup.find('europe-core-asset-allocations')
     if allocation is None:
         raise ValueError('Missing published asset allocation')
@@ -63,7 +77,7 @@ def parse_sources(html, pdf, api, config, now):
             if cells[0] not in labels:
                 raise ValueError('Unknown Vanguard asset allocation category')
             rows.append({'name': labels[cells[0]], 'weightPct': float(cells[1].replace('%', '').replace('\xa0', '').replace(',', '.').strip())})
-    validated_rows(rows)
+    validate_composition_table(rows, 'Vanguard website asset allocation')
     if abs(next(r['weightPct'] for r in rows if r['name'] == 'Actions') - equity) > 5:
         raise ValueError('Unexpected equity allocation')
     extra = parse_api(api, {'isin': isin, 'productCode': code, 'currency': 'EUR', 'equity': False}, now)
@@ -161,12 +175,28 @@ def collect_exact_portfolio(body, config, record, previous, now):
 def collect_one(config, now, previous=None):
     equity, code, isin = config
     url = f'https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/{code}/lifestrategy-{equity}-equity-ucits-etf-eur-accumulating'
-    html = download(url).decode('utf-8')
-    soup = BeautifulSoup(html, 'html.parser')
-    links = {a['href'] for a in soup.find_all('a', href=True) if f'_{code}_FR_INT_FR.pdf' in a['href'] and a['href'].startswith('https://fund-docs.vanguard.com/')}
-    if len(links) != 1:
-        raise ValueError('Current LifeStrategy factsheet link ambiguous')
-    record = parse_sources(html, download(links.pop()), fetch_api(code), config, now)
+    previous_table_error = None
+    for attempt in (1, 2):
+        try:
+            html = download(url).decode('utf-8')
+            soup = BeautifulSoup(html, 'html.parser')
+            links = {a['href'] for a in soup.find_all('a', href=True) if f'_{code}_FR_INT_FR.pdf' in a['href'] and a['href'].startswith('https://fund-docs.vanguard.com/')}
+            if len(links) != 1:
+                raise ValueError('Current LifeStrategy factsheet link ambiguous')
+            record = parse_sources(html, download(links.pop()), fetch_api(code), config, now)
+        except IncompleteCompositionTable as error:
+            if attempt == 2:
+                raise IncompleteCompositionTable(f'Both actual acquisitions failed: {previous_table_error}; {error}') from error
+            previous_table_error = str(error)
+            time.sleep(2)
+        else:
+            if previous_table_error:
+                record['compositionAttempts'] = [
+                    {'attempt': 1, 'status': 'failed', 'reason': previous_table_error},
+                    {'attempt': 2, 'status': 'validated', 'sourceUrl': record['sourceUrl'],
+                     'asOf': record['holdings']['asOf'], 'allocationAsOf': record['assetAllocation']['asOf']},
+                ]
+            break
     # Keep the published PDF table as a separate observation. Its rounded fund
     # allocation is not a substitute for exact held ISINs and fund-NAV weights.
     record['holdings']['weightBasis'] = 'issuer-reported-rounded-underlying-allocation'
