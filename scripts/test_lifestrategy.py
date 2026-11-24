@@ -74,7 +74,7 @@ Total 100%
     def test_live_retry_uses_a_second_complete_source_tuple(self):
         valid = self.parse()
         plan = (60, '9494', 'IE00BMVB5P51')
-        link = 'https://fund-docs.vanguard.com/9494_FR_INT_FR.pdf'
+        link = 'https://fund-docs.vanguard.com/test_9494_FR_INT_FR.pdf'
         twice = IncompleteCompositionTable('Vanguard website asset allocation: empty')
         with patch('collect_lifestrategy.download') as download, \
                 patch('collect_lifestrategy.fetch_api', side_effect=[{'first': True}, self.api]), \
