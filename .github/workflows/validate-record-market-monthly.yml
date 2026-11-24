@@ -343,6 +343,7 @@ jobs:
         run: |
           npm ci
           bash scripts/ensure-ci-runtime.sh poppler
+          npm ci
           bash scripts/ensure-ci-runtime.sh chromium
           python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
           python -m pip install -c scripts/python-constraints.txt beautifulsoup4

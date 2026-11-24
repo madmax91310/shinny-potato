@@ -35,6 +35,12 @@ class SharedAnniversaryWriterLock(unittest.TestCase):
         self.assertIn("format('{0}-{1}', github.workflow, github.ref)", groups[0])
         self.assertIn("|| 'production'", groups[0])
 
+    def test_recording_installs_locked_playwright_before_probing_chromium(self):
+        workflow = (ROOT/'.github/workflows/validate-record-market-monthly.yml').read_text()
+        recording = workflow.split('      - name: Install recording dependencies\n', 1)[1]
+        setup = recording.split('      - name: Commit validated observations\n', 1)[0]
+        self.assertLess(setup.index('npm ci'), setup.index('bash scripts/ensure-ci-runtime.sh chromium'))
+
 
 if __name__ == '__main__':
     unittest.main()
