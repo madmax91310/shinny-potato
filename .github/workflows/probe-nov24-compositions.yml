@@ -49,3 +49,31 @@ jobs:
           with ThreadPoolExecutor(max_workers=4) as pool:
               list(pool.map(one, CONFIG))
           PY
+  regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
+      - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
+      - run: node scripts/test-validated-data-publisher.mjs
+      - run: node scripts/test-annual-rollover.mjs && node scripts/test-exact-share-annual-consumers.mjs
+  action-upstream:
+    runs-on: ubuntu-latest
+    outputs:
+      needs_code: ${{ steps.reject.outcome == 'failure' }}
+    steps:
+      - id: reject
+        run: exit 1
+  action-recovery:
+    needs: action-upstream
+    if: ${{ !cancelled() && needs.action-upstream.outputs.needs_code == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: printf '%s\n' 'Recovery runs even after upstream failure'
