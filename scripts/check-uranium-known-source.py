@@ -33,29 +33,40 @@ assert len(selected) == 1 and selected[0]['id'] == expected_id
 assert all(item['selected'] or item['status'] == 'not-attempted' for item in contract['outcomes'])
 after = json.loads(books_path.read_text())
 assert {k:v for k,v in before.items() if k != ISIN} == {k:v for k,v in after.items() if k != ISIN}, 'Single-share run changed another book'
-observation = report['observations'][ISIN]
 record = after[ISIN]
-assert observation['sha256'] == record['sha256']
-assert record['checkedAt'] > before[ISIN]['checkedAt'], 'No fresh acquisition'
-assert record['rows'] and record['asOf'] >= before[ISIN]['asOf']
-if record.get('sourcePartial'):
-    assert result.returncode == 1 and len(report['errors']) == 1 and not report['successes']
-    assert report['errors'][0]['id'] == 'dca-holdings:' + ISIN
-    assert record['complete'] is False and record['unvaluedPositions']
-    proof = record['partialSourceProof']
-    assert proof['knownSecurityWeightsQualified'] is True and proof['financialDataQualified'] is False
-    assert proof['normalizationApplied'] is False
-    assert all(r['weightPct'] is None for r in record['unvaluedPositions'])
-    assert json.loads(status_path.read_text())[ISIN]['lastSuccessAt'] == status_before[ISIN]['lastSuccessAt'], 'Partial check renewed complete-source success'
-    assert selected[0]['status'] == 'failed' and selected[0]['phase'] == 'validation'
-    scope = 'known-security-weights-only; complete-book-error-preserved'
+observation = report['observations'].get(ISIN)
+rejected = report['rejectedObservations'].get(ISIN)
+status_after = json.loads(status_path.read_text())[ISIN]
+if observation is None:
+    assert rejected and rejected.get('knownSecurityWeightsQualified') is True, 'No qualified source observation'
+    assert record == before[ISIN] and record['complete'] is True, 'Previously complete book must be retained'
+    assert result.returncode == 1 and not report['successes']
+    assert status_after['lastSuccessAt'] == status_before[ISIN]['lastSuccessAt']
+    scope = 'known-security-weights-only; previous complete book retained'
+    evidence = rejected
 else:
-    assert result.returncode == 0 and record['complete'] is True and not report['errors']
-    scope = 'complete-book-qualified-by-ordinary-producer'
+    assert observation['sha256'] == record['sha256']
+    assert record['checkedAt'] > before[ISIN]['checkedAt'], 'No fresh acquisition'
+    assert record['rows'] and record['asOf'] >= before[ISIN]['asOf']
+    if record.get('sourcePartial'):
+        assert result.returncode == 1 and len(report['errors']) == 1 and not report['successes']
+        assert record['complete'] is False and record['unvaluedPositions']
+        assert status_after['lastSuccessAt'] == status_before[ISIN]['lastSuccessAt']
+        scope = 'known-security-weights-only; complete-book-error-preserved'
+        evidence = record['partialSourceProof']
+    else:
+        assert result.returncode == 0 and record['complete'] is True and not report['errors']
+        scope = 'complete-book-qualified-by-ordinary-producer'
+        evidence = {**record, 'knownSecurityRows': len(record['rows'])}
+if evidence.get('knownSecurityWeightsQualified'):
+    assert evidence['financialDataQualified'] is False and evidence['normalizationApplied'] is False
+    assert evidence['unvaluedPositions'] and all(r['weightPct'] is None for r in evidence['unvaluedPositions'])
+    assert selected[0]['status'] == 'failed' and selected[0]['phase'] == 'validation'
+    assert evidence['asOf'] >= before[ISIN]['asOf'] and evidence['checkedAt'] > before[ISIN]['checkedAt']
 (output / 'uranium-record.json').write_text(json.dumps(record, indent=2) + '\n')
 (output / 'known-source-control.json').write_text(json.dumps({
-    'isin': ISIN, 'scope': scope, 'asOf': record['asOf'], 'checkedAt': record['checkedAt'],
-    'sha256': record['sha256'], 'knownSecurityRows': len(record['rows']),
-    'completeBookQualified': record['complete'], 'ordinaryProducerExitCode': result.returncode,
-    'productionWrite': False}, indent=2) + '\n')
+    'isin': ISIN, 'scope': scope, 'asOf': evidence['asOf'], 'checkedAt': evidence['checkedAt'],
+    'sha256': evidence['sha256'], 'knownSecurityRows': evidence['knownSecurityRows'],
+    'completeBookQualified': not evidence.get('knownSecurityWeightsQualified'),
+    'ordinaryProducerExitCode': result.returncode, 'productionWrite': False}, indent=2) + '\n')
 print(f'{ISIN}: {scope}; no production write')

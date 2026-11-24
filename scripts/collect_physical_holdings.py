@@ -79,6 +79,11 @@ def globalx_page(page, share):
     return expected
 
 
+def globalx_currency_contract_name(name):
+    # Exact currency-contract labels observed in the issuer's Uranium books.
+    return name in ('CURRENCY CONTRACT - ZAR', 'CURRENCY CONTRACT - USD')
+
+
 def _globalx_csv(raw, now, *, partial_fx=False):
     reader = csv.DictReader(io.StringIO(raw.decode('utf-8-sig')))
     if reader.fieldnames != ['AS_OF_DATE', 'SEDOL', 'NAME', 'NET_ASSETS', 'TICKER',
@@ -110,7 +115,7 @@ def _globalx_csv(raw, now, *, partial_fx=False):
         # FX records, including unknown values and explicit zeroes, separately
         # from the subset of published security NAV weights. Never price a
         # currency contract from its notional SHARES_HELD.
-        fx = (row['NAME'] == 'CURRENCY CONTRACT - ZAR'
+        fx = (globalx_currency_contract_name(row['NAME'])
               and not any(row.get(k) for k in ('ISIN', 'TICKER', 'SEDOL', 'COUNTRY')))
         if value is None or not value.strip():
             if partial_fx and fx:
@@ -220,11 +225,11 @@ def collect_globalx(share, now):
                                 checkedAt=now.isoformat())
         if (share['isin'] != 'IE000NDWFGA5' or share.get('currency') != 'USD'
                 or error.diagnostic.get('kind') != 'missing-published-nav-weight'
-                or error.diagnostic.get('name') != 'CURRENCY CONTRACT - ZAR'):
+                or not globalx_currency_contract_name(error.diagnostic.get('name'))):
             raise
         rows, stamp, partial = _globalx_csv(raw, now, partial_fx=True)
         partial.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
-                       checkedAt=now.isoformat(),asOf=stamp)
+                       checkedAt=now.isoformat(),asOf=stamp,knownSecurityRows=len(rows))
         result = observation(rows, stamp, url, raw, allow_unidentified=True,
                              identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
         result.update(complete=False, sourcePartial=True,

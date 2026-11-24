@@ -434,6 +434,19 @@ class PartialGlobalX(unittest.TestCase):
             with self.subTest(raw=raw[:50]), self.assertRaises(ValueError):
                 source(raw)
 
+    def test_usd_contract_without_weight_is_classified_as_partial_only(self):
+        raw = GX_RAW.replace(b'CURRENCY CONTRACT - ZAR', b'CURRENCY CONTRACT - USD')
+        with patch('collect_physical_holdings.public_page', return_value='identity'), \
+                patch('collect_physical_holdings.globalx_page', return_value=GX_URL), \
+                patch('collect_physical_holdings.download', return_value=raw):
+            h = collect_globalx({'isin': GX_ISIN, 'currency': 'USD', 'sourceUrl': GX_URL}, GX_NOW)
+        self.assertFalse(h['complete'])
+        self.assertIsNone(h['unvaluedPositions'][0]['weightPct'])
+        self.assertEqual(h['unvaluedPositions'][0]['published']['NAME'], 'CURRENCY CONTRACT - USD')
+        self.assertEqual(h['partialSourceProof']['knownSecurityRows'], len(h['rows']))
+        with self.assertRaises(HoldingsSourceError):
+            globalx_csv(raw, GX_NOW)
+
     def test_partial_source_clock_does_not_renew_complete_success_even_on_next_failure(self):
         old = {'lastSuccessAt': '2026-11-11T07:00:00+00:00', 'status': 'failed'}
         h = source()

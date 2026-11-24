@@ -349,7 +349,7 @@ def main():
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
         for isin,h in fresh.items()}
-    write_json_atomic(args.output,{'restoredDependencySnapshots':restored_dependency_snapshots,'observations':observations,'rejectedObservations':rejected,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh if not fresh[isin].get('sourcePartial')],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error,**({'phase':'validation','sourceAttempted':False,'scope':'equity-lookthrough'} if isin in derived else {'phase':'validation','sourceAttempted':True,'partialObservationPrepared':True} if fresh.get(isin,{}).get('sourcePartial') else {})} for isin,error in errors.items()]})
+    write_json_atomic(args.output,{'restoredDependencySnapshots':restored_dependency_snapshots,'observations':observations,'rejectedObservations':rejected,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh if not fresh[isin].get('sourcePartial')],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error,**({'phase':'validation','sourceAttempted':False,'scope':'equity-lookthrough'} if isin in derived else {'phase':'validation','sourceAttempted':True,'partialObservationPrepared':True} if rejected.get(isin,{}).get('knownSecurityWeightsQualified') is True else {})} for isin,error in errors.items()]})
     # Audit each success even if an unrelated support fails later in this run.
     # Only bounded public-source metadata; never the thousands of holding rows.
     for isin,entry in observations.items():
