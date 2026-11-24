@@ -83,7 +83,7 @@ jobs:
               return {'date':day,'files':files,'status':'match' if price_matches else 'unconfirmed',
                       'lastObservedMinuteUtc':latest[0],'maintainedCloseConfirmed':price_matches}
 
-          first = observations(days[-1])
+          first = {'date': days[-1], 'status': 'not-retried-after-two-403-responses', 'files': []}
           report['results'] = [first]
           # Stop on a common archive transport block, so a missing dataset is not queried 34 times.
           if any('sha256' in f for f in first['files']):
@@ -161,6 +161,20 @@ jobs:
                       amounts[date] = Decimal(str(value))
               if events != amounts:
                   raise ValueError('Quote and issuer cash terms differ')
+              adjusted = {day(t): Decimal(str(value)) for t,value in zip(daily['timestamp'], daily['indicators']['adjclose'][0]['adjclose'],strict=True) if value is not None}
+              previous = {day: prior for prior,day in zip(sorted(d), sorted(d)[1:]) if start < day <= end}
+              step_checks = []
+              for date, before in previous.items():
+                  observed = (adjusted[date]/d[date]) / (adjusted[before]/d[before])
+                  cash = events.get(date,Decimal(0))
+                  expected = 1/(1-cash/d[before])
+                  step_checks.append({'day':date, 'prior':before,'observed':str(observed),'expected':str(expected),'error':str(abs(observed-expected)), 'cash':str(cash)})
+              report['adjustedChecks'] = {'count':len(step_checks),
+                  'expectedFormula':'1 / (1 - cash / raw closing price on preceding trading day)',
+                  'dividends':[r for r in step_checks if Decimal(r['cash'])],
+                  'maxError':str(max(Decimal(r['error']) for r in step_checks)),
+                  'unexpected':[r for r in step_checks if Decimal(r['error']) > Decimal('0.000001')][:12],
+                  'adjustedYearPercent':str((adjusted[end]/adjusted[start]-1)*100)}
               factor = lambda end: math.prod((1 + amount/d[day] for day,amount in events.items() if day<=end), start=Decimal(1))
               report['cashReinvestmentModel'] = {'method':'Cash reinvested at exact raw exchange ex-date close, gross of personal tax, net of ETF fees embedded in price. No Yahoo adjusted history used.',
                  'rawCloses':{date:str(d[date]) for date in bounds},'cash':{day:str(amount) for day,amount in events.items()},
@@ -172,6 +186,7 @@ jobs:
               d = {}
 
           try:
+              raise ValueError('Not retried after the empty response')
               route = 'https://api.boerse-frankfurt.de/v1/data/price_history?' + urlencode(dict(limit=50, offset=0,
                   isin=isin, mic='XETR', minDate='2019-12-23', maxDate='2019-12-31'))
               body = download(route, max_bytes=1_000_000, max_attempts=1)
@@ -180,7 +195,7 @@ jobs:
                  'shape':list(result) if isinstance(result,dict) else type(result).__name__,
                  'response':str(result)[:1600]}
           except Exception as e:
-              report['exchangeWebsite'] = {'url':route, 'error':str(e)}
+              report['exchangeWebsite'] = {'error':str(e)}
 
           target = pathlib.Path(os.environ['RUNNER_TEMP'])/'exh8-market-cash-control.json'
           target.write_text(json.dumps(report, indent=2)+'\n')
