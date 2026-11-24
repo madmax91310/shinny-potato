@@ -28,6 +28,7 @@ try {
   await choose(picker,etf.id)
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
+  await page.getByText('Détails et performances',{exact:true}).click()
   const section=page.locator('.es-block').filter({hasText:'Matières premières de l’indice suivi'})
   await section.waitFor()
   for (const line of commodityAllocationLines(isin)) assert((await section.innerText()).includes(line),line)
