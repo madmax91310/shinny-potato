@@ -15,6 +15,12 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -c scripts/python-constraints.txt -r scripts/python-requirements.in
+      - run: python -m unittest discover -s scripts -p 'test_lifestrategy*py'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: node scripts/test-lifestrategy.mjs && node scripts/test-lifestrategy-exact-sleeves.mjs && node scripts/test-dca-holdings-contracts.mjs
       - name: Compare the actual Vanguard observations and retained books
         run: |
           PYTHONPATH=scripts python - <<'PY'
@@ -24,7 +30,7 @@ jobs:
           from decimal import Decimal
           from pathlib import Path
           import json
-          from collect_lifestrategy import CONFIG, fetch_query, PORTFOLIO_QUERY
+          from collect_lifestrategy import CONFIG, fetch_query, PORTFOLIO_QUERY, collect_exact_portfolio
           from lifestrategy_portfolio import weight, EQUITY_FUNDS, BOND_FUNDS, displayed_allocation, paired_allocation, parse_portfolio
           now = datetime.now(timezone.utc)
           state = json.loads(Path('src/data/lifestrategy.json').read_text())
@@ -41,7 +47,9 @@ jobs:
                       if key is None:
                           raise ValueError(f'Unknown child {child}')
                       totals[key] += weight(row['marketValuePercentage'])
-                  held = record['underlyingHoldings']
+                  old = deepcopy(record)
+                  collect_exact_portfolio(body, config, record, old, now)
+                  held = old['underlyingHoldings']
                   old_a, _ = paired_allocation(record, held)
                   rebuilt = parse_portfolio(held['sourceResponse'], config, {**record,'assetAllocation':old_a},now)
                   diff = [{k:[a.get(k),b.get(k)] for k in a.keys() | b.keys() if a.get(k) != b.get(k)}
@@ -49,12 +57,13 @@ jobs:
                   return {'isin':isin,'raw':body, 'asOf':sorted({r['effectiveDate'] for r in raw}),
                     'allocation':record['assetAllocation'],'actualTotals':{k:str(v) for k,v in totals.items()},
                     'displayRebuilt':{k:str(v) for k,v in displayed_allocation(totals).items()},
-                    'retainedRowsDifference':diff}
+                    'retainedRowsDifference':diff, 'qualification':record['underlyingHoldingsQualification']}
               except Exception as e:
                   return {'isin':isin,'error':str(e)}
           with ThreadPoolExecutor(max_workers=4) as pool:
               receipts = list(pool.map(one, CONFIG))
           print(json.dumps([{k:v for k,v in r.items() if k!='raw'} for r in receipts], ensure_ascii=False, indent=2))
+          assert all('qualification' in row for row in receipts), 'Expected four actual same-date source checks'
           for name in ('dca-complete-holdings','dca-holdings-status'):
               files = json.loads(Path(f'src/data/{name}.json').read_text())
               for key in ('IE000NDWFGA5', 'IE00BK5BQW10', *(r[2] for r in CONFIG)):
