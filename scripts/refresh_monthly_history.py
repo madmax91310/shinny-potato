@@ -485,7 +485,30 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                     and scope.get('hsbcCashQualification',{}).get('coveredUntil')==result.get('lastOfficialValuation')
                     and {2024,2025}<={c.get('year')for c in scope.get('checks',[])}
                     and scope.get('controlledInstrument')==source['isin'])
-                if not equity and not hsbc and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
+                amundi_windows = {'FR0010755611': {2021, 2024}, 'FR0013411998': {2025},
+                                  'FR0013412004': {2025}}
+                isin = source.get('isin')
+                # A distinct, performance-only NAV route for three exact parts
+                # with separately qualified units and official calendar bounds.
+                amundi = (isin in amundi_windows and source['id'] == f'etf{isin}Nav'
+                          and source.get('parser') == 'official-nav' and source.get('navProvider') == 'amundi'
+                          and source.get('navHistoryKind') == 'official-adjusted-nav-with-unit-checks'
+                          and source.get('currency') == source.get('navCurrency') == 'EUR'
+                          and source.get('valuationBasis') == 'fund-nav-total-return'
+                          and source.get('periodStart') == '2020-12' and source.get('consumerScope') == 'catalog'
+                          and source.get('collectAnniversary') is False
+                          and scope.get('controlledInstrument') == isin
+                          and scope.get('adjustedUnitQualification', {}).get('months')
+                          and amundi_windows[isin] <= {c.get('year') for c in scope.get('checks', [])})
+                bitwise = (source['id'] == 'etfDE000A27Z304Nav' and isin == 'DE000A27Z304'
+                           and source.get('parser') == 'official-nav' and source.get('navProvider') == 'bitwise'
+                           and source.get('currency') == source.get('navCurrency') == 'USD'
+                           and source.get('periodStart') == '2020-12' and source.get('consumerScope') == 'catalog'
+                           and source.get('valuationBasis') == 'fund-nav-total-return'
+                           and source.get('collectAnniversary') is False
+                           and scope.get('controlledInstrument') == isin and len(scope.get('periodUnitChecks', {})) == 2
+                           and 2021 in {c.get('year') for c in scope.get('checks', [])})
+                if not equity and not hsbc and not amundi and not bitwise and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
                         or source.get('field') != 'adjclose' or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]', source.get('isin',''))
                         or not source.get('listingEvidenceId')):
                     reject('Unregistered monthly history bootstrap')

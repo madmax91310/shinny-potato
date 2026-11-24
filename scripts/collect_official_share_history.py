@@ -122,7 +122,10 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
+    recovered = [source for source in old.values() if source.get('parser') == 'official-nav'
+                 and (source.get('navHistoryKind') == 'official-adjusted-nav-with-unit-checks'
+                      or source.get('navProvider') == 'bitwise')]
+    return result + remainder + recovered + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):
@@ -191,6 +194,10 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             anniversary_nav,price_proof=anniversary_price_history(body,source,now,nav)
             calendar_proof.update(price_proof)
         credit='Amundi'
+    elif kind == 'bitwise':
+        from bitwise_nav_history import qualify
+        nav, years, calendar_proof = qualify(source, now, document)
+        credit = 'Bitwise / HANetf'
     elif kind=='hsbc':
         from hsbc_nav_history import collect as hsbc_collect
         large=lambda url: document_fetch(url,max_bytes=20_000_000) if document_fetch is download else document_fetch(url)

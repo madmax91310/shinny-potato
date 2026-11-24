@@ -58,4 +58,27 @@ class AmundiNav(unittest.TestCase):
         with self.assertRaises(ValueError):parse({'products':[]},self.source,NOW)
         self.body['products'].append(copy.deepcopy(self.body['products'][0]))
         with self.assertRaises(ValueError):parse(self.body,self.source,NOW)
+
+class AdjustedNavUnitTests(unittest.TestCase):
+    def test_split_units_match_without_applying_the_split_again(self):
+        from amundi_nav_history import qualify_adjusted_units
+        now = dt.datetime(2024, 1, 15, tzinfo=dt.timezone.utc)
+        source = {'periodStart': '2023-09', 'amundiShareSplit': {
+            'date': '2023-10-10', 'ratio': 300,
+            'sourceUrl': 'https://www.amundietf.fr/pdfDocuments/download/notice.pdf'}}
+        nav = {'2023-09-29': 3600, '2023-10-09': 3900, '2023-10-10': 13,
+               '2023-10-31': 14, '2023-11-30': 15, '2023-12-29': 14.5}
+        adjusted = {d: v / 300 if d < '2023-10-10' else v for d, v in nav.items()}
+        proof = qualify_adjusted_units(nav, adjusted, source, now)
+        self.assertEqual(proof['months']['2023-10'], '2023-10-31')
+        self.assertEqual(proof['split']['ratio'], 300)
+
+        with self.assertRaisesRegex(ValueError, 'discrepancy'):
+            qualify_adjusted_units(nav, {**adjusted, '2023-09-29': 3600}, source, now)
+        with self.assertRaisesRegex(ValueError, 'misses.*closed-month'):
+            qualify_adjusted_units(nav, {d: v for d, v in adjusted.items() if d != '2023-11-30'}, source, now)
+        with self.assertRaisesRegex(ValueError, 'split not bounded'):
+            qualify_adjusted_units(nav, {d: v for d, v in adjusted.items() if d != '2023-10-10'}, source, now)
+
+
 if __name__=='__main__':unittest.main()

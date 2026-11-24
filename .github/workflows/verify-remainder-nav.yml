@@ -6,6 +6,14 @@ on:
         description: 'Exact configured remainder NAV IDs, separated by spaces; empty keeps the existing full qualification'
         type: string
         default: ''
+  pull_request:
+    paths:
+      - 'scripts/amundi_nav_history.py'
+      - 'scripts/bitwise_nav_history.py'
+      - 'scripts/test_amundi_nav_history.py'
+      - 'scripts/test_bitwise_nav_history.py'
+      - 'scripts/test-monthly-window-nav-consumers.mjs'
+      - '.github/workflows/verify-remainder-nav.yml'
   push:
     branches: [fix/reliquat-79-20261023]
     paths:
@@ -34,6 +42,7 @@ jobs:
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
       - name: Collect exact shares, verify identity, income, currency and annual bounds
+        if: github.event_name != 'pull_request'
         env:
           NAV_ONLY: ${{ inputs.only }}
         run: |
@@ -47,6 +56,18 @@ jobs:
                           '--output', os.path.join(os.environ['RUNNER_TEMP'], 'nav.json'),
                           '--capture-dir', os.path.join(os.environ['RUNNER_TEMP'], 'nav-raw')], check=True)
           PY
+      - name: Check exact share units and Bitwise workbook validation
+        if: github.event_name == 'pull_request'
+        run: |
+          python -m unittest discover -s scripts -p test_amundi_nav_history.py
+          python -m unittest discover -s scripts -p test_bitwise_nav_history.py
+      - name: Exercise the ordinary producer and consumers on an isolated checkout
+        if: github.event_name == 'pull_request'
+        run: |
+          node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/monthly-window-baseline.json"
+          python scripts/refresh_monthly_history.py --only etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav etfDE000A27Z304Nav --baseline "$RUNNER_TEMP/monthly-window-baseline.json" --output "$RUNNER_TEMP/monthly-window-observation.json" --evidence-output "$RUNNER_TEMP/monthly-window-evidence.json" --apply
+          node scripts/test-monthly-window-nav-consumers.mjs etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav etfDE000A27Z304Nav
+          npm run build
       - name: Preserve real results even after a failure
         if: always()
         uses: actions/upload-artifact@v7.0.1
@@ -55,4 +76,6 @@ jobs:
           path: |
             ${{ runner.temp }}/nav.json
             ${{ runner.temp }}/nav-raw
+            ${{ runner.temp }}/monthly-window-observation.json
+            ${{ runner.temp }}/monthly-window-evidence.json
           retention-days: 35
