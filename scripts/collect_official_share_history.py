@@ -191,6 +191,10 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             anniversary_nav,price_proof=anniversary_price_history(body,source,now,nav)
             calendar_proof.update(price_proof)
         credit='Amundi'
+    elif kind == 'bitwise':
+        from bitwise_nav_history import qualify
+        nav, years, calendar_proof = qualify(source, now, document)
+        credit = 'Bitwise / HANetf'
     elif kind=='hsbc':
         from hsbc_nav_history import collect as hsbc_collect
         large=lambda url: document_fetch(url,max_bytes=20_000_000) if document_fetch is download else document_fetch(url)
