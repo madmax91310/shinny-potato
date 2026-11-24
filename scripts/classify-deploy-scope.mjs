@@ -3,7 +3,7 @@
 //
 // A snapshot is "data only" when every file changed since the commit currently
 // published on GitHub Pages is a path that an automation is allowed to commit
-// (the paths passed to commit-validated-data.sh in .github/workflows). Its code
+// (the declared producer paths in .github/workflows). Its code
 // is then identical to a snapshot that already passed the full gate, so editorial
 // and visual browser checks become advisory: they can no longer hold refreshed
 // data back. Any doubt (unknown published commit, unrelated history, code change)
@@ -20,13 +20,23 @@ const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8'
 
 export function automationPaths(workflowDir = path.join(ROOT, '.github/workflows')) {
   const paths = new Set()
-  for (const file of readdirSync(workflowDir).filter(name => /\.ya?ml$/.test(name))) {
+  const files = readdirSync(workflowDir)
+  for (const file of files.filter(name => /\.ya?ml$/.test(name))) {
     const text = readFileSync(path.join(workflowDir, file), 'utf8')
     for (const match of text.matchAll(/commit-validated-data\.sh\s+(?:'[^']*'|"[^"]*")\s+([^\n]+)/g)) {
       for (const token of match[1].trim().split(/\s+/)) {
         const cleaned = token.replace(/^["']|["']$/g, '')
         if (cleaned && !cleaned.startsWith('$') && !cleaned.startsWith('-')) paths.add(cleaned)
       }
+    }
+  }
+  if (files.includes('monthly-market-publication-paths.json')) {
+    const scopes = JSON.parse(readFileSync(path.join(workflowDir, 'monthly-market-publication-paths.json'), 'utf8'))
+    for (const scope of [scopes.monthly, scopes.listings]) {
+      if (!Array.isArray(scope) || !scope.length || scope.some(file =>
+        file !== 'scripts/monthly-automation.json' && (typeof file !== 'string' || !/^(src\/data|scripts\/source-snapshots|docs|public\/data)\/[a-z0-9][a-z0-9-]*\.(json|md)$/.test(file))
+      )) throw new Error('Invalid monthly publication paths')
+      for (const file of scope) paths.add(file)
     }
   }
   return [...paths].sort()

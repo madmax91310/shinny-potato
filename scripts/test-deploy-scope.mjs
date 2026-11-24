@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { automationPaths, classify } from './classify-deploy-scope.mjs'
 
 const allowed = automationPaths()
+const monthly = JSON.parse(readFileSync(new URL('../.github/workflows/monthly-market-publication-paths.json', import.meta.url), 'utf8'))
+assert.deepEqual(classify([...monthly.monthly, ...monthly.listings], allowed), { dataOnly: true, outside: [] })
 for (const required of ['src/data/automated-monthly.json', 'src/data/automated-indices.json', 'public/data/investors', 'src/pages/dca-profiles/exposures*.json']) {
   assert(allowed.includes(required), `automation path missing from the data lane: ${required}`)
 }
@@ -11,7 +14,7 @@ const data = classify(['src/data/automated-monthly.json', 'public/data/investors
 assert.deepEqual(data, { dataOnly: true, outside: [] })
 assert.equal(classify([], allowed).dataOnly, true, 'an unchanged snapshot keeps its validated code')
 
-for (const codeFile of ['src/pages/tweet-midi/engine.js', '.github/workflows/deploy-pages.yml', 'scripts/commit-validated-data.sh', 'package.json',
+for (const codeFile of ['src/pages/tweet-midi/engine.js', '.github/workflows/deploy-pages.yml', 'scripts/commit-validated-data.sh', 'package.json', '.github/workflows/monthly-market-publication-paths.json',
   'src/pages/dca-profiles/exposures/loader.js', 'src/data/automated-monthly.json.js', 'public/data/investors.js']) {
   const result = classify(['src/data/automated-monthly.json', codeFile], allowed)
   assert.equal(result.dataOnly, false, `${codeFile} must force the full gate`)

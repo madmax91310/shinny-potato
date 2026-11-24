@@ -641,6 +641,20 @@ class AuditRegressionTests(unittest.TestCase):
         {'name':'report-failures','conclusion':'failure','steps':[]}]
   row=update_status({},run(workflow='update-market-monthly.yml'),jobs)['workflows']['update-market-monthly.yml']
   self.assertEqual(row['collectionStatus'],'failure')
+ def test_monthly_reusable_jobs_preserve_distinct_phases(self):
+  collect={'name':'refresh / refresh','conclusion':'success','steps':[
+   {'name':'Collect observations: collect','conclusion':'success'}]}
+  record={'name':'refresh / record','conclusion':'success','steps':[
+   {'name':'Validate collected observations','conclusion':'success'},
+   {'name':'Commit validated observations','conclusion':'success'}]}
+  monthly=run(workflow='update-market-monthly.yml')
+  row=update_status({},monthly,[collect,record])['workflows']['update-market-monthly.yml']
+  self.assertEqual([row[k] for k in ('collectionStatus','validationStatus','recordingStatus')],['success']*3)
+  shard={'name':'refresh / tweet-midi (0)','conclusion':'failure','steps':[
+   {'name':'Verify every entry in this partition','conclusion':'failure'}]}
+  row=update_status({},monthly,[collect,shard])['workflows']['update-market-monthly.yml']
+  self.assertEqual([row[k] for k in ('collectionStatus','validationStatus','recordingStatus')],
+                   ['success','failure','not-run'])
  def test_per_source_reports_and_independent_company_fields(self):
   report=normalize_report({'series':[],'fxFailed':False,'crossFxFailed':True})
   self.assertEqual(report['errors'][0]['id'],'history:fx:TWD')

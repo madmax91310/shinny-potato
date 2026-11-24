@@ -81,7 +81,7 @@ assert.equal(completeHoldingsEvidence(retained,failed).checkedAt,'2026-10-16')
 assert.equal(completeHoldingsEvidence(retained,{status:'failed',checkedAt:'2026-10-19'}).checkedAt,null)
 assert.equal(fieldState(completeHoldingsEvidence(retained,{status:'failed',checkedAt:'2026-10-19'}),'2026-10-19'),'undated-check')
 assert.equal(completeHoldingsEvidence({...retained,checkedAt:'2026-10-15'},failed).checkedAt,'2026-10-15')
-const workflow=readFileSync('.github/workflows/update-market-monthly.yml','utf8')
+const workflow=readFileSync('.github/workflows/validate-record-market-monthly.yml','utf8')
 assert(workflow.includes('export-equity-candidates.mjs')&&workflow.includes('build-equity-history-links.mjs'))
 console.log(`${count} manual choices: exact identities, common EUR results in duels/generator, automatic qualification and deferred-data parity verified.`)
 

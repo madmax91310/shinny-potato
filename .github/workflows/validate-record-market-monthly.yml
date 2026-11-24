@@ -1,0 +1,367 @@
+name: Validate and record a monthly market snapshot
+on:
+  workflow_call:
+    inputs:
+      series:
+        type: string
+        required: true
+      ranking_sources:
+        type: string
+        required: true
+      listings_only:
+        type: boolean
+        required: true
+      retry_failed:
+        type: boolean
+        required: true
+    outputs:
+      commit_sha:
+        value: ${{ jobs.record.outputs.commit_sha }}
+      collection_failed:
+        value: ${{ jobs.refresh.outputs.collection_failed }}
+permissions:
+  contents: read
+env:
+  TZ: UTC
+jobs:
+  refresh:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 180
+    outputs:
+      base: ${{ steps.snapshot.outputs.base }}
+      tree: ${{ steps.snapshot.outputs.tree }}
+      node_version: ${{ steps.snapshot.outputs.node_version }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.rankings.outcome == 'failure' || steps.listings.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          # A queued production run must start from the latest published data.
+          ref: ${{ github.event_name == 'pull_request' && github.sha || 'master' }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install issuer PDF parser
+        run: bash scripts/ensure-ci-runtime.sh poppler
+      - run: npm ci
+      - run: bash scripts/ensure-ci-runtime.sh chromium
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
+      - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+      - run: python -m unittest discover -s scripts -p 'test_market_reader_revalidation.py'
+      - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_secondary_origin.py'
+      - run: python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'
+      - run: python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'
+      - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_dws_income_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_landg_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'
+      - run: node scripts/test-bnp-nav-consumers.mjs
+      - run: node scripts/test-dws-income-consumers.mjs
+      - run: node scripts/test-qualified-return-windows.mjs
+      - run: node scripts/test-wisdomtree-nav-consumers.mjs
+      - run: node scripts/test-income-nav-consumers.mjs
+      - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'
+      - run: python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly*units.py'
+      - run: node scripts/test-investment-history-units.mjs
+      - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
+      - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
+      - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_h10_fx.py'
+      - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
+      - run: node scripts/test-nasdaq-total-return.mjs
+      - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
+      - run: python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'
+      - name: Refresh exact issuer listing tables
+        id: listings
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        env:
+          LISTINGS_ONLY: ${{ inputs.listings_only == true }}
+        run: |
+          args=()
+          if [ "$LISTINGS_ONLY" = 'true' ]; then args+=(--common-identities-only); fi
+          python scripts/refresh_qualified_listings.py --apply --output "$RUNNER_TEMP/listing-observation.json" "${args[@]}"
+      - name: Validate shared identity consumers
+        run: node scripts/test-shared-listing-identities.mjs && node scripts/test-ai-tool-reuse.mjs
+
+      - run: node scripts/build-equity-history-links.mjs
+        if: inputs.listings_only != true
+      # NAV qualification converts completed months with the shared BCE registry.
+      # Renew that dependency before both candidate admission and active histories.
+      - name: Refresh exact ranking histories and ECB conversion
+        id: rankings
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        continue-on-error: true
+        env:
+          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}
+          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
+        run: |
+          args=()
+          if [ -n "$REQUESTED_RANKING_SOURCES" ]; then
+            requested="${REQUESTED_RANKING_SOURCES//,/ }"
+            read -r -a selected <<< "$requested"
+            if [ "${#selected[@]}" = '0' ]; then echo 'Empty explicit ranking scope'; exit 1; fi
+            args+=(--only "${selected[@]}")
+          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
+      - name: Qualify missing equity histories
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        env:
+          MONTHLY_REQUESTED_SERIES: ${{ inputs.series }}
+        run: |
+          node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json"
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit 12 --apply
+          node scripts/build-equity-history-links.mjs
+      - name: Qualify missing exact-share monthly histories
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        env:
+          MONTHLY_REQUESTED_SERIES: ${{ inputs.series }}
+        run: |
+          node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit 12 --apply
+      - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+        if: inputs.listings_only != true
+      - name: "Collect observations: collect"
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        id: collect
+        continue-on-error: true
+        env:
+          RETRY_FAILED: ${{ inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          REQUESTED_SERIES: ${{ inputs.series }}
+        run: |
+          args=()
+          if [ -n "$REQUESTED_SERIES" ]; then
+            if [ "$RETRY_FAILED" = 'true' ]; then echo 'Sélection explicite incompatible avec retry_failed'; exit 1; fi
+            requested="${REQUESTED_SERIES//,/ }"
+            read -r -a selected <<< "$requested"
+            args+=(--only "${selected[@]}")
+          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
+      - run: node scripts/build-equity-history-links.mjs
+        if: inputs.listings_only != true
+      - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
+        if: inputs.listings_only != true
+      - run: node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs
+        if: inputs.listings_only != true
+      - name: "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+        if: inputs.listings_only != true
+        run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
+      - name: "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py"
+        if: inputs.listings_only != true
+        run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - name: "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py"
+        if: inputs.listings_only != true
+        run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
+      - name: "Validate observations: npm run audit:index-facts"
+        if: inputs.listings_only != true
+        run: npm run audit:index-facts
+      - name: "Validate observations: node scripts test-automated-indices.mjs"
+        if: inputs.listings_only != true
+        run: node scripts/test-automated-indices.mjs
+      - name: "Validate observations: npm run audit:calculator-series"
+        if: inputs.listings_only != true
+        run: npm run audit:calculator-series
+      - name: "Validate observations: node scripts test-monthly-consumers.mjs"
+        if: inputs.listings_only != true
+        run: node scripts/test-monthly-consumers.mjs
+      - name: "Validate observations: node scripts test-etf-tool-connections.mjs"
+        if: inputs.listings_only != true
+        run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs --write && node scripts/test-asset-routing-blockers.mjs && node scripts/test-distinct-asset-routing.mjs
+      - name: "Validate observations: npm run audit:data-catalog"
+        run: npm run audit:data-catalog
+      - name: "Validate observations: npm run audit:data-provenance"
+        run: npm run audit:data-provenance
+      - name: "Validate observations: npm run build"
+        run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: monthly-market-observation
+          path: |
+            ${{ runner.temp }}/monthly-observation.json
+            ${{ runner.temp }}/derived-index-observation.json
+            ${{ runner.temp }}/derived-index-observation.contract-plan.json
+            ${{ runner.temp }}/listing-observation.json
+            ${{ runner.temp }}/listing-observation.contract-plan.json
+            ${{ runner.temp }}/ranking-collection-status.json
+            src/data/monthly-fx.json
+            ${{ runner.temp }}/cross-fx-evidence/
+          if-no-files-found: ignore
+          retention-days: 35
+      - name: Verify histories reach all publication tools
+        if: inputs.listings_only != true
+        run: node scripts/build-dca-exposures.mjs && node scripts/audit-portfolio-routing.mjs
+      - name: Stage the exact publication candidate
+        id: snapshot
+        env:
+          MARKET_MODE: ${{ inputs.listings_only && 'listings' || 'monthly' }}
+        run: |
+          source scripts/stage-market-monthly.sh "$MARKET_MODE" stage
+          git diff --cached --binary HEAD -- "${market_paths[@]}" > "$RUNNER_TEMP/monthly-candidate.patch"
+          echo "base=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "tree=$(git write-tree)" >> "$GITHUB_OUTPUT"
+          echo "node_version=$(node -p process.versions.node)" >> "$GITHUB_OUTPUT"
+      - name: Freeze the exhaustive verifier from the candidate tree
+        if: inputs.listings_only != true
+        run: |
+          node scripts/test-tweet-midi-shards.mjs
+          node scripts/test-tweet-midi-ci.mjs
+          candidate="$RUNNER_TEMP/monthly-tree"
+          git worktree add --detach "$candidate" HEAD
+          if [[ -s "$RUNNER_TEMP/monthly-candidate.patch" ]]; then
+            git -C "$candidate" apply --index "$RUNNER_TEMP/monthly-candidate.patch"
+          fi
+          test "$(git -C "$candidate" write-tree)" = '${{ steps.snapshot.outputs.tree }}'
+          ln -s "$PWD/node_modules" "$candidate/node_modules"
+          cd "$candidate"
+          export TWEET_MIDI_REFERENCE_DATE="$(node -p 'new Date().toISOString()')"
+          node scripts/build-tweet-midi-verifier.mjs
+          cp test-artifacts/tweet-midi-verifier.mjs "$RUNNER_TEMP/tweet-midi-verifier.mjs"
+          cp scripts/tweet-midi-ci.mjs "$RUNNER_TEMP/tweet-midi-ci.mjs"
+          node scripts/tweet-midi-ci.mjs plan "$RUNNER_TEMP/tweet-midi-verifier.mjs" "$TWEET_MIDI_REFERENCE_DATE" "$RUNNER_TEMP/monthly-tweet-midi-plan.json"
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: monthly-validation-candidate
+          path: |
+            ${{ runner.temp }}/monthly-candidate.patch
+            ${{ runner.temp }}/monthly-tweet-midi-plan.json
+          if-no-files-found: error
+          overwrite: true
+      - uses: actions/upload-artifact@v7.0.1
+        if: inputs.listings_only != true
+        with:
+          name: monthly-tweet-midi-verifier
+          path: |
+            ${{ runner.temp }}/tweet-midi-verifier.mjs
+            ${{ runner.temp }}/tweet-midi-ci.mjs
+            ${{ runner.temp }}/monthly-tweet-midi-plan.json
+          if-no-files-found: error
+          overwrite: true
+
+  tweet-midi:
+    needs: refresh
+    if: inputs.listings_only != true
+    runs-on: ubuntu-26.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: ${{ needs.refresh.outputs.node_version }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: monthly-tweet-midi-verifier
+          path: ${{ runner.temp }}/verifier
+      - name: Verify every entry in this partition
+        working-directory: ${{ runner.temp }}/verifier
+        run: node tweet-midi-ci.mjs shard tweet-midi-verifier.mjs monthly-tweet-midi-plan.json ${{ matrix.shard }} partition-${{ matrix.shard }}.json
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: monthly-tweet-midi-partition-${{ matrix.shard }}
+          path: ${{ runner.temp }}/verifier/partition-${{ matrix.shard }}.json
+          if-no-files-found: error
+          overwrite: true
+
+  record:
+    needs: [refresh, tweet-midi]
+    if: >-
+      ${{ !cancelled() && needs.refresh.result == 'success' &&
+        ((inputs.listings_only && needs.tweet-midi.result == 'skipped') ||
+        (!inputs.listings_only && needs.tweet-midi.result == 'success')) }}
+    runs-on: ubuntu-26.04
+    timeout-minutes: 180
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ needs.refresh.outputs.base }}
+          persist-credentials: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: ${{ needs.refresh.outputs.node_version }}
+          cache: npm
+      - uses: actions/download-artifact@v4
+        with:
+          name: monthly-validation-candidate
+          path: ${{ runner.temp }}/candidate
+      - uses: actions/download-artifact@v4
+        if: inputs.listings_only != true
+        with:
+          pattern: monthly-tweet-midi-partition-*
+          merge-multiple: true
+          path: ${{ runner.temp }}/candidate
+      - name: "Validate observations: npm run verify:tweet-midi"
+        if: inputs.listings_only != true
+        working-directory: ${{ runner.temp }}/candidate
+        run: |
+          node "$GITHUB_WORKSPACE/scripts/tweet-midi-ci.mjs" combine monthly-tweet-midi-plan.json proof.json partition-*.json
+      - name: Validate collected observations
+        env:
+          EXPECTED_TREE: ${{ needs.refresh.outputs.tree }}
+        run: |
+          test -f "$RUNNER_TEMP/candidate/monthly-candidate.patch"
+          if [[ -s "$RUNNER_TEMP/candidate/monthly-candidate.patch" ]]; then
+            git apply --index "$RUNNER_TEMP/candidate/monthly-candidate.patch"
+          fi
+          test "$(git write-tree)" = "$EXPECTED_TREE"
+      - uses: actions/upload-artifact@v7.0.1
+        if: inputs.listings_only != true && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        with:
+          name: monthly-tweet-midi-proof
+          path: ${{ runner.temp }}/candidate/proof.json
+          if-no-files-found: error
+          overwrite: true
+      - uses: actions/setup-python@v7.0.0
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        with:
+          python-version: '3.12'
+      - name: Install recording dependencies
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        run: |
+          bash scripts/ensure-ci-runtime.sh poppler
+          bash scripts/ensure-ci-runtime.sh chromium
+          python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+          python -m pip install -c scripts/python-constraints.txt beautifulsoup4
+          npm ci
+      - name: Commit validated observations
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        env:
+          MARKET_MODE: ${{ inputs.listings_only && 'listings' || 'monthly' }}
+          TWEET_MIDI_PROOF: ${{ runner.temp }}/candidate/proof.json
+          VALIDATED_DATA_CHECK: ${{ inputs.listings_only == true && 'node scripts/test-shared-listing-identities.mjs && node scripts/test-ai-tool-reuse.mjs' || 'bash scripts/validate-market-publication.sh' }}
+          VALIDATED_DATA_PREPARE: ${{ inputs.listings_only != true && 'bash scripts/prepare-market-projections.sh' || '' }}
+          VALIDATED_DATA_DERIVED_PATHS: '["src/data/equity-history-links.json","docs/equity-identity-gaps.json","src/data/monthly-duel-returns.json","src/data/equity-duel-returns.json","src/data/ranking-annual.json","src/data/ranking-index-annual.json","src/data/ranking-ftse.json","src/data/performance-links.json","src/data/simulation-links.json"]'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          source scripts/stage-market-monthly.sh "$MARKET_MODE"
+          if [[ "$MARKET_MODE" == listings ]]; then
+            message='Refresh verified common listing identities'
+          else
+            message='Refresh validated monthly market histories'
+          fi
+          bash scripts/commit-validated-data.sh "$message" "${market_paths[@]}"

@@ -113,7 +113,7 @@ class WorkflowContracts(unittest.TestCase):
                 if 'fetch-depth: 0' in step: self.assertEqual(step.count('filter: blob:none'), 1)
 
     def test_monthly_fx_dependency_precedes_nav_admission_and_collection(self):
-        text = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        text = (ROOT/'.github/workflows/validate-record-market-monthly.yml').read_text()
         refresh = text.split('\n  refresh:\n', 1)[1]
         fx = refresh.index('python scripts/collect_ranking_sources.py --apply')
         for consumer in ('python scripts/qualify_monthly_candidates.py',
@@ -158,6 +158,9 @@ class WorkflowContracts(unittest.TestCase):
             job = re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', workflow.split('\n  '+name+':\n')[1])[0]
             self.assertIn('build, tweet-midi-checks,', job)
             self.assertIn("needs.tweet-midi-checks.result == 'success'", job)
+            self.assertIn("needs.portfolio-stress.result == 'success'", job)
+        self.assertNotIn('run: npm run stress-test:portfolios', build)
+        self.assertIn('test-artifacts/portfolio-stress.mjs', workflow)
 
     def test_reusable_pages_callers_can_read_deployment_metadata(self):
         for path in (ROOT/'.github/workflows').glob('*.yml'):
@@ -179,7 +182,10 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn('name: '+config['workflowName'], workflow)
             self.assertIn('      - '+config['workflowName'], status)
             self.assertIn('  '+config['collectionJob']+':', workflow)
-            if config.get('artifact'): self.assertIn('name: '+config['artifact'], workflow)
+            if config.get('artifact'):
+                producer = ((ROOT/'.github/workflows/validate-record-market-monthly.yml').read_text()
+                            if filename == 'update-market-monthly.yml' else workflow)
+                self.assertIn('name: '+config['artifact'], producer)
 
     def test_publishers_use_isolated_recording_and_known_phase_steps(self):
         for filename, config in REGISTRY.items():
@@ -216,6 +222,8 @@ class WorkflowContracts(unittest.TestCase):
             if filename == 'update-editorial-radar.yml':
                 continue  # Dedicated status branch, no data commit to master.
             workflow = (ROOT/'.github/workflows'/filename).read_text()
+            if filename == 'update-market-monthly.yml':
+                workflow = (ROOT/'.github/workflows/validate-record-market-monthly.yml').read_text()
             job = workflow.split('  '+config['collectionJob']+':\n')[1].split('\n  deploy:')[0]
             self.assertIn('bash scripts/commit-validated-data.sh ', job, filename)
             self.assertNotRegex(job, r'git (?:add|commit|pull|push) ')
@@ -279,7 +287,10 @@ class WorkflowContracts(unittest.TestCase):
         self.assertIn('PAGES_DATA_SHA: ${{ steps.compose.outputs.data_sha }}',workflow)
         self.assertIn("if: steps.order.outputs.current == 'true'",workflow)
         self.assertIn("steps.producer.outcome == 'failure'",workflow)
-        self.assertIn("if: needs.publish.outputs.needs_code == 'true'",workflow)
+        publish_code = workflow.split('\n  publish-code:\n', 1)[1]
+        condition = re.search(r'(?m)^    if: (.+)$', publish_code).group(1).removeprefix('${{').removesuffix('}}').strip()
+        self.assertIn(condition, ("needs.publish.outputs.needs_code == 'true'",
+                                  "!cancelled() && needs.publish.outputs.needs_code == 'true'"))
         self.assertIn("if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'",workflow)
         for name,path in [('update-scpi.yml','src/data/automated-scpi.json'),('update-presentation-actors.yml','src/data/automated-presentation-actors.json')]:
             caller=(ROOT/'.github/workflows'/name).read_text()
@@ -293,7 +304,12 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn('producer: '+filename,workflow)
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',workflow)
             self.assertTrue(paths,filename)
-            committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
+            if filename == 'update-market-monthly.yml':
+                configured_paths = (ROOT/'.github/workflows/monthly-market-publication-paths.json').read_text()
+                committed = [p for p in json.loads(configured_paths)['monthly'] if p.startswith('src/data/')]
+                workflow += configured_paths
+            else:
+                committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
             self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
         self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and not c.get('controlOnly') and not c.get('publicationBranch') and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
@@ -310,7 +326,7 @@ class WorkflowContracts(unittest.TestCase):
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]
-        self.assertIn('needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]', deploy)
+        self.assertIn('needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke, portfolio-stress]', deploy)
         condition = deploy.split('if: >-\n')[1].split('\n    runs-on:')[0]
         # Build, Python and smoke checks block every publication; editorial browser
         # checks may only be bypassed for an automation data-only snapshot.
@@ -383,7 +399,7 @@ if __name__ == '__main__': unittest.main()
 class ExplicitRankingRecovery(unittest.TestCase):
     def test_explicit_scope_does_not_trigger_catalogue_or_skip_requested_fx(self):
         import os, subprocess, textwrap
-        workflow=(ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        workflow=(ROOT/'.github/workflows/validate-record-market-monthly.yml').read_text()
         step=re.split(r'(?m)^      - ', workflow.split('      - name: Refresh exact ranking histories and ECB conversion', 1)[1], maxsplit=1)[0]
         self.assertIn("github.event_name == 'push'",step)
         command=textwrap.dedent(step.split('        run: |\n')[1])
