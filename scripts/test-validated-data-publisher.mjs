@@ -180,3 +180,13 @@ assert(publicationWorkflow.indexOf('id: order')<publicationWorkflow.indexOf('nod
 assert(publicationWorkflow.indexOf('node scripts/deploy-validated-pages.mjs')<publicationWorkflow.indexOf('node scripts/verify-pages-publication.mjs'))
 console.log('Recorded Pages version: both real caller/snapshot cases, exact artifact identity, OIDC isolation, strict chronology, bounded recovery/cancellation and unchanged public verification.');
 assert.match(publicationWorkflow,/fetch-depth: 0\s+#.*\n\s+#.*\n\s+filter: blob:none/,'Full ancestry and complete current checkout must survive lazy historical-blob acquisition')
+
+const codeDeployment=codeWorkflow.slice(codeWorkflow.indexOf('\n  deploy:\n'),codeWorkflow.indexOf('\n  fallback-build:\n'))
+assert.match(codeDeployment,/id: current_data_artifact\s+if: steps\.data\.outputs\.refresh == 'true'\s+with:\s+name: github-pages-current-data-\$\{\{ github\.run_attempt \}\}/)
+assert.match(codeDeployment,/PAGES_ARTIFACT_ID: \$\{\{ steps\.current_data_artifact\.outputs\.artifact_id \}\}/)
+assert.match(codeDeployment,/PAGES_DATA_SHA: \$\{\{ steps\.data\.outputs\.data_sha \}\}/)
+assert.match(codeDeployment,/id: deployment\s+if: steps\.current\.outputs\.current == 'true' && steps\.data\.outputs\.refresh != 'true'\s+uses: actions\/deploy-pages@[^\n]+\s+with:\s+artifact_name: github-pages\s/)
+assert(codeDeployment.indexOf('id: current\n')<codeDeployment.indexOf('node scripts/deploy-validated-pages.mjs'))
+assert.match(codeDeployment,/verify-pages-publication\.mjs "\$\{\{ steps\.deployment_refreshed\.outputs\.page_url \|\| steps\.deployment\.outputs\.page_url \}\}"/)
+assert(codeDeployment.indexOf('node scripts/deploy-validated-pages.mjs')<codeDeployment.indexOf('node scripts/verify-pages-publication.mjs'))
+
