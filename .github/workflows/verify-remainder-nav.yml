@@ -79,3 +79,67 @@ jobs:
             ${{ runner.temp }}/monthly-window-observation.json
             ${{ runner.temp }}/monthly-window-evidence.json
           retention-days: 35
+
+  initialize-reviewed-observations:
+    if: github.event_name == 'pull_request' && github.head_ref == 'fix/qualified-six-monthly-20261124' && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      actions: read
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
+      - uses: actions/download-artifact@v4
+        with:
+          name: remainder-exact-share-nav
+          run-id: 45338450833
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/reviewed-monthly
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Import only observations from the validated producer receipt
+        run: |
+          git diff --exit-code 8a3bfcb27da58f0c9863e865eed41c7e903bb785 HEAD -- scripts src
+          PYTHONPATH=scripts python - <<'PY'
+          import json, os, pathlib
+          from data_automation import write_json_atomic
+          receipt = pathlib.Path(os.environ['RUNNER_TEMP']) / 'reviewed-monthly/monthly-window-evidence.json'
+          report = json.loads(receipt.read_text())
+          expected = {'etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfDE000A27Z304Nav'}
+          assert len(report['series']) == len(expected) and set(report['scope']['expectedIds']) == expected
+          assert {r['id'] for r in report['series'] if r['status'] == 'validated'} == expected
+          active_path = pathlib.Path('src/data/automated-etf-monthly.json')
+          evidence_path = pathlib.Path('scripts/source-snapshots/monthly-automated.json')
+          status_path = pathlib.Path('scripts/source-snapshots/monthly-collection-status.json')
+          active, evidence, status = (json.loads(p.read_text()) for p in (active_path, evidence_path, status_path))
+          for row in report['series']:
+              identity = row['id']
+              record = row['record']
+              proof = row['evidence']
+              assert record['responseSha256'] == proof['responseSha256']
+              assert len(record['points']) == len(proof['proofRows']) and record['calendarProof']['checks']
+              assert identity not in active or active[identity] == record
+              active[identity] = record
+              evidence[identity] = {k: v for k, v in proof.items() if k not in ('rawResponse', 'points', 'anniversaryPoints')}
+              status['series'][identity] = dict(status='validated', checkedAt=report['checkedAt'],
+                  periodEnd=record['periodEnd'], periodStart=record['periodStart'], responseSha256=record['responseSha256'])
+          for path, value in zip((active_path, evidence_path, status_path), (active, evidence, status)):
+              write_json_atomic(path, value)
+          PY
+          node scripts/build-equity-history-links.mjs
+          node scripts/build-ranking-annual.mjs
+          node scripts/build-monthly-duel-returns.mjs
+          node scripts/build-equity-duel-returns.mjs
+          node scripts/audit-automated-monthly.mjs
+          node scripts/test-monthly-window-nav-consumers.mjs etfFR0010755611Nav etfFR0013411998Nav etfFR0013412004Nav etfDE000A27Z304Nav
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/automated-etf-monthly.json src/data/equity-history-links.json src/data/ranking-annual.json src/data/monthly-duel-returns.json src/data/equity-duel-returns.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json docs/equity-identity-gaps.json
+          git commit -m 'Record validated Amundi and Bitwise monthly observations from GitHub'
+          git push origin HEAD:refs/heads/fix/qualified-six-monthly-20261124
