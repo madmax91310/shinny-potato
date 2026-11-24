@@ -115,7 +115,7 @@ try{
   await other.locator('.es-card').getByText('ISIN : IE00B14X4Q57',{exact:true}).waitFor({state:'attached'})
   const preview=other.getByRole('button',{name:'Aperçu',exact:true})
   if(await preview.isVisible())await preview.click()
-  await other.locator('.es-card').getByText('ISIN : IE00B14X4Q57',{exact:true}).waitFor()
+  await other.locator('.es-post-text').filter({hasText:'ISIN : IE00B14X4Q57'}).waitFor()
   await other.goto(url+'radar-editorial')
   await other.getByRole('heading',{name:'Radar éditorial',exact:true}).waitFor()
   // Failure keeps the last loaded feed while badge no longer pretends zero.

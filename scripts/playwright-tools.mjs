@@ -553,23 +553,24 @@ async function testEtfSheets(page) {
   for (let i = 0; i < count; i++) {
     await choose(select, { index: i });
     await page.locator('.es-card').waitFor({state:'visible'});
-    // textContent vérifie le contenu des rubriques sans la mise en capitales CSS des titres.
-    const text = await page.locator(".es-card").textContent();
+    const text = await page.locator('.es-post-text').textContent();
+    const details = page.locator('.es-details');
+    if (await details.getAttribute('open') !== null) badCount++;
     if (/undefined|NaN/.test(text)) badCount++;
     const selectedId = await select.getAttribute('data-value');
     const card = getPresentationCopy(ETFS.find(item => item.id === selectedId));
     if (!text.includes(card.hook)) badCount++;
     const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
     if (accounts.includes('PEA') !== (typeof card.pea === 'boolean')) badCount++;
-    if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
+    if (card.listing && !(await details.textContent()).includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
     const sectionLabels = ['🔍 Ce que tu achètes', '✅ Pourquoi s’y intéresser ?', '⚠️ Le point de vigilance'];
-    const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])];
+    const explanations = [card.postWhatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])];
     if (!explanations.every(value => value && text.includes(value))
       || !sectionLabels.every(label => text.includes(label))) badCount++;
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
     const copied = await page.evaluate(() => window.__etfCopiedText);
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
-    if (copied !== buildText(card) || !copied?.startsWith(card.hook + "\n\n") || !copied.includes(card.name)
+    if (copied !== text || copied !== buildText(card) || !copied?.startsWith(card.hook + "\n\n") || !copied.includes(card.name)
       || !copied.includes(card.isin) || !copied.replace(/\s/g, '').includes(card.ter.replace(/\s/g, '')) || !copied.includes(card.hook)
       || (copied.includes('🏦 PEA : ✅') !== (card.pea === true))
       || ![card.postWhatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])].every(value => copied.includes(value))

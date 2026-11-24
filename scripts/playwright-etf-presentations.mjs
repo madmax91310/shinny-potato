@@ -27,6 +27,9 @@ try {
   await page.locator(`[data-asset-id="${etf.id}"]`).click()
   await page.waitForFunction(isin=>document.querySelector('.es-card .es-facts')?.textContent.includes(isin),etf.isin)
   const copy=getPresentationCopy(etf),card=page.locator('.es-card')
+  const preview=await card.locator('.es-post-text').textContent()
+  assert.equal(preview,buildText(etf),etf.id+': aperçu égal au texte généré')
+  await card.locator('summary').click()
   const content=await card.innerText()
   assert(content.includes(copy.whatIs),etf.id+': composition réellement affichée')
   assert(content.includes(copy.whatToKnow),etf.id+': vigilance affichée')
@@ -35,7 +38,7 @@ try {
   assert(content.includes(copy.aum),etf.id)
   await page.getByRole('button',{name:/Copier le texte|Copié !/}).click()
   const copied=await page.evaluate(()=>navigator.clipboard.readText())
-  assert.equal(copied,buildText(etf),etf.id+': copie égale au moteur')
+  assert.equal(copied,preview,etf.id+': copie égale à l’aperçu')
   results.push({id:etf.id,isin:etf.isin,display:true,copy:true})
   if(results.length%50===0)console.log(`${results.length} fiches OK`)
   if(representatives.includes(etf.id)) {
@@ -63,7 +66,8 @@ try {
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)
   assert(!overflow,id+': débordement horizontal mobile')
   await page.getByRole('button',{name:/Copier le texte|Copié !/}).click()
-  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),buildText(etf))
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),await page.locator('.es-post-text').textContent())
+  assert.equal(await page.locator('.es-post-text').textContent(),buildText(etf))
   const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image',exact:true}).click();const download=await pending
   assert.equal(await download.failure(),null)
   exports.push({id,mobile:true,png:true})
