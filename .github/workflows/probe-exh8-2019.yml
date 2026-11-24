@@ -96,10 +96,102 @@ jobs:
           target.write_text(json.dumps(report, indent=2)+'\n')
           print(target.read_text())
           PY
+      - name: Reconcile raw market closes and published cash terms through public routes
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import datetime as dt, hashlib, json, math, os, pathlib
+          from decimal import Decimal, getcontext
+          from urllib.parse import urlencode
+          from zoneinfo import ZoneInfo
+          from data_automation import get_json
+          from issuer_documents import download
+
+          getcontext().prec = 30
+          isin = 'DE000A0H08P6'
+          zone = ZoneInfo('Europe/Berlin')
+          bounds = '2018-12-28 2019-01-31 2019-02-28 2019-03-29 2019-04-30 2019-05-31 2019-06-28 2019-07-31 2019-08-30 2019-09-30 2019-10-31 2019-11-29 2019-12-30'.split()
+          start, end = bounds[0], bounds[-1]
+          report = {'isin': isin, 'symbol': 'EXH8.DE', 'currency': 'EUR', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+                    'scope': bounds, 'publication': 'diagnostic-only'}
+          base = 'https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE'
+          def day(stamp): return dt.datetime.fromtimestamp(stamp, zone).date().isoformat()
+          def epoch(d): return int(dt.datetime.fromisoformat(d).replace(tzinfo=dt.timezone.utc).timestamp())
+          def yahoo(interval):
+              source = base + '?' + urlencode({'period1':epoch('2018-12-01'), 'period2':epoch('2020-01-01'),
+                                             'interval':interval, 'events':'div,splits'})
+              body = get_json(source)
+              x, = body['chart']['result']
+              meta = x['meta']
+              expected = {'symbol':'EXH8.DE','exchangeName':'GER','exchangeTimezoneName':'Europe/Berlin','currency':'EUR'}
+              for field, value in expected.items():
+                  if meta[field] != value: raise ValueError('Wrong exact listing: ' + field)
+              return x, source
+          try:
+              daily, daily_url = yahoo('1d')
+              monthly, monthly_url = yahoo('1mo')
+              obs = daily['indicators']['quote'][0]['close']
+              d = {day(t): Decimal(str(v)) for t,v in zip(daily['timestamp'], obs) if v is not None}
+              m = {day(t)[:7]: Decimal(str(v)) for t,v in zip(monthly['timestamp'], monthly['indicators']['quote'][0]['close']) if v is not None}
+              report.update(yahooDaily=daily_url, yahooMonthly=monthly_url)
+              for date in bounds:
+                  if d.get(date) is None or m.get(date[:7]) != d[date] or date != max(p for p in d if p.startswith(date[:7])):
+                      raise ValueError('Unmatched or incomplete raw month end: ' + date)
+              if daily.get('events', {}).get('splits'):
+                  raise ValueError('Split detected: separate evidence required')
+              events = {day(v['date']):Decimal(str(v['amount'])) for v in daily['events']['dividends'].values()
+                        if start < day(v['date']) <= end}
+              if len(events) != 4 or not all(value > 0 and date in d for date,value in events.items()):
+                  raise ValueError('Incomplete reinvestment dates')
+              api = 'https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?'
+              params = dict(appSubType='ISHARES', appType='PRODUCT_PAGE', component='keyFundFacts,performance',
+                            locale='en_GB', portfolioId=251959, targetSite='ishares-uk', userType='individual',
+                            excludeContent='true', includeConfig='true')
+              report['issuerSource'] = api + urlencode(params)
+              issuer = get_json(report['issuerSource'])['componentsByNameMap']
+              facts = issuer['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+              if facts['isin']['value']!=isin or facts['useOfProfitsCode']['value']!='Distributing':
+                  raise ValueError('Wrong issuer share or income treatment')
+              data = issuer['performance']['containersByNameMap']['distributions']['subContainersByNameMap']['table']['dataPointsByNameMap']
+              amounts = {}
+              for stamp, value, currency in zip(data['exDate']['value'],data['totalDistribution']['value'],data['totalDistribution']['prefix'],strict=True):
+                  date = dt.datetime.strptime(str(stamp),'%Y%m%d').date().isoformat()
+                  if start < date <= end:
+                      if currency.strip()!='EUR' or date in amounts:
+                          raise ValueError('Wrong or duplicate official cash')
+                      amounts[date] = Decimal(str(value))
+              if events != amounts:
+                  raise ValueError('Quote and issuer cash terms differ')
+              factor = lambda end: math.prod((1 + amount/d[day] for day,amount in events.items() if day<=end), start=Decimal(1))
+              report['cashReinvestmentModel'] = {'method':'Cash reinvested at exact raw exchange ex-date close, gross of personal tax, net of ETF fees embedded in price. No Yahoo adjusted history used.',
+                 'rawCloses':{date:str(d[date]) for date in bounds},'cash':{day:str(amount) for day,amount in events.items()},
+                 'exDateCloses':{day:str(d[day]) for day in events},
+                 'endYearReturnPercent':str((d[end]*factor(end)/d[start]-1)*100),
+                 'monthlyTotalReturn':{date:str(d[date]*factor(date)) for date in bounds}}
+          except Exception as e:
+              report['modelFailure'] = str(e)
+              d = {}
+
+          try:
+              route = 'https://api.boerse-frankfurt.de/v1/data/price_history?' + urlencode(dict(limit=50, offset=0,
+                  isin=isin, mic='XETR', minDate='2019-12-23', maxDate='2019-12-31'))
+              body = download(route, max_bytes=1_000_000, max_attempts=1)
+              result=json.loads(body)
+              report['exchangeWebsite'] = {'url':route, 'sha256':hashlib.sha256(body).hexdigest(),
+                 'shape':list(result) if isinstance(result,dict) else type(result).__name__,
+                 'response':str(result)[:1600]}
+          except Exception as e:
+              report['exchangeWebsite'] = {'url':route, 'error':str(e)}
+
+          target = pathlib.Path(os.environ['RUNNER_TEMP'])/'exh8-market-cash-control.json'
+          target.write_text(json.dumps(report, indent=2)+'\n')
+          print(target.read_text())
+          PY
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: exh8-2019-read-only-source-control
-          path: ${{ runner.temp }}/exh8-source-control.json
+          path: |
+            ${{ runner.temp }}/exh8-source-control.json
+            ${{ runner.temp }}/exh8-market-cash-control.json
           if-no-files-found: error
           retention-days: 35
