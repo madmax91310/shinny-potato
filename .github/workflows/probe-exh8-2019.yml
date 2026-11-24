@@ -1,0 +1,105 @@
+name: Examine the exact 2019 EXH8 source
+on:
+  pull_request:
+    paths: ['.github/workflows/probe-exh8-2019.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    if: github.head_ref == 'fix/exh8-monthly-source-qualification-20261124' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Compare maintained daily data with the official historical Xetra archive
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import csv, datetime as dt, hashlib, io, json, os, pathlib
+          from concurrent.futures import ThreadPoolExecutor
+          from decimal import Decimal
+          from urllib.parse import urlencode
+          from zoneinfo import ZoneInfo
+          from data_automation import get_json
+          from issuer_documents import download
+
+          isin, symbol = 'DE000A0H08P6', 'EXH8.DE'
+          days = ('2018-12-28 2019-01-31 2019-02-28 2019-03-29 2019-04-30 '
+                  '2019-05-31 2019-06-28 2019-07-31 2019-08-30 2019-09-30 '
+                  '2019-10-31 2019-11-29 2019-12-30').split()
+          cash_days = ('2019-01-15', '2019-04-15', '2019-07-15', '2019-10-15')
+          scope = [(day, 'month-end') for day in days] + [(day, 'ex-date') for day in cash_days]
+          archive = 'https://deutsche-boerse-xetra-pds.s3.eu-central-1.amazonaws.com'
+          report = {'isin': isin, 'symbol': symbol, 'venue': 'XETR', 'currency': 'EUR',
+                    'scope': scope, 'archiveLicence': 'Non-commercial; read-only corroboration',
+                    'method': 'Last observed minute with trades is compared to raw market close; the timestamp is not treated as an auction flag.'}
+          retrieved_at = dt.datetime.now(dt.timezone.utc).isoformat()
+          report['checkedAt'] = retrieved_at
+          calendar = ZoneInfo('Europe/Berlin')
+          def epoch(day): return int(dt.datetime.fromisoformat(day).replace(tzinfo=dt.timezone.utc).timestamp())
+          try:
+              params = urlencode({'period1': epoch('2018-12-24'), 'period2': epoch('2020-01-02'), 'interval': '1d', 'events': 'div,splits'})
+              data = get_json('https://query2.finance.yahoo.com/v8/finance/chart/' + symbol + '?' + params)
+              entry, = data['chart']['result']
+              m = entry['meta']
+              if (m['symbol'], m['exchangeName'], m['currency'], m['exchangeTimezoneName']) != (symbol, 'GER', 'EUR', 'Europe/Berlin'):
+                  raise ValueError('Maintained quote identity was not qualified: ' + str({k: m.get(k) for k in ['symbol','exchangeName','currency','exchangeTimezoneName']}))
+              raw = {dt.datetime.fromtimestamp(t, calendar).date().isoformat(): Decimal(str(p))
+                     for t,p in zip(entry['timestamp'], entry['indicators']['quote'][0]['close']) if p is not None}
+              report['maintainedCoverage'] = [day for day,_ in scope if day in raw]
+              report['maintainedActions'] = {name: [{**x, 'date':dt.datetime.fromtimestamp(x['date'], calendar).date().isoformat()} for x in rows.values()]
+                                             for name, rows in entry.get('events', {}).items()}
+          except Exception as e:
+              report['maintainedError'] = str(e)
+              raw = {}
+
+          def observations(day):
+              clock = dt.time(14) if day in ('2018-12-28', '2019-12-30') else dt.time(17,30)
+              auction_hour = dt.datetime.combine(dt.date.fromisoformat(day), clock, calendar).astimezone(dt.timezone.utc).hour
+              matches, files = [], []
+              for hour in (auction_hour, auction_hour-1):
+                  url = f'{archive}/{day}/{day}_BINS_XETR{hour:02}.csv'
+                  try:
+                      body = download(url, max_bytes=4_000_000, timeout=12, max_attempts=1)
+                      reader = csv.DictReader(io.StringIO(body.decode('utf-8-sig')))
+                      required = {'ISIN','Mnemonic','Currency','Date','Time','EndPrice','NumberOfTrades'}
+                      if not required.issubset(reader.fieldnames or []):
+                          raise ValueError('Historic CSV schema is incompatible')
+                      rows = [r for r in reader if r['ISIN']==isin and r['Date']==day]
+                      for r in rows:
+                          if r['Mnemonic']!='EXH8' or r['Currency']!='EUR':
+                              raise ValueError('Historic listing identity changed')
+                          if int(r['NumberOfTrades']) > 0:
+                              value = Decimal(r['EndPrice'])
+                              if not value.is_finite() or value <= 0: raise ValueError('Invalid historic trade level')
+                              matches.append((r['Time'], value))
+                      files.append({'url':url, 'sha256':hashlib.sha256(body).hexdigest(), 'rowsForIsin':len(rows)})
+                  except Exception as e:
+                      files.append({'url':url,'error':str(e)})
+              if not matches:
+                  return {'date':day, 'files':files, 'status':'no-exact-trade'}
+              latest = max(matches)
+              # The archive is restricted to non-commercial use. Its prices are not reproduced in the receipt.
+              price_matches = day in raw and abs(raw[day] - latest[1]) < Decimal('0.00005')
+              return {'date':day,'files':files,'status':'match' if price_matches else 'unconfirmed',
+                      'lastObservedMinuteUtc':latest[0],'maintainedCloseConfirmed':price_matches}
+
+          first = observations(days[-1])
+          report['results'] = [first]
+          # Stop on a common archive transport block, so a missing dataset is not queried 34 times.
+          if any('sha256' in f for f in first['files']):
+              with ThreadPoolExecutor(max_workers=3) as pool:
+                  report['results'] += list(pool.map(observations, [day for day,_ in scope if day != days[-1]]))
+          else:
+              report['unattempted'] = [day for day,_ in scope if day != days[-1]]
+
+          target = pathlib.Path(os.environ['RUNNER_TEMP'])/'exh8-source-control.json'
+          target.write_text(json.dumps(report, indent=2)+'\n')
+          print(target.read_text())
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exh8-2019-read-only-source-control
+          path: ${{ runner.temp }}/exh8-source-control.json
+          if-no-files-found: error
+          retention-days: 35
