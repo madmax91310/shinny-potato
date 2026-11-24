@@ -104,7 +104,7 @@ assert(codeReceiptUpload.includes('!inputs.producer_receipt_declared'),'Nested c
 assert.match(codeWorkflow,/Record the data snapshot requested for publication[\s\S]*?data_publication.py receipt --all/,'The local full-snapshot validation receipt remains mandatory')
 assert.match(publicationWorkflow,/steps\.order\.outputs\.current == 'true' && \(steps\.deployment\.outcome == 'failure' \|\| steps\.verify\.outcome == 'failure'\)/,
  'A failed Pages deployment or public verification schedules full recovery only after the order guard')
-assert.match(publicationWorkflow,/publish-code:\s*\n\s*needs: publish\s*\n[\s\S]*?if:.*!cancelled\(\) && needs\.publish\.outputs\.needs_code == 'true'/,
+assert.match(publicationWorkflow,/publish-code:\s*\n\s*needs: publish\s*\n[\s\S]*?if: needs\.publish\.outputs\.needs_code == 'true' && !cancelled\(\)/,
  'The recovery job must be eligible after its prerequisite failed')
 assert.match(publicationWorkflow,/name: Verify actual public data\s*\n\s*id: verify/)
 assert.match(publicationWorkflow,/publish-code:[\s\S]*?producer_receipt_declared: true/,'Only the outer caller that uploaded its receipt declares ownership')

@@ -1,0 +1,32 @@
+name: Validate exact publication recovery condition
+on:
+  push:
+    branches: [fix/pages-recovery-contract-20261124]
+    paths: [.github/workflows/probe-recovery-gate-nov24.yml]
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py' && node scripts/test-validated-data-publisher.mjs
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      needs_code: ${{ steps.deployment.outcome == 'failure' }}
+    steps:
+      - id: deployment
+        run: exit 1
+  recovery:
+    needs: publish
+    if: needs.publish.outputs.needs_code == 'true' && !cancelled()
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Passed the exact production condition on a failed upstream'
