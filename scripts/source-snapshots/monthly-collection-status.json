@@ -2270,7 +2270,7 @@
     },
     "etfDE000A27Z304": {
       "status": "failed",
-      "checkedAt": "2026-11-24T02:01:25.418200+00:00",
+      "checkedAt": "2026-11-24T08:35:59.324476+00:00",
       "reason": "Yahoo Finance HTTP Error 400 for BTCE.DE (XETR, EUR) on query2.finance.yahoo.com, interval=1d: Data doesn't exist for startDate = 1593561600, endDate = 1793491200"
     },
     "etfGB00BLD4ZL17": {
@@ -4710,9 +4710,11 @@
       "responseSha256": "518ca44455cbcd3969cf465ebfccf3ea77f626c3d44c650af8c46985f433e63f"
     },
     "etc_wti_crude_oilNav": {
-      "status": "failed",
-      "checkedAt": "2026-11-24T02:01:25.418200+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-24T08:35:59.324476+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2019-12",
+      "responseSha256": "2f9e74893479a4154aa21bc265489ceb0ba2cbda6004f660ff768a7c29c46e3d"
     },
     "etc_coffeeNav": {
       "status": "validated",
@@ -4771,9 +4773,11 @@
       "responseSha256": "3690f3909c8ea42b49b6dc4ee846e03e57329a242a447b0383a08a1bc91bc260"
     },
     "etc_wheatNav": {
-      "status": "failed",
-      "checkedAt": "2026-11-24T02:01:25.418200+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-24T08:35:59.324476+00:00",
+      "periodEnd": "2026-10",
+      "periodStart": "2021-12",
+      "responseSha256": "c4e127ba601762bce89c54453c4b5d5499868214a185f204962b0ff481c8c306"
     },
     "etfFR0013412269": {
       "status": "validated",
