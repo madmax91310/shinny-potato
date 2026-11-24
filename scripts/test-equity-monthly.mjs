@@ -24,13 +24,21 @@ for (const config of configs) {
   assert.equal(asset.priceMethod,'adjusted')
   assert(ASSET_ORDER.includes(id) && MARKET_ASSETS.some(a=>a.id===id))
   assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===id),getValidYearsBackOptions(id,new Date()).length>0)
-  for(const month of record.anniversaryExcludedMonths??[])assert.throws(()=>getHistoricalPrice(id,month),{message:record.anniversaryExclusionReason})
+  const excludedMonths=new Set(record.anniversaryExcludedMonths??[])
+  for(const month of excludedMonths)assert.throws(()=>getHistoricalPrice(id,month),{message:record.anniversaryExclusionReason})
   const start=asset.points[0], end=asset.points.at(-1)
   const result=derive({assetId:id,amountRaw:'1000',mode:'lump',startYear:+start.date.slice(0,4),startMonth:+start.date.slice(5),overridePriceRaw:''})
   assert(Math.abs(result.result.finalValue-1000*end.price/start.price)<1e-6)
   const dca=derive({assetId:id,amountRaw:'100',mode:'dca',startYear:+start.date.slice(0,4),startMonth:+start.date.slice(5),overridePriceRaw:''})
   assert(Math.abs(dca.result.finalValue-asset.points.reduce((n,p)=>n+100/p.price,0)*end.price)<1e-6)
-  assert.equal(getHistoricalPrice(id,end.date),record.anniversaryPoints.at(-1)[1])
+  const lastQualifiedAnniversary=record.anniversaryPoints.findLast(([month])=>!excludedMonths.has(month))
+  if(lastQualifiedAnniversary){
+    const [month,price]=lastQualifiedAnniversary
+    assert.equal(getHistoricalPrice(id,month),price)
+  }else{
+    assert(record.anniversaryPoints.length>0)
+    assert(!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===id),'An asset with no qualified historical price must stay unavailable to Anniversaire')
+  }
   assert(levels[id], `${id}: automatic dated quote collected`)
   assert(resolveAnniversaryLevel(id,'',new Date(`${levels[id].asOf}T23:00:00Z`)),`${id}: automatic dated anniversary quote`)
 }
