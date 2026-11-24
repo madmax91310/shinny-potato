@@ -33,7 +33,7 @@ jobs:
       queue: max
     outputs:
       code_epoch: ${{ steps.plan.outputs.code_epoch }}
-      needs_code: ${{ steps.plan.outputs.needs_code == 'true' || (steps.plan.outputs.current == 'true' && steps.producer.outcome == 'failure') }}
+      needs_code: ${{ steps.plan.outputs.needs_code == 'true' || (steps.plan.outputs.current == 'true' && steps.producer.outcome == 'failure') || (steps.order.outputs.current == 'true' && (steps.deployment.outcome == 'failure' || steps.verify.outcome == 'failure')) }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -132,6 +132,7 @@ jobs:
           PAGES_DATA_SHA: ${{ steps.compose.outputs.data_sha }}
         run: node scripts/deploy-validated-pages.mjs
       - name: Verify actual public data
+        id: verify
         if: steps.order.outputs.current == 'true'
         run: node scripts/verify-pages-publication.mjs "${{ steps.deployment.outputs.page_url }}" "${{ steps.compose.outputs.code_sha }}" "${{ steps.compose.outputs.data_sha }}"
       - uses: actions/upload-artifact@v7.0.1
@@ -151,7 +152,9 @@ jobs:
 
   publish-code:
     needs: publish
-    if: needs.publish.outputs.needs_code == 'true'
+    # A rejected data-only artifact still needs ordinary full validation.
+    # Keep the failed lane visible and use the same recorded producer ref.
+    if: ${{ !cancelled() && needs.publish.outputs.needs_code == 'true' }}
     permissions:
       contents: read
       pages: write

@@ -273,7 +273,10 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
         return old_fx, reports
     due = [c for c in CROSS_SERIES if not retry or reports.get(c, {}).get('status') == 'failed'
            or latest not in old_fx.get('derived', {}).get(c, {}).get('observations', {})]
-    ecb_due = not retry or reports.get('ECB', {}).get('status') == 'failed' or latest not in old_fx.get('months', {})
+    latest_ecb = old_fx.get('months', {}).get(latest)
+    december_incomplete = latest.endswith('-12') and (
+        not latest_ecb or latest_ecb.get('asOf') != year_end_reference_date(int(latest[:4])))
+    ecb_due = not retry or reports.get('ECB', {}).get('status') == 'failed' or not latest_ecb or december_incomplete
     if not ecb_due and not due:
         return old_fx, reports
     fx = copy.deepcopy(old_fx)

@@ -102,6 +102,11 @@ assert.match(codeWorkflow,/producer_receipt_declared:[\s\S]*?type: boolean\s+def
 const codeReceiptUpload=codeWorkflow.split(/(?=      - uses: actions\/upload-artifact@)/).find(s=>s.includes('name: data-publication-receipt'))
 assert(codeReceiptUpload.includes('!inputs.producer_receipt_declared'),'Nested code validation must preserve the original producer artifact without a name collision')
 assert.match(codeWorkflow,/Record the data snapshot requested for publication[\s\S]*?data_publication.py receipt --all/,'The local full-snapshot validation receipt remains mandatory')
+assert.match(publicationWorkflow,/steps\.order\.outputs\.current == 'true' && \(steps\.deployment\.outcome == 'failure' \|\| steps\.verify\.outcome == 'failure'\)/,
+ 'A failed Pages deployment or public verification schedules full recovery only after the order guard')
+assert.match(publicationWorkflow,/publish-code:\s*\n\s*needs: publish\s*\n[\s\S]*?if:.*!cancelled\(\) && needs\.publish\.outputs\.needs_code == 'true'/,
+ 'The recovery job must be eligible after its prerequisite failed')
+assert.match(publicationWorkflow,/name: Verify actual public data\s*\n\s*id: verify/)
 assert.match(publicationWorkflow,/publish-code:[\s\S]*?producer_receipt_declared: true/,'Only the outer caller that uploaded its receipt declares ownership')
 console.log('Nested code validation preserves the immutable producer receipt; direct code publication keeps its default all-snapshot receipt.')
 

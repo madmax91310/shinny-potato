@@ -3,7 +3,7 @@ import datetime as dt
 import json
 import unittest
 from unittest.mock import patch
-from collect_lifestrategy import parse_sources, french_date
+from collect_lifestrategy import IncompleteCompositionTable, collect_one, parse_sources, french_date
 from data_automation import UTC
 
 class LifeStrategySources(unittest.TestCase):
@@ -63,6 +63,33 @@ Total 100%
     def test_stale_or_future_allocation_rejected(self):
         for date in ['31 mai 2026','31 octobre 2026']:
             with self.subTest(date=date),self.assertRaises(ValueError):self.parse(allocation_date=date)
+    def test_missing_table_is_retryable_but_wrong_weights_are_not(self):
+        empty = self.text.replace('60,0%', 'à déterminer').replace('40,0%', 'à déterminer')
+        with self.assertRaisesRegex(IncompleteCompositionTable, 'underlying-fund factsheet'):
+            self.parse(text=empty)
+        with self.assertRaises(ValueError) as wrong:
+            self.parse(text=self.text.replace('40,0%', '20,0%'))
+        self.assertNotIsInstance(wrong.exception, IncompleteCompositionTable)
+
+    def test_live_retry_uses_a_second_complete_source_tuple(self):
+        valid = self.parse()
+        plan = (60, '9494', 'IE00BMVB5P51')
+        link = 'https://fund-docs.vanguard.com/test_9494_FR_INT_FR.pdf'
+        twice = IncompleteCompositionTable('Vanguard website asset allocation: empty')
+        with patch('collect_lifestrategy.download') as download, \
+                patch('collect_lifestrategy.fetch_api', side_effect=[{'first': True}, self.api]), \
+                patch('collect_lifestrategy.parse_sources', side_effect=[twice, valid]) as parse, \
+                patch('collect_lifestrategy.fetch_query', side_effect=ValueError('exact book unavailable')), \
+                patch('collect_lifestrategy.time.sleep') as sleep:
+            download.side_effect = [f'<a href="{link}">first</a>'.encode(), b'doc1',
+                                    f'<a href="{link}">second</a>'.encode(), b'doc2']
+            r = collect_one(plan, self.now)
+        self.assertEqual(download.call_count, 4)
+        self.assertEqual(parse.call_args_list[1].args[:3], (f'<a href="{link}">second</a>', b'doc2', self.api))
+        self.assertEqual([a['status'] for a in r['compositionAttempts']], ['failed', 'validated'])
+        self.assertEqual(r['holdings']['asOf'], '2026-08-31')
+        sleep.assert_called_once_with(2)
+
     def test_truncated_underlying_holdings_rejected(self):
         with self.assertRaises(ValueError):self.parse(text=self.text.replace('40,0%','20,0%'))
     def test_pdf_page_fee_disagreement_rejected(self):

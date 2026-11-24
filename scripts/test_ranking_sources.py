@@ -41,6 +41,21 @@ class RankingSourcesTest(unittest.TestCase):
         self.assertNotIn('2027-01', result['months'])
         self.assertEqual(result, parse_fx(complete, now))
 
+        # A retained December key alone must not suppress a scheduled retry.
+        old = parse_fx(document(rows[:-1]), dt.datetime(2026, 12, 31, tzinfo=UTC))
+        old['months']['2026-12'] = {'asOf': '2026-12-30', 'rates': {'EUR': 1, 'USD': 1.2}}
+        old['derived'] = {'TWD': {'observations': {'2026-12': {'value': 38.4}}}}
+        statuses = {'fxSources': {'ECB': {'status': 'validated'}}}
+        with patch('collect_ranking_sources.download', return_value=complete) as fetch:
+            renewed, reports = refresh_fx(old, statuses, now, retry=True)
+        fetch.assert_called_once()
+        self.assertEqual(renewed['months']['2026-12']['asOf'], '2026-12-31')
+        self.assertEqual(reports['ECB']['status'], 'validated')
+        with patch('collect_ranking_sources.download') as fetch:
+            unchanged, _ = refresh_fx(renewed, {'fxSources': reports}, now, retry=True)
+        fetch.assert_not_called()
+        self.assertEqual(unchanged, renewed)
+
     def test_cross_rate_uses_decimal_half_up_at_exact_ties(self):
         from collect_ranking_sources import cross_value
         self.assertEqual(cross_value(33.06, 1.3275), 43.8872)
