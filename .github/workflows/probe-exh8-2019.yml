@@ -1,212 +1,72 @@
-name: Examine the exact 2019 EXH8 source
+name: Verify the restored 2019 ETF market history
 on:
   pull_request:
-    paths: ['.github/workflows/probe-exh8-2019.yml']
+    paths: ['.github/workflows/probe-exh8-2019.yml', 'scripts/exh8_market_history.py']
 permissions:
   contents: read
 jobs:
-  source:
+  verify:
     if: github.head_ref == 'fix/exh8-monthly-source-qualification-20261124' && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v7.0.1
-      - name: Compare maintained daily data with the official historical Xetra archive
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p test_exh8_market_history.py
+      - name: Collect only the exact configured ETF using the ordinary producer
         run: |
           PYTHONPATH=scripts python - <<'PY'
-          import csv, datetime as dt, hashlib, io, json, os, pathlib
-          from concurrent.futures import ThreadPoolExecutor
-          from decimal import Decimal
-          from urllib.parse import urlencode
-          from zoneinfo import ZoneInfo
-          from data_automation import get_json
-          from issuer_documents import download
-
-          isin, symbol = 'DE000A0H08P6', 'EXH8.DE'
-          days = ('2018-12-28 2019-01-31 2019-02-28 2019-03-29 2019-04-30 '
-                  '2019-05-31 2019-06-28 2019-07-31 2019-08-30 2019-09-30 '
-                  '2019-10-31 2019-11-29 2019-12-30').split()
-          cash_days = ('2019-01-15', '2019-04-15', '2019-07-15', '2019-10-15')
-          scope = [(day, 'month-end') for day in days] + [(day, 'ex-date') for day in cash_days]
-          archive = 'https://deutsche-boerse-xetra-pds.s3.eu-central-1.amazonaws.com'
-          report = {'isin': isin, 'symbol': symbol, 'venue': 'XETR', 'currency': 'EUR',
-                    'scope': scope, 'archiveLicence': 'Non-commercial; read-only corroboration',
-                    'method': 'Last observed minute with trades is compared to raw market close; the timestamp is not treated as an auction flag.'}
-          retrieved_at = dt.datetime.now(dt.timezone.utc).isoformat()
-          report['checkedAt'] = retrieved_at
-          calendar = ZoneInfo('Europe/Berlin')
-          def epoch(day): return int(dt.datetime.fromisoformat(day).replace(tzinfo=dt.timezone.utc).timestamp())
-          try:
-              params = urlencode({'period1': epoch('2018-12-24'), 'period2': epoch('2020-01-02'), 'interval': '1d', 'events': 'div,splits'})
-              data = get_json('https://query2.finance.yahoo.com/v8/finance/chart/' + symbol + '?' + params)
-              entry, = data['chart']['result']
-              m = entry['meta']
-              if (m['symbol'], m['exchangeName'], m['currency'], m['exchangeTimezoneName']) != (symbol, 'GER', 'EUR', 'Europe/Berlin'):
-                  raise ValueError('Maintained quote identity was not qualified: ' + str({k: m.get(k) for k in ['symbol','exchangeName','currency','exchangeTimezoneName']}))
-              raw = {dt.datetime.fromtimestamp(t, calendar).date().isoformat(): Decimal(str(p))
-                     for t,p in zip(entry['timestamp'], entry['indicators']['quote'][0]['close']) if p is not None}
-              report['maintainedCoverage'] = [day for day,_ in scope if day in raw]
-              report['maintainedActions'] = {name: [{**x, 'date':dt.datetime.fromtimestamp(x['date'], calendar).date().isoformat()} for x in rows.values()]
-                                             for name, rows in entry.get('events', {}).items()}
-          except Exception as e:
-              report['maintainedError'] = str(e)
-              raw = {}
-
-          def observations(day):
-              clock = dt.time(14) if day in ('2018-12-28', '2019-12-30') else dt.time(17,30)
-              auction_hour = dt.datetime.combine(dt.date.fromisoformat(day), clock, calendar).astimezone(dt.timezone.utc).hour
-              matches, files = [], []
-              for hour in (auction_hour, auction_hour-1):
-                  url = f'{archive}/{day}/{day}_BINS_XETR{hour:02}.csv'
-                  try:
-                      body = download(url, max_bytes=4_000_000, timeout=12, max_attempts=1)
-                      reader = csv.DictReader(io.StringIO(body.decode('utf-8-sig')))
-                      required = {'ISIN','Mnemonic','Currency','Date','Time','EndPrice','NumberOfTrades'}
-                      if not required.issubset(reader.fieldnames or []):
-                          raise ValueError('Historic CSV schema is incompatible')
-                      rows = [r for r in reader if r['ISIN']==isin and r['Date']==day]
-                      for r in rows:
-                          if r['Mnemonic']!='EXH8' or r['Currency']!='EUR':
-                              raise ValueError('Historic listing identity changed')
-                          if int(r['NumberOfTrades']) > 0:
-                              value = Decimal(r['EndPrice'])
-                              if not value.is_finite() or value <= 0: raise ValueError('Invalid historic trade level')
-                              matches.append((r['Time'], value))
-                      files.append({'url':url, 'sha256':hashlib.sha256(body).hexdigest(), 'rowsForIsin':len(rows)})
-                  except Exception as e:
-                      files.append({'url':url,'error':str(e)})
-              if not matches:
-                  return {'date':day, 'files':files, 'status':'no-exact-trade'}
-              latest = max(matches)
-              # The archive is restricted to non-commercial use. Its prices are not reproduced in the receipt.
-              price_matches = day in raw and abs(raw[day] - latest[1]) < Decimal('0.00005')
-              return {'date':day,'files':files,'status':'match' if price_matches else 'unconfirmed',
-                      'lastObservedMinuteUtc':latest[0],'maintainedCloseConfirmed':price_matches}
-
-          first = {'date': days[-1], 'status': 'not-retried-after-two-403-responses', 'files': []}
-          report['results'] = [first]
-          # Stop on a common archive transport block, so a missing dataset is not queried 34 times.
-          if any('sha256' in f for f in first['files']):
-              with ThreadPoolExecutor(max_workers=3) as pool:
-                  report['results'] += list(pool.map(observations, [day for day,_ in scope if day != days[-1]]))
-          else:
-              report['unattempted'] = [day for day,_ in scope if day != days[-1]]
-
-          target = pathlib.Path(os.environ['RUNNER_TEMP'])/'exh8-source-control.json'
-          target.write_text(json.dumps(report, indent=2)+'\n')
-          print(target.read_text())
+          import datetime as dt
+          import json, os
+          from pathlib import Path
+          from data_automation import UTC, write_json_atomic
+          from refresh_monthly_history import refresh
+          scope = 'etfEuropeRetail'
+          active_path = Path('src/data/non-bond-monthly-records.json')
+          evidence_path = Path('scripts/source-snapshots/non-bond-monthly-active.json')
+          read = lambda path: json.loads(Path(path).read_text())
+          config = read('scripts/non-bond-monthly-sources.json')
+          chosen = [r for r in config['series'] if r['id'] == scope]
+          assert len(chosen) == 1
+          current = read(active_path)
+          merged, observations = refresh({'series':chosen}, current, read('src/data/non-bond-company-histories.json'), dt.datetime.now(UTC))
+          observation, = observations['series']
+          if observation['status'] != 'validated':
+              raise ValueError(observation['reason'])
+          evidence = read(evidence_path)
+          record = observation['record']
+          assert record['reviewedMarketWindowEvidence']['dailyTransitions'] == 251
+          assert record['responseSha256'] == observation['evidence']['responseSha256']
+          evidence[scope] = {k:v for k,v in observation['evidence'].items() if k not in ['rawResponse','points','anniversaryPoints']}
+          write_json_atomic(active_path, merged)
+          write_json_atomic(evidence_path, evidence)
+          print(json.dumps(record['reviewedMarketWindowEvidence'], indent=2))
+          write_json_atomic(Path(os.environ['RUNNER_TEMP'])/'exh8-ordinary-observation.json', observation)
           PY
-      - name: Reconcile raw market closes and published cash terms through public routes
+      - name: Validate the active observation and its consumers
         run: |
-          PYTHONPATH=scripts python - <<'PY'
-          import datetime as dt, hashlib, json, math, os, pathlib
-          from decimal import Decimal, getcontext
-          from urllib.parse import urlencode
-          from zoneinfo import ZoneInfo
-          from data_automation import get_json
-          from issuer_documents import download
-
-          getcontext().prec = 30
-          isin = 'DE000A0H08P6'
-          zone = ZoneInfo('Europe/Berlin')
-          bounds = '2018-12-28 2019-01-31 2019-02-28 2019-03-29 2019-04-30 2019-05-31 2019-06-28 2019-07-31 2019-08-30 2019-09-30 2019-10-31 2019-11-29 2019-12-30'.split()
-          start, end = bounds[0], bounds[-1]
-          report = {'isin': isin, 'symbol': 'EXH8.DE', 'currency': 'EUR', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
-                    'scope': bounds, 'publication': 'diagnostic-only'}
-          base = 'https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE'
-          def day(stamp): return dt.datetime.fromtimestamp(stamp, zone).date().isoformat()
-          def epoch(d): return int(dt.datetime.fromisoformat(d).replace(tzinfo=dt.timezone.utc).timestamp())
-          def yahoo(interval):
-              source = base + '?' + urlencode({'period1':epoch('2018-12-01'), 'period2':epoch('2020-01-01'),
-                                             'interval':interval, 'events':'div,splits'})
-              body = get_json(source)
-              x, = body['chart']['result']
-              meta = x['meta']
-              expected = {'symbol':'EXH8.DE','exchangeName':'GER','exchangeTimezoneName':'Europe/Berlin','currency':'EUR'}
-              for field, value in expected.items():
-                  if meta[field] != value: raise ValueError('Wrong exact listing: ' + field)
-              return x, source
-          try:
-              daily, daily_url = yahoo('1d')
-              monthly, monthly_url = yahoo('1mo')
-              obs = daily['indicators']['quote'][0]['close']
-              d = {day(t): Decimal(str(v)) for t,v in zip(daily['timestamp'], obs) if v is not None}
-              m = {day(t)[:7]: Decimal(str(v)) for t,v in zip(monthly['timestamp'], monthly['indicators']['quote'][0]['close']) if v is not None}
-              report.update(yahooDaily=daily_url, yahooMonthly=monthly_url)
-              for date in bounds:
-                  if d.get(date) is None or m.get(date[:7]) != d[date] or date != max(p for p in d if p.startswith(date[:7])):
-                      raise ValueError('Unmatched or incomplete raw month end: ' + date)
-              if daily.get('events', {}).get('splits'):
-                  raise ValueError('Split detected: separate evidence required')
-              events = {day(v['date']):Decimal(str(v['amount'])) for v in daily['events']['dividends'].values()
-                        if start < day(v['date']) <= end}
-              if len(events) != 4 or not all(value > 0 and date in d for date,value in events.items()):
-                  raise ValueError('Incomplete reinvestment dates')
-              api = 'https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?'
-              params = dict(appSubType='ISHARES', appType='PRODUCT_PAGE', component='keyFundFacts,performance',
-                            locale='en_GB', portfolioId=251959, targetSite='ishares-uk', userType='individual',
-                            excludeContent='true', includeConfig='true')
-              report['issuerSource'] = api + urlencode(params)
-              issuer = get_json(report['issuerSource'])['componentsByNameMap']
-              facts = issuer['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
-              if facts['isin']['value']!=isin or facts['useOfProfitsCode']['value']!='Distributing':
-                  raise ValueError('Wrong issuer share or income treatment')
-              data = issuer['performance']['containersByNameMap']['distributions']['subContainersByNameMap']['table']['dataPointsByNameMap']
-              amounts = {}
-              for stamp, value, currency in zip(data['exDate']['value'],data['totalDistribution']['value'],data['totalDistribution']['prefix'],strict=True):
-                  date = dt.datetime.strptime(str(stamp),'%Y%m%d').date().isoformat()
-                  if start < date <= end:
-                      if currency.strip()!='EUR' or date in amounts:
-                          raise ValueError('Wrong or duplicate official cash')
-                      amounts[date] = Decimal(str(value))
-              if events != amounts:
-                  raise ValueError('Quote and issuer cash terms differ')
-              adjusted = {day(t): Decimal(str(value)) for t,value in zip(daily['timestamp'], daily['indicators']['adjclose'][0]['adjclose'],strict=True) if value is not None}
-              previous = {day: prior for prior,day in zip(sorted(d), sorted(d)[1:]) if start < day <= end}
-              step_checks = []
-              for date, before in previous.items():
-                  observed = (adjusted[date]/d[date]) / (adjusted[before]/d[before])
-                  cash = events.get(date,Decimal(0))
-                  expected = 1/(1-cash/d[before])
-                  step_checks.append({'day':date, 'prior':before,'observed':str(observed),'expected':str(expected),'error':str(abs(observed-expected)), 'cash':str(cash)})
-              report['adjustedChecks'] = {'count':len(step_checks),
-                  'expectedFormula':'1 / (1 - cash / raw closing price on preceding trading day)',
-                  'dividends':[r for r in step_checks if Decimal(r['cash'])],
-                  'maxError':str(max(Decimal(r['error']) for r in step_checks)),
-                  'unexpected':[r for r in step_checks if Decimal(r['error']) > Decimal('0.000001')][:12],
-                  'adjustedYearPercent':str((adjusted[end]/adjusted[start]-1)*100)}
-              factor = lambda end: math.prod((1 + amount/d[day] for day,amount in events.items() if day<=end), start=Decimal(1))
-              report['cashReinvestmentModel'] = {'method':'Cash reinvested at exact raw exchange ex-date close, gross of personal tax, net of ETF fees embedded in price. No Yahoo adjusted history used.',
-                 'rawCloses':{date:str(d[date]) for date in bounds},'cash':{day:str(amount) for day,amount in events.items()},
-                 'exDateCloses':{day:str(d[day]) for day in events},
-                 'endYearReturnPercent':str((d[end]*factor(end)/d[start]-1)*100),
-                 'monthlyTotalReturn':{date:str(d[date]*factor(date)) for date in bounds}}
-          except Exception as e:
-              report['modelFailure'] = str(e)
-              d = {}
-
-          try:
-              raise ValueError('Not retried after the empty response')
-              route = 'https://api.boerse-frankfurt.de/v1/data/price_history?' + urlencode(dict(limit=50, offset=0,
-                  isin=isin, mic='XETR', minDate='2019-12-23', maxDate='2019-12-31'))
-              body = download(route, max_bytes=1_000_000, max_attempts=1)
-              result=json.loads(body)
-              report['exchangeWebsite'] = {'url':route, 'sha256':hashlib.sha256(body).hexdigest(),
-                 'shape':list(result) if isinstance(result,dict) else type(result).__name__,
-                 'response':str(result)[:1600]}
-          except Exception as e:
-              report['exchangeWebsite'] = {'error':str(e)}
-
-          target = pathlib.Path(os.environ['RUNNER_TEMP'])/'exh8-market-cash-control.json'
-          target.write_text(json.dumps(report, indent=2)+'\n')
-          print(target.read_text())
-          PY
+          node scripts/audit-automated-monthly.mjs
+          node scripts/test-exh8-market-consumers.mjs
+          node scripts/test-review-reconciliation.mjs
+      - name: Record the validated observation on this isolated PR only
+        run: |
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/non-bond-monthly-records.json scripts/source-snapshots/non-bond-monthly-active.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Record the exact 2019 EXH8 market qualification from the ordinary producer'
+          git push origin HEAD:refs/heads/fix/exh8-monthly-source-qualification-20261124
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: exh8-2019-read-only-source-control
-          path: |
-            ${{ runner.temp }}/exh8-source-control.json
-            ${{ runner.temp }}/exh8-market-cash-control.json
-          if-no-files-found: error
+          name: verified-exh8-window
+          path: ${{ runner.temp }}/exh8-ordinary-observation.json
           retention-days: 35
