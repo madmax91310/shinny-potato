@@ -1,6 +1,6 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-11-23 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-11-24 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
@@ -338,7 +338,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5M21 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / — | — |
 | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5P51 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / — | — |
 | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5R75 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / — | — |
-| iShares MSCI Europe Information Technology Sector UCITS ETF | IE00BMW42413 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares MSCI Europe Information Technology Sector UCITS ETF | IE00BMW42413 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Quality Factor UCITS ETF (Acc) | IE00BP3QZ601 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Momentum Factor UCITS ETF (Acc) | IE00BP3QZ825 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Value Factor UCITS ETF | IE00BP3QZB59 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
@@ -398,7 +398,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | WisdomTree Wheat | JE00BN7KB664 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | Advantest | JP3122400009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Itochu | JP3143600009 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
-| Keyence | JP3236200006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Keyence | JP3236200006 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Shin-Etsu Chemical | JP3371200001 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Sony | JP3435000009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | SoftBank Group | JP3436100006 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |

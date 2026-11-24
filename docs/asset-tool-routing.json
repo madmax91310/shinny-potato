@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-23T22:38:36.877Z",
+  "checkedAt": "2026-11-24T02:16:56.940Z",
   "summary": {
     "instruments": 698,
     "sheets": 282,
@@ -8,7 +8,7 @@
     "duels": 662,
     "generatorAutomatic": 138,
     "dca": 697,
-    "fullExposure": 599,
+    "fullExposure": 598,
     "outsideExposure": 53,
     "automaticHistories": 308,
     "historyCandidates": 0,
@@ -4589,7 +4589,7 @@
           "currency": "EUR",
           "performance": true,
           "simulation": true,
-          "anniversary": true
+          "anniversary": false
         },
         {
           "id": "etfFR0010342592Nav",
@@ -7047,7 +7047,7 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 99.9999,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-11-19"
@@ -7101,7 +7101,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T22:50:39.063542+00:00"
+        "checkedAt": "2026-11-23T22:46:24.550555+00:00"
       },
       "dca": true,
       "countries": {
@@ -7615,7 +7615,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T22:50:39.063542+00:00"
+        "checkedAt": "2026-11-23T22:46:24.550555+00:00"
       },
       "dca": true,
       "countries": {
@@ -7902,7 +7902,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T22:50:39.063542+00:00"
+        "checkedAt": "2026-11-23T22:46:24.550555+00:00"
       },
       "dca": true,
       "countries": {
@@ -8288,7 +8288,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-11-22T22:50:39.063542+00:00"
+        "checkedAt": "2026-11-23T22:46:24.550555+00:00"
       },
       "dca": true,
       "countries": {
@@ -15862,18 +15862,18 @@
       "blocker": null,
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
+        "status": "incomplete",
+        "coverage": 0,
         "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-11-19"
+        "reason": "Poids signés incompatibles avec un donut",
+        "date": "2026-11-20"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
+        "status": "incomplete",
+        "coverage": 0,
         "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-11-19"
+        "reason": "Poids signés incompatibles avec un donut",
+        "date": "2026-11-20"
       },
       "holdings": {
         "asOf": "2026-11-20",
@@ -18713,7 +18713,7 @@
           "currency": "JPY",
           "performance": true,
           "simulation": true,
-          "anniversary": true
+          "anniversary": false
         }
       ],
       "historyCandidate": false,
@@ -20555,17 +20555,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99993099999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-19"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999899999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-19"
       },
       "holdings": {
         "asOf": "2026-11-19",
@@ -20898,17 +20898,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99993099999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-19"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999899999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-11-16"
+        "date": "2026-11-19"
       },
       "holdings": {
         "asOf": "2026-11-19",

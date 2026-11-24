@@ -1,8 +1,8 @@
 {
   "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-  "checkedAt": "2026-11-16",
+  "checkedAt": "2026-11-24",
   "convention": "Units of currency per EUR, final ECB reference observation in each completed month",
-  "sha256": "d5f8e484e854e6bf9eb426c6446c3967c651938de0813d23e55733ad63962a04",
+  "sha256": "78afb0b8c33fd223801a72f2945540a53015c884571b7d7d80f0e52f0d553a90",
   "months": {
     "1999-01": {
       "asOf": "1999-01-29",
@@ -12739,9 +12739,9 @@
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-11-16",
-      "sha256": "c424bcdfe0947e48d9bc3937fd3a9e82bf144e5ac6454ae95a68346196394c77",
-      "secondarySha256": "d5f8e484e854e6bf9eb426c6446c3967c651938de0813d23e55733ad63962a04",
+      "checkedAt": "2026-11-24",
+      "sha256": "8b1ef8319b16ff7a66a372355c566eab5dbe26aed630296c00e148f713e1d4ac",
+      "secondarySha256": "78afb0b8c33fd223801a72f2945540a53015c884571b7d7d80f0e52f0d553a90",
       "sourceSeries": "H10/H10/RXI_N.B.TA",
       "sourceDiscoveryUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
       "sourceFormat": "Official complete H.10 SDMX XML ZIP",
@@ -26148,7 +26148,7 @@
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-16",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-24",
           "error": "The read operation timed out"
         },
         {
@@ -26158,7 +26158,7 @@
         {
           "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
           "status": "downloaded",
-          "sha256": "c424bcdfe0947e48d9bc3937fd3a9e82bf144e5ac6454ae95a68346196394c77"
+          "sha256": "8b1ef8319b16ff7a66a372355c566eab5dbe26aed630296c00e148f713e1d4ac"
         }
       ]
     }
