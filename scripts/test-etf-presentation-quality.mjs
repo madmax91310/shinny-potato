@@ -57,6 +57,13 @@ assert.match(cl2Text, /deux jours.*lâche 4 %/)
 assert.match(cl2Text, /à 99 €.*à 96 € avant coûts/)
 assert.doesNotMatch(cl2Text, /Apple|Nvidia|Microsoft|MSCI USA Leveraged 2X Index/)
 
+for (const isin of ['LU1875395870', 'LU2196470426']) {
+  const nikkei = ETFS.find(etf => etf.isin === isin)
+  const text = buildText(nikkei)
+  assert.match(text.split('\n\n')[0], /Japon.*Nikkei/, isin)
+  assert.doesNotMatch(text, /FTSE Emerging|Corée du Sud|émergents/i, isin)
+}
+
 assert.equal(presentationComposition({...observation,holdings:{...observation.holdings,asOf:null}},{replicationMethod:'Physical'}),'')
 const rows=performanceEntries({values:[10,20],calendarYears:[2025,2026]},new Date('2026-10-23T00:00:00Z'))
 assert.deepEqual(rows.map(r=>r.label),['2025'])
