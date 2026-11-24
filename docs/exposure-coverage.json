@@ -1,36 +1,9 @@
 {
-  "checkedAt": "2026-11-24T11:38:05.622Z",
+  "checkedAt": "2026-11-24T19:35:39.338Z",
   "total": 704,
   "outside": 60,
-  "complete": 637,
+  "complete": 639,
   "gaps": [
-    {
-      "asset": "IE00BMW42413",
-      "isin": "IE00BMW42413",
-      "name": "iShares MSCI Europe Information Technology Sector UCITS ETF",
-      "kind": "etf",
-      "provider": "iShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      }
-    },
     {
       "asset": "lifestrategy20",
       "isin": "IE00BMVB5K07",
@@ -140,31 +113,6 @@
       }
     },
     {
-      "asset": "IE000RDRMSD1",
-      "isin": "IE000RDRMSD1",
-      "name": "iShares Blockchain Technology UCITS ETF",
-      "kind": "etf",
-      "provider": "iShares",
-      "countries": {
-        "coverage": 100,
-        "eligible": 100,
-        "outside": false,
-        "missing": 0,
-        "reasons": [],
-        "asOf": "2026-11-20"
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      }
-    },
-    {
       "asset": "IE0003R87OG3",
       "isin": "IE0003R87OG3",
       "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
@@ -176,7 +124,7 @@
         "outside": false,
         "missing": 1.0199999999998681,
         "reasons": [],
-        "asOf": "2026-11-20"
+        "asOf": "2026-11-23"
       },
       "sectors": {
         "coverage": 100,
