@@ -126,6 +126,12 @@ class WorkflowContracts(unittest.TestCase):
         self.assertIn('REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}', block)
         self.assertEqual(refresh.count('python scripts/collect_ranking_sources.py --apply'), 1)
 
+    def test_monthly_recording_installs_locked_playwright_before_chromium(self):
+        text = (ROOT/'.github/workflows/validate-record-market-monthly.yml').read_text()
+        record = text.split('\n  record:\n', 1)[1]
+        install = record.split('      - name: Install recording dependencies\n', 1)[1].split('      - name:', 1)[0]
+        self.assertLess(install.index('npm ci'), install.index('bash scripts/ensure-ci-runtime.sh chromium'))
+
     def test_shared_reference_parser_repairs_trigger_the_ordinary_exposure_producer(self):
         text=(ROOT/'.github/workflows/update-qualified-exposures.yml').read_text()
         push=text.split('  push:',1)[1].split('  pull_request:',1)[0]
