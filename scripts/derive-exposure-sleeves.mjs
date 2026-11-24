@@ -3,10 +3,16 @@ export function deriveExposureSleeves(records,indexRecords,supplementary,now=new
  const out=structuredClone(supplementary),fresh=o=>o?.asOf&&o.sourceUrl&&(now-Date.parse(o.asOf))/86400000>=0&&(now-Date.parse(o.asOf))/86400000<=93
  for(const [isin,r]of Object.entries(records)){
   if(!r.assetAllocation||!r.holdings)continue
-  const allocation=r.assetAllocation,share=allocation.rows.find(x=>x.name==='Actions')?.weightPct
-  if(!fresh(allocation)||!fresh(r.holdings)||!Number.isFinite(share)||share<0||share>100)continue
   const parent=r.underlyingHoldings
-  const precise=parent&&parent.complete===true&&parent.subjectIsin===isin&&parent.asOf===allocation.asOf&&fresh(parent)&&parent.sourceUrl==='https://www.vanguard.co.uk/gpx/graphql'&&parent.weightBasis==='original-fund-nav-percentage'&&parent.normalizationApplied===false&&/^[a-f0-9]{64}$/.test(parent.sha256||'')&&parent.sourceRowCount===parent.rows?.length+parent.nonFundPositions?.length
+  const companion=r.underlyingHoldingsAllocation
+  // A rechecked prior-period book can still describe its own equity sleeve.
+  // Never pair it with a more recent allocation or child composition.
+  const sameDateCompanion=parent&&companion?.holdingsSha256===parent.sha256&&
+   /^[a-f0-9]{64}$/.test(companion.documentSha256||'')&&companion.allocation?.asOf===parent.asOf
+  const allocation=parent&&parent.asOf!==r.assetAllocation.asOf&&sameDateCompanion?companion.allocation:r.assetAllocation
+  const share=allocation.rows.find(x=>x.name==='Actions')?.weightPct
+  if(!fresh(allocation)||!fresh(r.holdings)||!Number.isFinite(share)||share<0||share>100)continue
+  const precise=parent&&parent.complete===true&&parent.subjectIsin===isin&&parent.asOf===allocation.asOf&&parent.assetAllocationChecks?.Actions?.publishedDisplayPct===share&&fresh(parent)&&parent.sourceUrl==='https://www.vanguard.co.uk/gpx/graphql'&&parent.weightBasis==='original-fund-nav-percentage'&&parent.normalizationApplied===false&&/^[a-f0-9]{64}$/.test(parent.sha256||'')&&parent.sourceRowCount===parent.rows?.length+parent.nonFundPositions?.length
   if(parent&&!precise){out[isin]={};continue} // Never promote an invalid new field through the legacy table.
   const equities=precise?parent.rows.filter(h=>h.assetCategory==='Actions'):r.holdings.rows.filter(h=>/Vanguard (?:FTSE |S&P 500 UCITS ETF)/.test(h.name))
   const total=equities.reduce((s,h)=>s+h.weightPct,0)

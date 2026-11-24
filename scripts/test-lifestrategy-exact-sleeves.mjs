@@ -28,4 +28,24 @@ for(const bad of ['missing','date']){
 }
 const corrupt=structuredClone(parents);corrupt[isin].underlyingHoldings.subjectIsin=dist;
 assert.deepEqual(deriveExposureSleeves({...corrupt,...children},{},{},now)[isin],{});
+const delayed=structuredClone(parents[isin]);
+const oldAllocation=structuredClone(delayed.assetAllocation);
+delayed.assetAllocation.asOf='2026-10-31';
+delayed.assetAllocation.rows.find(r=>r.name==='Actions').weightPct=59.34;
+delayed.underlyingHoldingsAllocation={
+ holdingsSha256:delayed.underlyingHoldings.sha256,documentSha256:delayed.documentSha256,
+ allocation:oldAllocation,
+};
+const projected=deriveExposureSleeves({[isin]:delayed,...children},{},{},now)[isin];
+assert.equal(projected.equitySleeve.asOf,'2026-09-30');
+assert.ok(Math.abs(projected.equitySleeve.weightPct-delayed.underlyingHoldings.assetAllocationChecks.Actions.originalNavWeightPct)<1e-9);
+assert.equal(projected.countries.asOf,'2026-09-30');
+const octoberChildren=structuredClone(children);
+for(const child of Object.values(octoberChildren))for(const field of ['countries','sectors'])if(child[field])child[field].asOf='2026-10-31';
+const mismatched=deriveExposureSleeves({[isin]:delayed,...octoberChildren},{},{},now)[isin];
+assert.ok(mismatched.equitySleeve);
+assert.equal(mismatched.countries,undefined);
+assert.equal(mismatched.sectors,undefined);
+delayed.underlyingHoldingsAllocation.holdingsSha256='0'.repeat(64);
+assert.deepEqual(deriveExposureSleeves({[isin]:delayed,...children},{},{},now)[isin],{});
 console.log('LifeStrategy exact held classes, raw fund-NAV weights, same-date dependencies, partial coverage and order invariance passed.');
