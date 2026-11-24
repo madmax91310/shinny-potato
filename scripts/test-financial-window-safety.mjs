@@ -31,6 +31,12 @@ for(const row of rows){
  if(asset.historyConvention==='fund-nav-total-return'){
   assert.notEqual(result.code,'financial-window-unconfirmed');nav++;continue
  }
+ if(row.isin==='DE000A0H08P6'&&row.year===2019&&asset.reviewedMarketWindowEvidence){
+  assert(result.qualified,'EXH8 has verified original market adjustment factors')
+  const {reviewedMarketWindowEvidence:_evidence,...unqualified}=asset
+  assert.equal(qualifyHistoryWindow(unqualified,start,end).code,'financial-window-unconfirmed')
+  continue
+ }
  const source=sources.find(s=>s.id===asset.id)
  if(source?.symbol&&source.symbol!==row.original.marketSymbol){
   const listing=INSTRUMENT_LISTINGS_BY_ISIN[row.isin]?.find(l=>l.evidenceId===source.listingEvidenceId)
