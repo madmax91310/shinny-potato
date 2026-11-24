@@ -58,7 +58,7 @@ jobs:
           PYTHONPATH=scripts python - <<'PY'
           import hashlib, json, os, pathlib
           from issuer_nav_history import xlsx_rows
-          from collect_issuer_etf import download
+          from issuer_documents import download
           url = 'https://hanetf.com/wp-content/assets/upload/NAV_history-BTCE-DE000A27Z304-all-all.xlsx'
           out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'bitwise-nav-inspection.json'
           result = {'url': url, 'status': 'unqualified'}
