@@ -45,8 +45,8 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, shlex, subprocess, sys
-          allowed = [r['id'] for r in json.load(open('scripts/official-nav-remainder-sources.json'))]
-          branch_ids = ['etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfEuropeRetailNav']
+          allowed = [r['id'] for path in ['scripts/official-nav-remainder-sources.json', 'scripts/monthly-window-nav-sources.json'] for r in json.load(open(path))]
+          branch_ids = ['etfFR0010755611Nav', 'etfFR0013411998Nav', 'etfFR0013412004Nav', 'etfEuropeRetailNav', 'etfDE000A27Z304Nav']
           default_ids = branch_ids if (os.environ.get('GITHUB_HEAD_REF') or os.environ.get('GITHUB_REF_NAME')) == 'fix/qualified-six-monthly-20261124' else allowed
           ids = shlex.split(os.environ.get('NAV_ONLY', '')) or default_ids
           if len(ids) != len(set(ids)) or any(i not in allowed for i in ids):
@@ -58,25 +58,39 @@ jobs:
       - name: Verify Amundi share-unit qualification and month-end refusals
         if: always()
         run: python -m unittest discover -s scripts -p test_amundi_nav_history.py
-      - name: Inspect the distributor's Bitwise exact-ISIN NAV workbook
+      - name: Inspect the historical iShares cash factors independently
         if: always() && (github.head_ref == 'fix/qualified-six-monthly-20261124' || github.ref_name == 'fix/qualified-six-monthly-20261124')
         run: |
           PYTHONPATH=scripts python - <<'PY'
-          import hashlib, json, os, pathlib
-          from issuer_nav_history import xlsx_rows
-          from issuer_documents import download
-          url = 'https://hanetf.com/wp-content/assets/upload/NAV_history-BTCE-DE000A27Z304-all-all.xlsx'
-          out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'bitwise-nav-inspection.json'
-          result = {'url': url, 'status': 'unqualified'}
-          try:
-              body = download(url)
-              result.update(sha256=hashlib.sha256(body).hexdigest(), bytes=len(body))
-              rows = xlsx_rows(body)
-              result.update(rowCount=len(rows), header=rows[:6], tail=rows[-3:])
-          except Exception as error:
-              result['error'] = str(error)
-          out.write_text(json.dumps(result, indent=2))
-          print(out.read_text())
+          import datetime as dt
+          import gzip, json, os, pathlib
+          from issuer_nav_history import blackrock_nav, calendar_checks
+          folder = pathlib.Path(os.environ['RUNNER_TEMP'])
+          for path in (folder / 'nav-raw').glob('*.json.gz'):
+              body = json.loads(gzip.decompress(path.read_bytes()))
+              if 'componentsByNameMap' not in body:
+                  continue
+              now = dt.datetime.now(dt.timezone.utc)
+              parsed = blackrock_nav(body, 'DE000A0H08P6', 'EUR', now)
+              nav, total = parsed['nav'], parsed['totalReturn']
+              dates = sorted(nav.keys() & total.keys())
+              perf = body['componentsByNameMap']['performance']['containersByNameMap']
+              cash = perf['distributions']['subContainersByNameMap']['table']['dataPointsByNameMap']
+              report = {'dividends': [], 'calendar': calendar_checks(total, parsed['years'], 2, now)}
+              for stamp, amount, currency in zip(cash['exDate']['value'], cash['totalDistribution']['value'], cash['totalDistribution']['prefix']):
+                  if not str(stamp).startswith('2019'):
+                      continue
+                  day = dt.datetime.strptime(str(stamp), '%Y%m%d').date().isoformat()
+                  before, after = max(d for d in dates if d < day), min(d for d in dates if d >= day)
+                  seen = (total[after] / nav[after]) / (total[before] / nav[before])
+                  report['dividends'].append(dict(day=day, before=before, after=after,
+                      previousNav=nav[before], exNav=nav[day], navAfter=nav[after],
+                      totalBefore=total[before], totalAfter=total[after],
+                      amount=amount, currency=currency, observed=seen,
+                      previousNavFactor=1 / (1 - float(amount) / nav[before]),
+                      exNavFactor=1 + float(amount) / nav[day]))
+              print(json.dumps(report))
+              (folder / 'exh8-cash-inspection.json').write_text(json.dumps(report, indent=2))
           PY
       - name: Preserve real results even after a failure
         if: always()
@@ -86,5 +100,5 @@ jobs:
           path: |
             ${{ runner.temp }}/nav.json
             ${{ runner.temp }}/nav-raw
-            ${{ runner.temp }}/bitwise-nav-inspection.json
+            ${{ runner.temp }}/exh8-cash-inspection.json
           retention-days: 35
