@@ -13,7 +13,7 @@ from urllib.parse import quote
 import urllib.error
 from data_automation import UTC, get_json, month_shift, reject, write_json_atomic
 from issuer_documents import download
-from collect_annual_fx import year_end_reference_date
+from collect_annual_fx import month_end_reference_date
 from refresh_monthly_history import collect_one, months
 from market_transport import chart_response
 
@@ -58,11 +58,11 @@ def parse_fx(body, now):
     if sorted(observed) != expected:
         reject('Incomplete ECB month-end coverage')
     for key, row in observed.items():
-        if key.endswith('-12') and row['asOf'] != year_end_reference_date(int(key[:4])):
-            reject(f'ECB final year-end reference missing for {key[:4]}: expected {year_end_reference_date(int(key[:4]))}, observed {row["asOf"]}')
-        next_month = month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date()
-        if (next_month - dt.date.fromisoformat(row['asOf'])).days > 7:
-            reject('Stale ECB month-end observation')
+        year, month = map(int, key.split('-'))
+        expected_date = month_end_reference_date(year, month)
+        if row['asOf'] != expected_date:
+            period = 'year-end' if month == 12 else 'month-end'
+            reject(f'ECB final {period} reference missing for {key}: expected {expected_date}, observed {row["asOf"]}')
     return {'sourceUrl': ECB, 'checkedAt': now.date().isoformat(),
             'convention': 'Units of currency per EUR, final ECB reference observation in each completed month',
             'sha256': hashlib.sha256(body).hexdigest(), 'months': dict(sorted(observed.items()))}
@@ -164,6 +164,18 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', s
             # months while the existing eight-day release window is open.
             pending[key] = row['asOf']
             del observed[key]
+            continue
+        # A late-December quote can arrive a week before the final release.
+        # Wait for H.10 to reach the TARGET boundary, or to publish a later
+        # observation when the two calendars do not share that final day.
+        if key == completed[-1] and key.endswith('-12'):
+            year = int(key[:4])
+            cutoff = dt.date.fromisoformat(month_end_reference_date(year, 12))
+            if max(per_usd) < cutoff:
+                if key in expected:
+                    reject(f'H.10 publication has not reached the year-end boundary {cutoff}')
+                pending[key] = row['asOf']
+                del observed[key]
     for key in completed:
         if key not in expected and key not in observed:
             pending.setdefault(key, None)
@@ -274,9 +286,9 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
     due = [c for c in CROSS_SERIES if not retry or reports.get(c, {}).get('status') == 'failed'
            or latest not in old_fx.get('derived', {}).get(c, {}).get('observations', {})]
     latest_ecb = old_fx.get('months', {}).get(latest)
-    december_incomplete = latest.endswith('-12') and (
-        not latest_ecb or latest_ecb.get('asOf') != year_end_reference_date(int(latest[:4])))
-    ecb_due = not retry or reports.get('ECB', {}).get('status') == 'failed' or not latest_ecb or december_incomplete
+    expected_ecb_date = month_end_reference_date(*map(int, latest.split('-')))
+    ecb_due = (not retry or reports.get('ECB', {}).get('status') == 'failed'
+               or not latest_ecb or latest_ecb.get('asOf') != expected_ecb_date)
     if not ecb_due and not due:
         return old_fx, reports
     fx = copy.deepcopy(old_fx)

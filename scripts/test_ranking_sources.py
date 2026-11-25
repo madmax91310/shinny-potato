@@ -16,14 +16,13 @@ def fred(rows, header='observation_date,DEXTAUS'):
 
 class RankingSourcesTest(unittest.TestCase):
     def test_january_requires_exact_december_session_and_preserves_previous_fx(self):
-        from collect_annual_fx import year_end_reference_date
+        from collect_annual_fx import month_end_reference_date
         from collect_ranking_sources import refresh_fx
         from unittest.mock import patch
         rows = []
         for year in range(1999, 2027):
             for month in range(1, 13):
-                end = dt.date(year + (month == 12), month % 12 + 1, 1) - dt.timedelta(days=1)
-                rows.append((year_end_reference_date(year) if month == 12 else end.isoformat(), 1.2))
+                rows.append((month_end_reference_date(year, month), 1.2))
         now = dt.datetime(2027, 1, 1, 12, tzinfo=UTC)
         complete = document(rows)
         partial = document(rows[:-1] + [('2026-12-30', 1.2)])
@@ -55,6 +54,32 @@ class RankingSourcesTest(unittest.TestCase):
             unchanged, _ = refresh_fx(renewed, {'fxSources': reports}, now, retry=True)
         fetch.assert_not_called()
         self.assertEqual(unchanged, renewed)
+
+    def test_monthly_retry_rejects_nearby_fixing_until_the_last_target_session(self):
+        from unittest.mock import patch
+        from collect_annual_fx import month_end_reference_date
+        from collect_ranking_sources import refresh_fx
+
+        # Good Friday and the following weekend were TARGET closures.
+        self.assertEqual(month_end_reference_date(2024, 3), '2024-03-28')
+        self.assertEqual(month_end_reference_date(2001, 12), '2001-12-28')
+        now = dt.datetime(1999, 3, 1, tzinfo=UTC)
+        partial = document([('1999-01-29', 1.2), ('1999-02-25', 1.3)])
+        complete = document([('1999-01-29', 1.2), ('1999-02-26', 1.35)])
+        old = {'months': {'1999-02': {'asOf': '1999-02-25', 'rates': {'USD': 1.3}}},
+               'derived': {'TWD': {'observations': {'1999-02': {'value': 42}}}}}
+        expected = copy.deepcopy(old)
+        status = {'fxSources': {'ECB': {'status': 'validated'}}}
+        with patch('collect_ranking_sources.download', side_effect=[partial, complete]) as fetch:
+            retained, failed = refresh_fx(old, status, now, retry=True)
+            result, passed = refresh_fx(retained, {'fxSources': failed}, now, retry=True)
+            unchanged, _ = refresh_fx(result, {'fxSources': passed}, now, retry=True)
+        self.assertEqual(fetch.call_count, 2)
+        self.assertEqual(retained, expected)
+        self.assertEqual(old, expected)
+        self.assertIn('expected 1999-02-26, observed 1999-02-25', failed['ECB']['reason'])
+        self.assertEqual(result['months']['1999-02']['asOf'], '1999-02-26')
+        self.assertEqual(unchanged, result)
 
     def test_cross_rate_uses_decimal_half_up_at_exact_ties(self):
         from collect_ranking_sources import cross_value
@@ -124,6 +149,25 @@ class RankingSourcesTest(unittest.TestCase):
         self.assertEqual(result['pendingMonths'][0]['month'], '1999-12')
         with self.assertRaisesRegex(ValueError, 'Stale cross-rate'):
             parse_cross_fx(fred(rows), ecb, dt.datetime(2000, 1, 9, tzinfo=UTC))
+
+    def test_late_december_cross_rate_waits_for_h10_to_cover_year_end(self):
+        from collect_annual_fx import month_end_reference_date
+
+        past = [month_end_reference_date(1999, month) for month in range(1, 12)]
+        ecb = document([(day, 1.2) for day in past]
+                       + [('1999-12-29', 1.25), ('1999-12-30', 1.3)])
+        early = [(day, 32) for day in past] + [('1999-12-29', 33)]
+        waiting = parse_cross_fx(fred(early), ecb, dt.datetime(2000, 1, 2, tzinfo=UTC))
+        self.assertNotIn('1999-12', waiting['observations'])
+        self.assertEqual(waiting['pendingMonths'][0]['latestAvailableAsOf'], '1999-12-29')
+        with self.assertRaisesRegex(ValueError, 'has not reached the year-end boundary'):
+            parse_cross_fx(fred(early), ecb, dt.datetime(2000, 1, 9, tzinfo=UTC))
+
+        holiday = early + [('1999-12-30', '.'), ('2000-01-03', 34)]
+        released = parse_cross_fx(fred(holiday), ecb, dt.datetime(2000, 1, 5, tzinfo=UTC))
+        self.assertEqual(released['observations']['1999-12']['asOf'], '1999-12-29')
+        self.assertEqual(released['observations']['1999-12']['value'], 41.25)
+        self.assertNotIn('pendingMonths', released)
 
     def test_ecb_reject_missing_stale_duplicate_future_nonfinite(self):
         now = dt.datetime(1999, 3, 3, tzinfo=UTC)

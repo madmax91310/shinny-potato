@@ -90,6 +90,46 @@ Total 100%
         self.assertEqual(r['holdings']['asOf'], '2026-08-31')
         sleep.assert_called_once_with(2)
 
+    def test_regressed_share_does_not_block_recording_other_shares(self):
+        import copy
+        import pathlib
+        import sys
+        import tempfile
+        import collect_lifestrategy as collector
+
+        first, second = collector.CONFIG[:2]
+        def record(isin, stamp):
+            return {
+                'isin': isin, 'checkedAt': stamp, 'fieldQualification': {},
+                **{field: {'asOf': stamp} for field in ('aum', 'holdings', 'assetAllocation')},
+            }
+
+        prior = {config[2]: record(config[2], '2026-10-31') for config in (first, second)}
+        candidates = copy.deepcopy(prior)
+        candidates[first[2]]['holdings']['asOf'] = '2026-09-30'
+        candidates[second[2]]['checkedAt'] = '2026-11-25'
+        with tempfile.TemporaryDirectory() as dirname:
+            root = pathlib.Path(dirname)
+            path = root / 'src/data/lifestrategy.json'
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps(prior))
+            report_path = root / 'report.json'
+            with patch.object(collector, 'ROOT', root), patch.object(collector, 'CONFIG', [first, second]), \
+                    patch.object(collector, 'collect_one', side_effect=lambda config, *_: candidates[config[2]]), \
+                    patch.object(sys, 'argv', ['collector', '--apply', '--output', str(report_path)]):
+                with self.assertRaises(SystemExit) as error:
+                    collector.main()
+            self.assertEqual(error.exception.code, 1)
+            outcome = json.loads(report_path.read_text())
+            stored = json.loads(path.read_text())
+        self.assertEqual(outcome['records'], [candidates[second[2]]])
+        self.assertEqual(outcome['failed'], [{
+            'isin': first[2], 'field': 'holdings',
+            'error': 'LifeStrategy observation date regressed: 2026-09-30 precedes 2026-10-31',
+        }])
+        self.assertEqual(stored[first[2]], prior[first[2]])
+        self.assertEqual(stored[second[2]], candidates[second[2]])
+
     def test_truncated_underlying_holdings_rejected(self):
         with self.assertRaises(ValueError):self.parse(text=self.text.replace('40,0%','20,0%'))
     def test_pdf_page_fee_disagreement_rejected(self):

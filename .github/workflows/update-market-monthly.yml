@@ -96,6 +96,7 @@ on:
       - 'scripts/monthly-automation.json'
       - 'scripts/data_automation.py'
       - 'scripts/collect_ranking_sources.py'
+      - 'scripts/collect_annual_fx.py'
       - 'scripts/market_transport.py'
       - 'scripts/test_market_transport.py'
       - 'scripts/test_cross_fx_fallback.py'
@@ -105,6 +106,7 @@ on:
     paths:
       - 'scripts/ensure-ci-runtime.sh'
       - 'scripts/collect_ranking_sources.py'
+      - 'scripts/collect_annual_fx.py'
       - 'scripts/h10_fx.py'
       - 'scripts/test_h10_fx.py'
       - 'scripts/test_h10_xml.py'
