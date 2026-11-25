@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import annualFx from '../src/data/annual-fx.json' with { type: 'json' };
+import { calendarRate } from '../src/data/calendar-fx.js';
+import { lastCompleteYear as lastClosedCalendarYear } from '../src/data/annual-window.js';
 import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/purchasing-power/lib.js';
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
@@ -13,6 +14,7 @@ import { buildSheet as buildPracticalSheet, buildTweet as buildPracticalTweet } 
 import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
 import { buildTweetText as buildMarketStory } from '../src/pages/market-facts/lib.js';
 import { buildText } from '../src/pages/etf-sheets/lib.js';
+import { getAnnualPerformance, formatTweetPerformance } from '../src/pages/etf-sheets/annualPerformance.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { sortedRows, sectorLabel } from '../src/pages/factsheet-tweets/editorial.js';
@@ -54,14 +56,14 @@ import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-d
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
-import { ASSETS as HISTORY, LATEST_YM as LATEST_HISTORY_YM } from '../src/data/market-history.js';
+import { ASSETS as HISTORY } from '../src/data/market-history.js';
+import { getAnnualReturnStartYears, getAnnualReturns } from '../src/pages/tweet-midi/data/marketHistory.js';
 // Last collected month of an asset as the tools write it ("septembre 2026"); it advances
 // with every monthly refresh, so it is never pinned in the expectations.
-// The year of the latest collected month is never complete in the annual tables.
-const INCOMPLETE_YEAR = Number(LATEST_HISTORY_YM.slice(0, 4));
+const INCOMPLETE_YEAR = lastClosedCalendarYear() + 1;
 // Last calendar year an asset closes with a collected December point: the final line of
 // its annual table. It advances per asset when January brings the December close.
-const lastCompleteYear = id => Math.max(...HISTORY[id].points.filter(p => p.date.endsWith('-12') && Number(p.date.slice(0, 4)) < INCOMPLETE_YEAR).map(p => Number(p.date.slice(0, 4))));
+const lastCompleteYear = id => getAnnualReturnStartYears(id).at(-1);
 // Latest year of a sheet's official annual returns (sheet.returns is newest first).
 const latestSheetYear = sheet => String(Math.max(...(sheet.returns ?? []).map(([year]) => Number(year))));
 const latestMonth = id => {
@@ -463,7 +465,8 @@ async function testPortfolioGenerator(page) {
     manualEditorialOk &&= labels.length === 1 && labels[0] === 'Données en USD';
     if (id === 'argent') {
       await page.getByText('Détail des performances annuelles', { exact: true }).click();
-      const expected = ((1 + asset.r[5] / 100) * annualFx.years[2024].value / annualFx.years[2025].value - 1) * 100;
+      const year = Number(await page.locator('.pg-bar-col').filter({ has: page.locator('.pg-bar-value') }).last().locator('.pg-bar-year').textContent());
+      const expected = ((1 + asset.calendarReturns[year] / 100) * calendarRate(year - 1, 'USD') / calendarRate(year, 'USD') - 1) * 100;
       const displayed = parseFloat((await page.locator('.pg-bar-value').last().innerText()).replace(',', '.'));
       manualEditorialOk &&= Math.abs(displayed - expected) < .051;
     }
@@ -570,11 +573,15 @@ async function testEtfSheets(page) {
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
     const copied = await page.evaluate(() => window.__etfCopiedText);
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
+    const annual = getAnnualPerformance(card);
+    const expectedAnnual = annual ? formatTweetPerformance(annual, { annualOnly: true }) : '';
+    const copiedAnnual = copied?.split('\n\n').find(section => section.startsWith('📈 Performances annuelles')) ?? '';
     if (copied !== text || copied !== buildText(card) || !copied?.startsWith(card.hook + "\n\n") || !copied.includes(card.name)
       || !copied.includes(card.isin) || !copied.replace(/\s/g, '').includes(card.ter.replace(/\s/g, '')) || !copied.includes(card.hook)
       || (copied.includes('🏦 PEA : ✅') !== (card.pea === true))
       || ![card.postWhatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])].every(value => copied.includes(value))
-      || /\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2}|Cotation :|Devise de la part :|Performances annuelles/.test(copied)
+      || copiedAnnual !== expectedAnnual
+      || /\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2}|Cotation :|Devise de la part :/.test(copied)
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
       || !copied.endsWith('💬 ' + card.question + '\n\nPas un conseil financier.')
       || /undefined|NaN/.test(copied)) badCount++;
@@ -720,7 +727,7 @@ async function testTweetMidi(page) {
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const performance = await page.locator('pre').innerText();
   // The final year advances every January with the collected December close.
-  const lastSp500Year = Number(LATEST_HISTORY_YM.slice(0, 4)) - 1;
+  const lastSp500Year = getAnnualReturns('sp500', 2016).at(-1).year;
   const minimal = performance.startsWith(`📈 Performance du S&P 500 de début 2016 à fin ${lastSp500Year} 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n`)
     && performance.split('\n').at(-1).startsWith('Sur toute la période : ')
     && !/💬|Livret A|Cours en dollars/u.test(performance)
@@ -1145,7 +1152,7 @@ async function testDataReuse(page) {
   const blockchainDuel = DUELS.findIndex(duel => duel.id === 'semiconducteurs_monde-contre-blockchain_ishares');
   if (blockchainDuel < 0) throw new Error('Missing prepared blockchain allocation');
   await choose(page.locator('#pd-select'), String(blockchainDuel));
-  checks.commonYears = (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
+  checks.commonYears = (await page.locator('.pd-table tbody th').allTextContents()).join(',') === buildDuel(DUELS[blockchainDuel]).years.join(',');
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
   checks.monthlyStory = (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact=>fact.id==='monthly-drawdown-paypal'));
