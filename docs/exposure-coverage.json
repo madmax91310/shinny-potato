@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T20:09:32.297Z",
+  "checkedAt": "2026-11-25T06:42:18.904Z",
   "total": 704,
   "outside": 60,
-  "complete": 639,
+  "complete": 637,
   "gaps": [
     {
       "asset": "lifestrategy20",
@@ -110,6 +110,58 @@
           "Ventilation absente"
         ],
         "asOf": null
+      }
+    },
+    {
+      "asset": "utilities",
+      "isin": "IE00BM67HQ30",
+      "name": "Xtrackers MSCI World Utilities UCITS ETF",
+      "kind": "etf",
+      "provider": "DWS",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "IE00B52SF786",
+      "isin": "IE00B52SF786",
+      "name": "iShares MSCI Canada UCITS ETF",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-11-23"
       }
     },
     {
