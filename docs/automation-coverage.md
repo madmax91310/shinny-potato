@@ -14,7 +14,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Actions individuelles (secteur et pays) | 411/411 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-11-23 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
 | Comparatif ETF | 278/278 parts raccordées dans 156 blocs ; 260 calendriers actifs, 20 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
-| Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
+| Rendements annuels d’indices | 58 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
 | Anniversaires | 745 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |

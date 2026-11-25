@@ -7362,18 +7362,6 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "XDWM.MI",
-          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-25",
-          "sha256": "af981d88269827dc120566a7b4ab9d454372c10e1a9921336504b47f21e55621",
-          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
-        },
-        {
-          "ticker": "XDWM",
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
@@ -7395,6 +7383,18 @@
           "checkedAt": "2026-11-25",
           "sha256": "af981d88269827dc120566a7b4ab9d454372c10e1a9921336504b47f21e55621",
           "evidenceId": "IE00BM67HS53-XLON-XDWM-USD"
+        },
+        {
+          "ticker": "XDWM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWM.MI",
+          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-25",
+          "sha256": "af981d88269827dc120566a7b4ab9d454372c10e1a9921336504b47f21e55621",
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
         },
         {
           "ticker": "XSMW",
@@ -10548,7 +10548,7 @@
           "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
           "checkedAt": "2026-11-25",
           "excerpt": "DE000A27Z304 | Euronext PAR EUR Ticker BTCE FP Listing date: 01.06.21 ISIN DE000A27Z304 WKN - Valoren - BTCE FP SEDOL BN0ZB02 RIC BTCE.PA",
-          "sha256": "45ff25a44a1cd737de989177c8109b0efe974b351407a103ed8430706fe37365"
+          "sha256": "925ec59243d9f5d8bceed926fef043fbfbaf3b212acef6b34cfd8e07372f8ef4"
         },
         {
           "ticker": "BTCF",
@@ -11573,18 +11573,6 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "XDWU.MI",
-          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-25",
-          "sha256": "2c3f539d88f6efffe5df77d784d4dbc17d1266770433d48fd5a6c867345632bc",
-          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
-        },
-        {
-          "ticker": "XDWU",
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
@@ -11594,6 +11582,18 @@
           "checkedAt": "2026-11-25",
           "sha256": "2c3f539d88f6efffe5df77d784d4dbc17d1266770433d48fd5a6c867345632bc",
           "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR"
+        },
+        {
+          "ticker": "XDWU",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWU.MI",
+          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
+          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-25",
+          "sha256": "2c3f539d88f6efffe5df77d784d4dbc17d1266770433d48fd5a6c867345632bc",
+          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
         },
         {
           "ticker": "XDWU",

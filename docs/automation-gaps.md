@@ -161,6 +161,14 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | index | Russell 1000 (russell-1000) | holdings · photographie mensuelle | Attente de publication | Poids trimestriels officiels intégrés au 2026-06-30, avec leur propre date. Poids individuels absents de la fiche mensuelle au 2026-10-31 ; les deux photographies restent séparées. |
+| index | MSCI ACWI (acwi-net) | constituents | À qualifier | Bloc absent des observations actives. |
+| index | MSCI ACWI (acwi-net) | countries | À qualifier | Bloc absent des observations actives. |
+| index | MSCI ACWI (acwi-net) | sectors | À qualifier | Bloc absent des observations actives. |
+| index | MSCI ACWI (acwi-net) | holdings | À qualifier | La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué. |
+| index | MSCI World (world-net) | constituents | À qualifier | Bloc absent des observations actives. |
+| index | MSCI World (world-net) | countries | À qualifier | Bloc absent des observations actives. |
+| index | MSCI World (world-net) | sectors | À qualifier | Bloc absent des observations actives. |
+| index | MSCI World (world-net) | holdings | À qualifier | La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué. |
 | index | Bitcoin (bitcoin) | constituents | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | countries | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | sectors | Non applicable | Sous-jacent sans composition actions. |

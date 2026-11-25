@@ -424,6 +424,7 @@
     "instrument:not-published": 16,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
+    "index:unqualified": 8,
     "index:not-applicable": 16
   },
   "gaps": [
@@ -1092,10 +1093,10 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "asOf": "2026-11-23",
+      "asOf": "2026-11-24",
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "e0edbdc978e893bf2ce19c2cb8332be9d605ca92033e6b15a356bef8fc8c1a32",
+      "sha256": "99d739e7563f7f64c36027de0321e58b8448fa68b512586b2aced5c896bcd160",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1864,7 +1865,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "e21206c412335d36087290adf6435946d698c14e7d0947e8c323d2504054f970",
+      "sha256": "7df74ff68539993c7a1a1a5ce414dfbdb13470e84be285e9dc9a1d12359d51dc",
       "evidence": []
     },
     {
@@ -1878,7 +1879,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "e21206c412335d36087290adf6435946d698c14e7d0947e8c323d2504054f970",
+      "sha256": "7df74ff68539993c7a1a1a5ce414dfbdb13470e84be285e9dc9a1d12359d51dc",
       "evidence": []
     },
     {
@@ -1892,7 +1893,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "e21206c412335d36087290adf6435946d698c14e7d0947e8c323d2504054f970",
+      "sha256": "7df74ff68539993c7a1a1a5ce414dfbdb13470e84be285e9dc9a1d12359d51dc",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1933,7 +1934,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA.",
       "checkedAt": "2026-11-25",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "e21206c412335d36087290adf6435946d698c14e7d0947e8c323d2504054f970",
+      "sha256": "7df74ff68539993c7a1a1a5ce414dfbdb13470e84be285e9dc9a1d12359d51dc",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 13 Nov 2026",
@@ -2077,6 +2078,94 @@
       "reason": "Poids trimestriels officiels intégrés au 2026-06-30, avec leur propre date. Poids individuels absents de la fiche mensuelle au 2026-10-31 ; les deux photographies restent séparées.",
       "configured": true,
       "sourceUrl": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+    },
+    {
+      "type": "index",
+      "id": "acwi-net",
+      "name": "MSCI ACWI",
+      "field": "constituents",
+      "label": "constituents",
+      "status": "unqualified",
+      "reason": "Bloc absent des observations actives.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "acwi-net",
+      "name": "MSCI ACWI",
+      "field": "countries",
+      "label": "countries",
+      "status": "unqualified",
+      "reason": "Bloc absent des observations actives.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "acwi-net",
+      "name": "MSCI ACWI",
+      "field": "sectors",
+      "label": "sectors",
+      "status": "unqualified",
+      "reason": "Bloc absent des observations actives.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "acwi-net",
+      "name": "MSCI ACWI",
+      "field": "holdings",
+      "label": "holdings",
+      "status": "unqualified",
+      "reason": "La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "world-net",
+      "name": "MSCI World",
+      "field": "constituents",
+      "label": "constituents",
+      "status": "unqualified",
+      "reason": "Bloc absent des observations actives.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "world-net",
+      "name": "MSCI World",
+      "field": "countries",
+      "label": "countries",
+      "status": "unqualified",
+      "reason": "Bloc absent des observations actives.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "world-net",
+      "name": "MSCI World",
+      "field": "sectors",
+      "label": "sectors",
+      "status": "unqualified",
+      "reason": "Bloc absent des observations actives.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+    },
+    {
+      "type": "index",
+      "id": "world-net",
+      "name": "MSCI World",
+      "field": "holdings",
+      "label": "holdings",
+      "status": "unqualified",
+      "reason": "La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué.",
+      "configured": true,
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
     },
     {
       "type": "index",
