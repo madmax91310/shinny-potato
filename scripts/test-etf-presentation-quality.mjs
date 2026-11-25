@@ -15,6 +15,7 @@ for(const etf of ETFS) {
   for(const key of ['hook','whatIs','whyInteresting','whatToKnow','question']) {
     assert.equal(typeof copy[key],'string',`${etf.id}/${key}`)
     assert(copy[key].length>20,`${etf.id}/${key}`)
+    assert.doesNotMatch(REVIEWED_EXPOSURE_COPY[etf.id][key], /—/, `${etf.id}/${key}`)
     assert(!/Cette sélection reste exposée aux baisses de la Bourse|Une sélection d’entreprises sur un thème|Pour cette exposition, tu regardes|Tu utiliserais cette exposition pour compléter/.test(copy[key]),`${etf.id}/${key}: secours générique`)
   }
   assert.notEqual(copy.whatIs,copy.whyInteresting)
@@ -22,7 +23,12 @@ for(const etf of ETFS) {
   assert(text.endsWith('\n\nPas un conseil financier.'),etf.id)
   for(const heading of ['🔍 Ce que tu achètes','✅ Pourquoi s’y intéresser ?','⚠️ Le point de vigilance','💬 '])assert(text.includes(heading),etf.id)
   assert(text.includes(`🆔 ISIN : ${etf.isin}`),etf.id)
-  assert(text.includes(`💸 ${copy.feeLabel} : ${etf.ter.replace(/(\d)\s*%/g, '$1 %')}`),etf.id)
+  const publishedFee = etf.ter.replace(/(\d)\s*%/g, '$1 %')
+  assert(text.includes(`💸 ${copy.feeLabel} : ${publishedFee}`),etf.id)
+  assert.doesNotMatch(text, /\{frais\}/, etf.id)
+  if (REVIEWED_EXPOSURE_COPY[etf.id].hook.includes('{frais}')) {
+    assert(copy.hook.includes(publishedFee), etf.id)
+  }
   const annual = getAnnualPerformance(copy)
   const section = annual && formatTweetPerformance(annual, { annualOnly: true })
   if (section) assert(text.includes(section), etf.id)
