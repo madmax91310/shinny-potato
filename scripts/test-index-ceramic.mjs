@@ -68,7 +68,7 @@ try {
       }
       const absent={...FAMILIES.find(f=>f.id==='monde'),indices:FAMILIES.find(f=>f.id==='monde').indices.map(i=>({...i,indexFacts:{...i.indexFacts,metadata:{sourceStatus:'archive-unverifiable'}}}))}
       const cards=getIndexPaperCards(absent)
-      if(cards.some(c=>c.metric||c.sections.some(s=>s.rows.length)))throw Error('Undocumented facts exposed')
+      if(cards.some(c=>c.metric||c.sections.some(s=>s.kind && s.rows.length)))throw Error('Undocumented composition exposed')
       await verify('undocumented',cards,()=>renderIndexImage(absent))
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
     return {count:sizes.length,maxHeight:Math.max(...sizes.map(s=>s.height)),sizes:sizes.filter(s=>s.id.startsWith('layout-'))}

@@ -9,6 +9,8 @@ import { chooseNativeFundTopTen } from '../src/data/holding-weight-basis.js';
 import nonBondRecords from '../src/data/non-bond-etf-records.json' with { type:'json' };
 import nativeFundDetails from '../src/data/native-fund-details.json' with { type:'json' };
 import { SHEETS } from '../src/data/index-factsheets.js';
+import { lastCompleteYear } from '../src/data/annual-window.js';
+import { canonicalIndexHistoryId } from '../src/data/index-history-identities.js';
 for (const [id, record] of Object.entries(AUTOMATED_INDICES)) {
   if (record.facts && INDEX_FACTS[id]) {
     const dates = Object.keys(INDEX_FACTS[id]).filter(d => /^\d{4}-/.test(d)).sort();
@@ -23,9 +25,11 @@ for (const [id, record] of Object.entries(AUTOMATED_INDICES)) {
       const current = getCurrentIndexReturnSeries(id, date);
       assert.equal(current.metadata.currency, archive.metadata.currency);
       if (current !== archive) {
-        assert.equal(current.source.url, record.returns.source.url);
-        assert.equal(current.metadata.checkedAt, record.returns.source.checkedAt);
-        assert.deepEqual(current.values, record.returns.values.filter(([year]) => archive.values.some(([archivedYear]) => archivedYear === year)));
+        const observed = Object.entries(AUTOMATED_INDICES).find(([sourceId, candidate]) =>
+          canonicalIndexHistoryId(sourceId) === id && candidate.returns?.source === current.source)?.[1].returns;
+        assert(observed, `${id}: source d’indice, devise et variante exactes requises`);
+        assert.equal(current.metadata.checkedAt, observed.source.checkedAt);
+        assert.deepEqual(current.values, observed.values.filter(([year]) => archive.values.some(([archivedYear]) => archivedYear === year)));
       }
     }
   }
@@ -46,7 +50,7 @@ for (const sheet of SHEETS) {
   assert.equal(typeof sheet.markets, 'string', `${sheet.id}: index scope missing`);
   assert(!/undefined|NaN/.test(buildFactsheetTweet(sheet)), `${sheet.id}: invalid generated text`);
   assert(sheet.source.some(s => s.url === sheet.indexFacts.source.url));
-  assert(sheet.returns.every(([year,value]) => year <= 2025 && Number.isFinite(value)));
+  assert(sheet.returns.every(([year,value]) => year <= lastCompleteYear() && Number.isFinite(value)));
 }
 // Une nouvelle publication et une nouvelle année se propagent aux six anciennes fiches ETF.
 // Une observation Price Return est refusée et conserve la dernière référence réinvestie.
@@ -59,7 +63,7 @@ for (const id of ['sp500-pea','nasdaq-pea','sp500-equal-weight','topix','nikkei2
   try {
     mock.timers.enable({ apis: ['Date'], now: new Date('2027-02-01T00:00:00Z') });
     AUTOMATED_INDICES[id].returns = { ...original, asOf: '2027-01-31',
-      values: [[2026, 7.12], ...original.values], performance: { ...original.performance, date: '2027-01-31' } };
+      values: [[2026, 7.12], ...original.values.filter(([year]) => year < 2026)], performance: { ...original.performance, date: '2027-01-31' } };
     const next = refreshIndexSheet(previous);
     assert.equal(next.performance.date, '2027-01-31');
     assert.deepEqual(next.returns.map(([year]) => year), [2026,2025,2024,2023,2022]);

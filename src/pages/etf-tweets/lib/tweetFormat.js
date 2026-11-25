@@ -44,7 +44,8 @@ export function buildTweetText(theme) {
     const performance = getComparisonPerformance(etf.isin, years, theme.performanceCurrency)
     if (performance?.rows.length) {
       const currency = performance.currency === 'USD' ? 'en dollars' : performance.currency === 'EUR' ? 'en euros' : `en ${performance.currency}`
-      lines.push('', `📈 Performances annuelles ${currency}`,
+      const basis = performance.sourceKind === 'adjusted-market-price' ? ' · cours ajustés' : ''
+      lines.push('', `📈 Performances annuelles ${currency}${basis}`,
         ...performance.rows.map(row => `${row.year} : ${comparisonPct(row.pct)}`))
     }
     const multiAsset = multiAssetAllocationLines(etf.isin)

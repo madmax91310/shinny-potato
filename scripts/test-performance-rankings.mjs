@@ -13,7 +13,7 @@ const make = (id, rate = .01, start = '2019-12', count = 85) => ({ id, label: id
 const a = make('a'), b = make('b', -.005)
 assert(Math.abs(periodReturn(a, '2019-12', '2020-12') - ((1.01 ** 12 - 1) * 100)) < 1e-10)
 assert(Math.abs(periodReturn(a, '2019-12', '2022-12', true) - ((1.01 ** 12 - 1) * 100)) < 1e-10)
-const coverage = commonCoverage([a, b]); assert.deepEqual(coverage.years, [2020, 2021, 2022, 2023, 2024, 2025, 2026])
+const coverage = commonCoverage([a, b]); assert.deepEqual(coverage.years, [2020, 2021, 2022, 2023, 2024, 2025, 2026].filter(year => year <= lastCompleteYear()))
 const partial = make('partial', .01, '2020-01', 24)
 assert.deepEqual(commonCoverage([a, partial]).years, [2021])
 assert.throws(() => buildRanking([a, partial], { mode: 'year', startYear: 2020 }), /entièrement couvertes/)

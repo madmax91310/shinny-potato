@@ -10,6 +10,7 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { getCurrentIndexFacts } from '../src/data/index-facts.js'
 import { CATALOG, buildDuel } from '../src/pages/portfolio-duels/lib.js'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
+import { latestCommonYears } from '../src/data/annual-window.js'
 
 for (const [id, record] of Object.entries(HISTORY).filter(([id]) => id !== 'ftseAllWorld')) {
   assert(ASSET_ORDER.includes(id))
@@ -55,6 +56,7 @@ for (const definition of DUELS.filter(item => ['oblig-0-1-ou-1-3','oblig-etat-ou
   assert.equal(duel.a.assets[0].id, duel.b.assets[0].id)
   assert.equal(duel.a.assets[0].pct, 70)
   assert.equal(duel.b.assets[0].pct, 70)
-  assert.deepEqual(duel.years, [2020, 2021, 2022, 2023, 2024, 2025])
+  assert.equal(duel.years.length, 6)
+  assert.deepEqual(duel.years, latestCommonYears([...duel.a.assets, ...duel.b.assets].map(asset => asset.calendarReturns)))
 }
 console.log('Eight exact monthly histories, DCA, annual closes, index variants, three comparisons, two index sheets and four bond duels verified.')

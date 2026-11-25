@@ -17,12 +17,31 @@ for (const [isin, native] of Object.entries(nativeFundDetails)) {
  const record=records[isin], previous=record?.holdings;
  if(record) records[isin]={...record,holdings:chooseNativeFundTopTen(isin,previous,native)};
 }
+// A registry specializing in composition may carry an earlier copy of the
+// same share's annual calendar. Select the whole newer compatible observation.
+export function newerCompatibleAnnualPerformance(previous, record, now = new Date()) {
+  const candidate = record?.performance;
+  if (!previous?.years || !candidate?.years || previous === candidate || previous.basis !== 'fund' ||
+      candidate.basis !== previous.basis || candidate.currency !== previous.currency ||
+      candidate.method !== previous.method || candidate.strategySince !== previous.strategySince ||
+      candidate.portfolioHistoryBasis !== previous.portfolioHistoryBasis) return previous;
+  const options = { length: 1, now };
+  const oldYear = latestCommonYears([previous.years], options)[0];
+  const newYear = latestCommonYears([candidate.years], options)[0];
+  const sourceUrl = candidate.sourceUrl ?? record.sourceUrl;
+  if (!(newYear > (oldYear ?? -Infinity)) || !sourceUrl?.startsWith('https://') ||
+      Object.entries(previous.years).some(([year, value]) => Number.isFinite(value) && candidate.years[year] !== value)) return previous;
+  return { ...candidate, sourceUrl };
+}
+
 // Registries describe different capabilities. An older specialized record must
-// not hide a later observation of the same exact-share AUM from the main reader.
+// not hide a later compatible exact-share observation from the main reader.
 for (const [isin, record] of Object.entries(records)) {
  for (const registry of [expansionRecords,baseRecords,nonBondRecords,QUALIFIED_AUTOMATED_RECORDS,LIFESTRATEGY_RECORDS]) {
-  const candidate=registry[isin]?.aum
-  if (candidate) record.aum=newerCompatibleAum(record.aum,candidate)
+  const source = registry[isin]
+  if (source?.aum) record.aum=newerCompatibleAum(record.aum,source.aum)
+  if (source?.performance && record.performance) record.performance = newerCompatibleAnnualPerformance(record.performance,
+    { ...source, performance: withCurrentStrategyYears(isin, source.performance) })
  }
 }
 export const AUTOMATED_ETF = records;

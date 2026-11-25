@@ -9,9 +9,12 @@ import { getPerformanceHref, getPerformanceAssetId } from '../src/data/performan
 import { getSimulationHref } from '../src/data/simulation-links.js'
 import { prioritizeIncidents } from '../src/pages/data-review/incident-priority.js'
 import { groupReviews } from '../src/pages/data-review/groups.js'
+import { latestCommonYears } from '../src/data/annual-window.js'
 const recent=ASSETS.find(a=>a.id==='blockchain_ishares')
 const recentPerf=computeYearlyPerf([{...recent,pct:100}])
-assert.deepEqual(Object.keys(recentPerf),['2023','2024','2025'])
+const recentYears=latestCommonYears([recent.calendarReturns],{minimum:3})
+assert(recentYears[0]>=2023 && recentYears.length>=3)
+assert.deepEqual(Object.keys(recentPerf).map(Number), recentYears)
 assert(Object.values(recentPerf).every(Number.isFinite))
 assert.match(buildDuel(DUELS.find(d=>d.id==='sp500-equal-europe')).readings[1],/Europe ajoutent une autre zone/)
 let compared=0

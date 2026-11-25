@@ -143,6 +143,27 @@ class ProductCalendars(unittest.TestCase):
                 with self.subTest(isin=isin,defect=defect),self.assertRaises(ValueError):
                     coinshares_calendar(bad,s,dt.datetime(2026,10,8,tzinfo=UTC),'url')
 
+    def test_coinshares_january_cannot_use_an_early_december_close(self):
+        for isin in ['GB00BLD4ZL17','GB00BLD4ZM24']:
+            payload=json.loads((FIX/(isin+'.json')).read_text())
+            graph=payload[0]['sections'][0]['graph']['series'][0]
+            overview=next(section for section in payload[1]['sections'] if section['key']==isin+'_OVERVIEW')
+            old=graph['dataY'][graph['dataX'].index('2025/12/31')]
+            now=dt.datetime(2027,1,2,tzinfo=UTC)
+            for date,value in [('2026/12/30',125),('2026/12/31',126)]:
+                graph['dataX'].append(date)
+                graph['dataY'].append(str(value))
+                graph['updated']='2027-01-02T07:00:00Z'
+                for row in overview['meta']:
+                    if row['key']=='rateDate':row['value']=date.replace('/','-')
+                    if row['key']=='sinceInceptionPerformance':row['value']=f'{value-100}%'
+                if date.endswith('/30'):
+                    with self.assertRaisesRegex(ValueError,'2026-12-31'):
+                        coinshares_calendar(payload,share(isin),now,'url')
+                else:
+                    result=coinshares_calendar(payload,share(isin),now,'url')
+                    self.assertEqual(result['years']['2026'],round((value/float(old)-1)*100,2))
+
     def test_calendar_outage_preserves_independent_fields(self):
         s=share('IE00B4K6B022');healthy={'productId':s['isin'],'characteristics':{'terPct':.05},'aum':{'amount':1},'unavailable':[]}
         with patch('collect_document_etf.download',side_effect=[b'%PDF-test',TimeoutError('calendar timeout')]),patch('collect_document_etf.pdf_text',return_value='text'),patch('collect_document_etf.parse',return_value=copy.deepcopy(healthy)):

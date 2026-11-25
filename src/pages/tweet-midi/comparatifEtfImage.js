@@ -7,6 +7,8 @@ import { getPreferredInstrumentListing } from '../../data/instrument-listings.js
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 import { renderComparisonPaper, comparisonPercent } from '../../design-system/comparisonPaper.js'
+import { comparisonPct } from '../etf-tweets/lib/comparisonDetails.js'
+import { getComparisonYears, getComparisonPerformance } from './comparisonPerformance.js'
 export { comparisonLayout } from '../../design-system/comparisonPaper.js'
 export { getComparisonComposition as getComparisonImageComposition } from '../etf-tweets/lib/comparisonComposition.js'
 
@@ -32,6 +34,7 @@ const observationSection = (title, observation) => ({ title,
 export function getComparisonPaperCards(theme) {
   assertComparisonRequirements(theme)
   if (!theme?.etfs?.length) throw new Error('Sélection ETF vide')
+  const years = getComparisonYears(theme.etfs.map(etf => etf.isin)).slice(0, 1)
   return theme.etfs.map(fund => {
     const pea = getInstrumentPeaStatus(fund.isin)
     const sections = []
@@ -58,6 +61,14 @@ export function getComparisonPaperCards(theme) {
         sections.push({ title:'SWAP ANNUEL EN SUPPLÉMENT', rows:[{label:'Taux de swap',value:`${automated.characteristics.annualSwapRatePct.toLocaleString('fr-FR',{maximumFractionDigits:2})} %`}] })
       }
     }
+    const performance = getComparisonPerformance(fund.isin, years, theme.performanceCurrency)
+    if (performance) sections.push({
+      title: `PERFORMANCE · ${performance.currency}`,
+      rows: performance.rows.map(({ year, pct }) => ({
+        label: performance.sourceKind === 'adjusted-market-price' ? `${year} · cours ajustés` : String(year),
+        value: comparisonPct(pct),
+      })),
+    })
     const id = identity(fund)
     let description = summary(fund)
     if (description.startsWith(`${id.name} :`)) description = description.slice(id.name.length+2).trim()

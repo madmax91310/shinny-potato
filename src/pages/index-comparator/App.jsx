@@ -10,7 +10,6 @@ import Button from '../../design-system/Button'
 import './index-comparator.css'
 import { FAMILIES } from '../../data/index-comparisons.js'
 import { downloadIndexImage, renderIndexImage } from './imageExport.js'
-
 import { buildTweetText, fmtPct } from './lib.js'
 
 export default function IndexComparator() {
@@ -100,7 +99,7 @@ export default function IndexComparator() {
 
           <div className="xc-panel">
             <p className="xc-eyebrow">Performance</p>
-            <p className="xc-hint">Les chiffres 2023–2025 sont les performances des indices ou actifs comparés. La devise et le traitement des dividendes sont précisés pour chaque série. Les frais des ETF ne sont pas déduits. Aucune conversion de devise n’est appliquée. Seul le YTD est saisi ici.</p>
+            <p className="xc-hint">Les performances annuelles s’actualisent après publication. La devise et le traitement des dividendes sont précisés pour chaque série. Les frais des ETF ne sont pas déduits. Aucune conversion de devise n’est appliquée. Seul le YTD est saisi ici.</p>
             {performanceRows.map((f) => {
               const v = perfValues[f.key] || {}
               return (

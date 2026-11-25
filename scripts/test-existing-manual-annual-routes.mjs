@@ -19,8 +19,9 @@ for (const [isin, oldYears] of Object.entries(previous)) {
   assert.equal(duel.role,'complement')
   assert(!JSON.stringify(PROFILES).includes(id), 'No new Auto recipe allocation')
   const years = latestCommonYears([source.years], {minimum:3})
-  assert(oldYears.every(y => years.includes(y)), 'Existing manual periods remain available')
-  restored += years.filter(y => !oldYears.includes(y)).length
+  const qualificationYears = latestCommonYears([source.years], {minimum:3,now:new Date('2026-11-25')})
+  assert(oldYears.every(y => qualificationYears.includes(y)), 'Existing manual periods remain available')
+  restored += qualificationYears.filter(y => !oldYears.includes(y)).length
   assert.deepEqual(Object.keys(computeYearlyPerf([{...asset,pct:100}])).map(Number),years)
   for (const year of years) {
     const expected=convertCalendarReturn(source.years[year],year,source.currency,'EUR')

@@ -2,7 +2,7 @@
 // Names such as “World Quality” are historical navigation labels for the collected
 // MSCI World Sector Neutral Quality series, never permission to substitute an ETF.
 export const INDEX_HISTORY_ALIASES = Object.freeze({
-  'world-net':'world', 'emerging-net':'em-standard', 'japan-net':'msci-japan', 'acwi-gross':'acwi',
+  'world-net':'world', 'emerging-net':'em-standard', 'japan-net':'msci-japan', 'acwi-gross':'acwi', 'acwi-net':'acwi',
   msciAcwiImi:'acwi-imi', msciAcwi:'acwi', msciWorldExUsa:'world-ex-usa', msciWorld:'world',
   msciEmerging:'em-standard', msciWorldSmallCap:'world-small-cap', msciEurope:'mscieurope',
   msciUsa:'msci-usa', msciIndia:'msci-india', msciEmergingExChina:'msci-em-ex-china',
