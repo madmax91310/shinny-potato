@@ -56,6 +56,22 @@ SCPI_ETF_RACE = json.loads((ROOT/'scripts/fixtures/scpi-etf-recording-race-20261
 ETF_BUDGET_RACE = json.loads((ROOT/'scripts/fixtures/etf-budget-recording-race-20261114.json').read_text())['changedPaths']
 SUBSCRIBER_RACE = json.loads((ROOT/'scripts/fixtures/subscriber-reader-recording-race-20261114.json').read_text())
 INSURANCE_EXPOSURE_RACE = json.loads((ROOT/'scripts/fixtures/insurance-exposure-recording-race-20261122.json').read_text())['changedPaths']
+# Exact diff from 3ad4243 to 5ebeb2b in Actions run 45466080673.
+PUBLICATION_PREVIEW_RACE = (
+    'scripts/playwright-currency-consistency.mjs',
+    'scripts/playwright-data-automation-inventory.mjs',
+    'scripts/playwright-etf-presentations.mjs',
+    'scripts/playwright-live-data-connections.mjs',
+    'scripts/playwright-metadata-completion.mjs',
+    'scripts/playwright-metadata-connections.mjs',
+    'scripts/playwright-qualified-aum.mjs',
+    'scripts/playwright-radar.mjs',
+    'scripts/playwright-removed-ai.mjs',
+    'scripts/playwright-tools.mjs',
+    'scripts/test_lifestrategy_retained_holdings.py',
+    'src/pages/etf-sheets/App.jsx',
+    'src/pages/etf-sheets/etf-sheets.css',
+)
 
 ECONOMIC_PATH = 'src/data/automated-economic.json'
 
@@ -181,7 +197,8 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/dca-profiles/holdings.json',
                      *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS, *BUDGET_EDITORIAL_READERS,
                      *SCPI_ETF_RACE, *ETF_BUDGET_RACE, *SUBSCRIBER_RACE['changedPaths'], 'src/data/freshness-policy.json',
-                     *INSURANCE_EXPOSURE_RACE, 'scripts/collect_insurance.py', 'src/pages/dca-profiles/engine.js',
+                     *INSURANCE_EXPOSURE_RACE, *PUBLICATION_PREVIEW_RACE,
+                     'scripts/collect_insurance.py', 'src/pages/dca-profiles/engine.js',
                      'src/pages/budget-profiles/data.js',
                      'src/pages/budget-profiles/lib.js',
                      'src/pages/budget-profiles/unqualified-context.json']:
@@ -613,6 +630,53 @@ else:
         result = self.publish('publication')
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-scpi.json'), 'concurrent update')
+
+    def advance_publication_preview(self):
+        for path in PUBLICATION_PREVIEW_RACE:
+            (self.f.other / path).write_text('updated preview or test\n')
+        self.f.git(self.f.other, 'add', '--', *PUBLICATION_PREVIEW_RACE)
+        self.f.git(self.f.other, 'commit', '-m', 'ETF preview and retained-holdings tests')
+        self.f.git(self.f.other, 'push', 'origin', 'master')
+
+    def test_publication_preview_race_preserves_both_writers_and_revalidates(self):
+        self.advance_publication_preview()
+        validation = ' && '.join(
+            f'test "$(cat {shlex.quote(path)})" = "updated preview or test"'
+            for path in PUBLICATION_PREVIEW_RACE)
+        result = self.publish('publication', f'{validation} && test "$(cat validated.json)" = "validated update"')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        for path in PUBLICATION_PREVIEW_RACE:
+            self.assertEqual(self.f.git(self.f.remote, 'show', f'master:{path}'), 'updated preview or test')
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+
+    def test_publication_preview_race_does_not_bypass_failed_final_validation(self):
+        self.advance_publication_preview()
+        head = self.f.git(self.f.remote, 'rev-parse', 'master')
+        result = self.publish('publication', 'exit 23')
+        self.assertEqual(result.returncode, 23, result.stdout + result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'rev-parse', 'master'), head)
+
+    def test_publication_preview_race_does_not_qualify_source_or_other_changes(self):
+        self.advance_publication_preview()
+        for path in ('scripts/monthly-automation.json', 'scripts/refresh_monthly_history.py',
+                     'src/data/monthly-fx.json', 'src/data/worldbank-gold-monthly.json'):
+            with self.subTest(path=path):
+                self.assert_refused(path, 'publication')
+                # Restore the isolated scenario for the next protected path.
+                self.f.git(self.f.other, 'revert', '--no-edit', 'HEAD')
+                self.f.git(self.f.other, 'push', 'origin', 'master')
+        path = 'scripts/playwright-unreviewed.mjs'
+        self.assert_refused(path, 'publication')
+
+    def test_publication_preview_exception_does_not_allow_deletion(self):
+        path = 'src/pages/etf-sheets/App.jsx'
+        self.f.git(self.f.other, 'rm', path)
+        self.f.git(self.f.other, 'commit', '-m', 'remove the preview')
+        self.f.git(self.f.other, 'push', 'origin', 'master')
+        result = self.publish('publication')
+        self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn(path, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'original')
 
     def assert_inflation_receipt_independent(self,kind):
         self.f.advance_remote('scripts/source-snapshots/inflation-automated.json')
