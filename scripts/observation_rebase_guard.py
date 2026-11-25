@@ -174,6 +174,25 @@ PUBLICATION_EXPOSURE_VIEWS = {
     'src/pages/dca-profiles/holdings.json',
     *(f'src/pages/dca-profiles/holdings-{i}.json' for i in (0, 2, 9, 11, 13, 16, 18)),
 }
+# Run 45466080673 overlapped #1477 and #1478. These exact renderers and
+# test entry points are outside the three publication acquisition chains.
+# Revalidation on the rebased tree and the Pages code gate still apply.
+PUBLICATION_CONSUMER_CHANGES = {
+    'scripts/playwright-currency-consistency.mjs',
+    'scripts/playwright-data-automation-inventory.mjs',
+    'scripts/playwright-etf-presentations.mjs',
+    'scripts/playwright-live-data-connections.mjs',
+    'scripts/playwright-metadata-completion.mjs',
+    'scripts/playwright-metadata-connections.mjs',
+    'scripts/playwright-qualified-aum.mjs',
+    'scripts/playwright-radar.mjs',
+    'scripts/playwright-removed-ai.mjs',
+    'scripts/playwright-tools.mjs',
+    'scripts/test_lifestrategy_retained_holdings.py',
+    'src/pages/etf-sheets/App.jsx',
+    'src/pages/etf-sheets/etf-sheets.css',
+}
+
 ALLOWED = {
     # Actual recording refusal41370892678: these ten exposure outputs are
     # not read by collect_presentation_actors or its source helpers. They are
@@ -448,11 +467,18 @@ class StaleCollectionInputs(ValueError):
 
 
 def check(kind, base, upstream):
-    paths = subprocess.check_output(
-        ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
+    entries = subprocess.check_output(
+        ['git', 'diff', '--raw', '--no-renames', '-z', base, upstream],
         text=True).split('\0')
     blocked = []
-    for path in filter(None, paths):
+    changes = dict(zip(entries[1::2], entries[0::2]))
+    for path, metadata in changes.items():
+        if kind == 'publication' and path in PUBLICATION_CONSUMER_CHANGES:
+            old_mode, new_mode, _, _, status = metadata.removeprefix(':').split()
+            # This exception covers ordinary in-place edits only.
+            if old_mode != '100644' or new_mode != old_mode or status != 'M':
+                blocked.append(path)
+            continue
         if kind == 'publication' and path == PUBLICATION_INDEX_REGISTRY:
             try:
                 if not index_price_inputs_unchanged(base, upstream):
@@ -478,7 +504,7 @@ def check(kind, base, upstream):
     blocked.sort()
     if blocked:
         raise StaleCollectionInputs(blocked)
-    return sorted(p for p in paths if p)
+    return sorted(changes)
 
 
 if __name__ == '__main__':

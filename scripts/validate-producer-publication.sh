@@ -44,6 +44,7 @@ case "$1" in
     python3 -m unittest discover -s scripts -p 'test_publication*.py'
     node scripts/test-anniversary-indices.mjs
     node scripts/test-publication-consumers.mjs
+    node scripts/test-nasdaq-total-return.mjs
     node scripts/test-household-benchmarks.mjs
     node scripts/test-purchasing-power-editorial.mjs
     ;;
@@ -69,6 +70,9 @@ case "$1" in
     ;;
 esac
 npm run build
+if [[ "$1" == publication ]]; then
+  node scripts/playwright-publication.mjs
+fi
 node scripts/test-consumer-usage.mjs
 npm run audit:data-catalog
 npm run audit:data-provenance
