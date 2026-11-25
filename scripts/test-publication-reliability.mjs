@@ -8,12 +8,13 @@ import { TWEETS } from '../src/pages/tweet-bank/data.js'
 import { contentValidity, renderBankCopy, reviewPolicy } from '../src/pages/tweet-bank/validity.js'
 import { countAvailable } from '../src/pages/tweet-bank/lib.js'
 import { weightedAnnualReturn } from '../src/lib/weighted-annual-return.js'
+import { lastCompleteYear, latestCommonYears } from '../src/data/annual-window.js'
 
 for (const asset of ASSETS) assert.ok(['EUR', 'USD'].includes(returnCurrency(asset)), `Undocumented historical currency: ${asset.id}`)
 for (const [id, item] of ITEM_BY_ID) {
   const asset = getAsset(id)
   if (!asset) continue
-  for (let year = 2020; year <= 2025; year++) {
+  for (let year = 2020; year <= lastCompleteYear(); year++) {
     const expected = euroReturn(item, year)
     if (Number.isFinite(expected)) assert.ok(Math.abs(assetReturn(asset, year) - expected) < 1e-10, `Generator/duel currency parity: ${id}/${year}`)
   }
@@ -33,15 +34,19 @@ const partial = computeYearlyPerf([{ calendarReturns: { 2020: 10 }, pct: 100 }])
 assert.equal(annualizedReturn(partial), null)
 const portfolio = buildManualPortfolio([{ id: 'msci_world_amundi_pea', pct: 50 }, { id: 'bitcoin', pct: 50 }], 'generaliste', [])
 const post = renderTweetText({ ...portfolio, perf: { 2020: 999 } })
-assert.match(post, /Et voici ce que ce type de portefeuille aurait donné de 2022 à 2025/)
+const expectedYears = latestCommonYears(portfolio.selection.map(asset => Object.fromEntries(
+  Object.keys(asset.calendarReturns).map(year => [year, assetReturn(asset, Number(year))])
+)), { minimum: 3 })
+const firstYear = String(expectedYears[0]), lastYear = String(expectedYears.at(-1))
+assert.match(post, new RegExp(`Et voici ce que ce type de portefeuille aurait donné de ${firstYear} à ${lastYear}`))
 assert.doesNotMatch(post, /taux BCE/)
 assert.match(performanceNotes(portfolio.selection), /taux BCE/)
 assert.match(post, /Simulation sur l'indice/)
 assert.match(post, /Pas un conseil financier\.$/)
 assert.doesNotMatch(post, /n’est pas une perte maximale/)
 assert.doesNotMatch(post, /999/)
-assert.deepEqual(Object.keys(portfolio.perf), ['2022','2023','2024','2025'], 'Exact CoinShares calendar bounds the mixed simulation')
-assert.match(performanceNotes(portfolio.selection), /4 années communes \(2022–2025\)/)
+assert.deepEqual(Object.keys(portfolio.perf).map(Number), expectedYears, 'Exact CoinShares calendar bounds the mixed simulation')
+assert.match(performanceNotes(portfolio.selection), new RegExp(`${expectedYears.length} années communes \\(${firstYear}–${lastYear}\\)`))
 assert.doesNotMatch(performanceNotes(portfolio.selection), /2020.*spot|cours spot.*2020/, 'Retired spot backfill is not the current product provenance')
 for (const bound of Object.values(RISK_BOUNDS)) assert.doesNotMatch(bound.text, /perte max acceptable/)
 

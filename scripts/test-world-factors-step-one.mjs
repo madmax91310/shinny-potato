@@ -11,6 +11,7 @@ import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerf
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { buildDuel } from '../src/pages/portfolio-duels/lib.js'
 import { ASSETS as HISTORY } from '../src/data/market-history.js'
+import { latestCommonYears } from '../src/data/annual-window.js'
 const proof = JSON.parse(readFileSync(new URL('./source-snapshots/world-factors-2026-10-05.json', import.meta.url)))
 const ids = ['msci-world-momentum', 'msci-world-minimum-volatility-usd']
 for (const id of ids) {
@@ -20,7 +21,7 @@ for (const id of ids) {
  assert.deepEqual(series.values,proof.returns[id]['2025-12-31'].values)
  assert.equal(series.currency,'USD'); assert.equal(series.method,'dividendes nets réinvestis')
  const sheet = SHEETS.find(x => x.id === id), text = buildFactsheetTweet(sheet)
- assert.equal(sheet.indexFacts,getCurrentIndexFacts(id,'2026-09-30')); assert.deepEqual(sheet.returns,getCurrentIndexReturnSeries(id,'2025-12-31').values)
+ assert.equal(sheet.indexFacts,getCurrentIndexFacts(id,'2026-09-30')); assert.deepEqual(sheet.returns,getCurrentIndexReturnSeries(id,'2025-12-31',{rolling:true,length:5}).values)
  assert.match(text,/performances de l’indice/); assert.doesNotMatch(text,/undefined|NaN|performances de l’ETF/)
  assert.equal(HISTORY[id],undefined,'Aucun historique mensuel créé à partir de rendements annuels')
  const levels = id === ids[0] ? proof.momentumNetYearEnds : proof.minvolNetYearEnds
@@ -48,6 +49,8 @@ for (const fund of theme.etfs) {
 const duel = DUELS.find(d=>d.id==='world-quality-momentum')
 assert.deepEqual(duel.left,[{id:'msci_world_ishares',pct:80},{id:'world_quality_ishares',pct:20}])
 assert.deepEqual(duel.right,[{id:'msci_world_ishares',pct:80},{id:'world_momentum_ishares',pct:20}])
-assert.deepEqual(buildDuel(duel).years,[2020,2021,2022,2023,2024,2025])
+const generated = buildDuel(duel)
+assert.equal(generated.years.length,6)
+assert.deepEqual(generated.years, latestCommonYears([...generated.a.assets, ...generated.b.assets].map(asset => asset.calendarReturns)))
 for (const id of ['gaming_vaneck','medical_innovation_ishares']) assert.equal(HISTORY[id],undefined)
 console.log('Facteurs mondiaux : relevés officiels, NETR/GROSS, compositions communes, fonds distincts, duel 80/20 et périmètre historique vérifiés.')

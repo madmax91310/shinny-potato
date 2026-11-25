@@ -14,6 +14,8 @@ import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
 const NativeDate = Date;
 const now = new NativeDate('2027-01-05T12:00:00Z');
 const isin = 'IE00B4L5Y983';
+const lagging = 'IE00BKM4GZ66';
+const oldLaggingDisplay = AUTOMATED_PERFORMANCE[lagging];
 const oldRecord = structuredClone(AUTOMATED_ETF[isin]);
 const oldDisplay = AUTOMATED_PERFORMANCE[isin];
 const archive = [...getInstrumentReturnValues(isin)];
@@ -75,7 +77,9 @@ try {
   assert.equal(annualPerformanceRange(display), '2021–2026');
   assert.equal(performanceEntries(display).at(-1).label, '2026');
   assert.deepEqual(getComparisonPerformance(isin).rows.map(row => row.year), [2026, 2025, 2024]);
-  const lagging = 'IE00BKM4GZ66';
+  const { 2026: _unpublished, ...laggingYears } = AUTOMATED_ETF[lagging].performance.years;
+  AUTOMATED_PERFORMANCE[lagging] = buildAnnualPerformance({ ...AUTOMATED_ETF[lagging],
+    performance: { ...AUTOMATED_ETF[lagging].performance, years: laggingYears } });
   assert.deepEqual(getComparisonYears([isin, lagging]), [2025, 2024, 2023], 'A comparison uses one common calendar');
   const other = { ...map }; delete other[2026];
   assert.deepEqual(Object.keys(computeYearlyPerf([...selection, { calendarReturns: other, pct: 0 }])), ['2020', '2021', '2022', '2023', '2024', '2025']);
@@ -85,9 +89,13 @@ try {
   assert.deepEqual(latestCommonYears([{ 2026: -100 }]), []);
   const { CATALOG, euroReturn } = await import('../src/data/duel-assets.js');
   const world = CATALOG.find(item => item.isin === isin);
+  delete CALENDAR_FX_YEARS[2026];
   assert.equal(euroReturn(world, 2026), null, 'Missing verified FX blocks the future EUR return');
+  const usdAllocation = [{ ...selection[0], returnCurrency: 'USD' }];
+  assert.equal(Object.keys(computeYearlyPerf(usdAllocation)).at(-1), '2025', 'Keep the qualified EUR history while the latest fixing is pending');
   CALENDAR_FX_YEARS[2026] = { asOf: '2026-12-31', rates: { EUR: 1, USD: 1.2 } }; // In-memory completed ECB year.
   assert(Number.isFinite(euroReturn(world, 2026)));
+  assert.equal(Object.keys(computeYearlyPerf(usdAllocation)).at(-1), '2026', 'The same allocation advances automatically once the fixing is present');
   CALENDAR_FX_YEARS[2026].asOf = '2026-12-30';
   assert.equal(euroReturn(world, 2026), null, 'A recent December fixing cannot certify the annual conversion');
   CALENDAR_FX_YEARS[2026].asOf = '2026-12-31';
@@ -107,6 +115,7 @@ try {
   globalThis.Date = NativeDate;
   AUTOMATED_ETF[isin] = oldRecord;
   AUTOMATED_PERFORMANCE[isin] = oldDisplay;
+  AUTOMATED_PERFORMANCE[lagging] = oldLaggingDisplay;
   histories.forEach((asset, i) => { asset.points = originalPoints[i]; });
 }
 
@@ -145,7 +154,7 @@ try {
   assert.deepEqual(getIndexComparisonPerformance(europe).map(row => row.key), indexIds);
   for (const id of indexIds) {
     const previous = AUTOMATED_INDICES[id].returns;
-    AUTOMATED_INDICES[id].returns = { ...previous, asOf: '2026-12-31', values: [[2026, 12.34], ...previous.values] };
+    AUTOMATED_INDICES[id].returns = { ...previous, asOf: '2026-12-31', values: [[2026, 12.34], ...previous.values.filter(([year]) => year < 2026)] };
   }
   const { buildTweetText: buildIndexText } = await import('../src/pages/index-comparator/lib.js');
   const { getIndexPaperCards } = await import('../src/pages/index-comparator/imageExport.js');

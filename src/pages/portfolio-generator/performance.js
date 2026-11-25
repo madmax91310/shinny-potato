@@ -45,14 +45,18 @@ export function computeYearlyPerf(selection) {
     const available = Object.keys(map).map(Number).filter(year => Number.isFinite(map[year])).sort((a,b)=>a-b)
     return available.some((year,i) => i > 0 && year !== available[i-1]+1)
   })
-  const years = latestCommonYears(maps, { minimum: hasInternalGap ? 6 : 3 })
+  // If the issuer reports first, keep the prior usable EUR window until the
+  // exact ECB fixing needed for the new year has also been published.
+  const euros = maps.map((map, index) => Object.fromEntries(Object.keys(map)
+    .map(year => [year, assetReturn(selection[index], Number(year))])))
+  const years = latestCommonYears(euros, { minimum: hasInternalGap ? 6 : 3 })
   // No mixed periods: retain the explicitly dated archive if a live window is unavailable.
   const selectedYears = years.length ? years : HISTORICAL_YEARS
   // Decimal summation preserves published precision and is independent of order.
   selectedYears.forEach(year => {
-    perf[year] = !allocationValid || selection.some((asset) => !Number.isFinite(assetReturn(asset, year)))
+    perf[year] = !allocationValid || euros.some(map => !Number.isFinite(map[year]))
       ? null
-      : weightedAnnualReturn(selection.map(asset => ({ value: assetReturn(asset, year), weight: asset.pct })))
+      : weightedAnnualReturn(selection.map((asset, index) => ({ value: euros[index][year], weight: asset.pct })))
   })
   return perf
 }
