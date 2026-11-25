@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { latestCommonYears } from '../src/data/annual-window.js';
-import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE, HISTORICAL_AUTOMATED_PERFORMANCE, buildAnnualPerformance } from '../src/data/automated-etf.js';
+import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE, HISTORICAL_AUTOMATED_PERFORMANCE, buildAnnualPerformance, newerCompatibleAnnualPerformance } from '../src/data/automated-etf.js';
 import { getInstrumentReturnValues, getInstrumentCalendarReturns } from '../src/data/instrument-returns.js';
 import { annualizedReturn, computeYearlyPerf, performanceExcerpt } from '../src/pages/portfolio-generator/performance.js';
 import { performanceEntries, annualPerformanceRange } from '../src/pages/etf-sheets/annualPerformance.js';
@@ -24,6 +24,18 @@ const histories = ['msciWorld', 'sp500'].map(id => ASSETS[id]);
 const originalPoints = histories.map(asset => asset.points);
 const closingYear = 2026;
 let clock = new NativeDate('2026-12-31T23:59:59Z');
+const original = AUTOMATED_ETF.IE00BYZK4552.performance;
+const prior = { ...original, years: Object.fromEntries(Object.entries(original.years).filter(([year]) => Number(year) < closingYear)) };
+const newerIssuer = { sourceUrl: 'https://example.test/official-calendar',
+  performance: { ...prior, years: { ...prior.years, 2026: 12.34 } } };
+assert.equal(newerCompatibleAnnualPerformance(prior, newerIssuer, clock), prior);
+const renewed = newerCompatibleAnnualPerformance(prior, newerIssuer, now);
+assert.equal(renewed.years[2026], 12.34);
+assert.equal(renewed.sourceUrl, newerIssuer.performance.sourceUrl ?? newerIssuer.sourceUrl);
+for (const performance of [{ ...newerIssuer.performance, currency: 'EUR' },
+  { ...newerIssuer.performance, years: { ...newerIssuer.performance.years, 2025: 42 } }]) {
+  assert.equal(newerCompatibleAnnualPerformance(prior, { ...newerIssuer, performance }, now), prior);
+}
 try {
   globalThis.Date = class extends NativeDate {
     constructor(...args) { super(...(args.length ? args : [clock.toISOString()])); }
