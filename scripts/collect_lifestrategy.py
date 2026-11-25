@@ -217,8 +217,19 @@ def main():
     path = ROOT/'src/data/lifestrategy.json'
     old = json.loads(path.read_text()) if path.exists() else {}
     def one(config):
-        try: return {'record': collect_one(config, now, old.get(config[2]))}
-        except Exception as error: return {'isin': config[2], 'error': str(error)}
+        isin = config[2]
+        previous = old.get(isin)
+        try:
+            record = collect_one(config, now, previous)
+        except Exception as error:
+            return {'isin': isin, 'error': str(error)}
+        if previous:
+            for field in ('aum', 'holdings', 'assetAllocation'):
+                if record[field]['asOf'] < previous[field]['asOf']:
+                    return {'isin': isin, 'field': field,
+                            'error': (f"LifeStrategy observation date regressed: {record[field]['asOf']} "
+                                      f"precedes {previous[field]['asOf']}")}
+        return {'record': record}
     with ThreadPoolExecutor(max_workers=4) as pool: results = list(pool.map(one, CONFIG))
     report = {'checkedAt': now.isoformat(), 'records': [r['record'] for r in results if 'record' in r],
               'failed': [r for r in results if 'record' not in r]}
@@ -227,8 +238,6 @@ def main():
                                for field, q in record['fieldQualification'].items() if q['status'] == 'unqualified')
     for r in report['records']:
         prev = old.get(r['isin'])
-        if prev and any(r[f]['asOf'] < prev[f]['asOf'] for f in ['aum', 'holdings', 'assetAllocation']):
-            raise ValueError('LifeStrategy observation date regressed')
         latest = r.get('underlyingHoldings')
         retained = (prev or {}).get('underlyingHoldings')
         if latest and retained and latest['asOf'] < retained['asOf']:

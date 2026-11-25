@@ -1,5 +1,6 @@
 """Completed-year EUR/USD rates from the official ECB daily reference series."""
 import argparse
+import calendar
 import datetime as dt
 import json
 import math
@@ -12,19 +13,37 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SOURCE = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
 
 
-def year_end_reference_date(year):
-    """Last December TARGET working day, not merely a recent December rate.
+def easter_sunday(year):
+    """Gregorian Easter (Meeus/Jones/Butcher)."""
+    century, year_in_century = divmod(year, 100)
+    leap_centuries, remaining_centuries = divmod(century, 4)
+    correction = (century + 8) // 25
+    epact = (19 * (year % 19) + century - leap_centuries
+             - (century - correction + 1) // 3 + 15) % 30
+    leap_years, remaining_years = divmod(year_in_century, 4)
+    weekday = (32 + 2 * remaining_centuries + 2 * leap_years - epact - remaining_years) % 7
+    day = epact + weekday - 7 * ((year % 19 + 11 * epact + 22 * weekday) // 451) + 114
+    month, day_in_month = divmod(day, 31)
+    return dt.date(year, month, day_in_month + 1)
 
-    ECB reference rates exclude TARGET closing days. December 31 was also
-    exceptionally closed in 1999 and 2001 (see the archived ECB decisions in
-    fixtures/ecb-year-end/README.md). Easter/May/January cannot affect this
-    backwards December-only search; no generic market calendar is inferred.
-    """
-    day = dt.date(year, 12, 31)
-    while (day.weekday() >= 5 or day.day in (25, 26)
-           or (year in (1999, 2001) and day.day == 31)):
+
+def month_end_reference_date(year, month):
+    """Last TARGET working day; official December exceptions are kept."""
+    day = dt.date(year, month, calendar.monthrange(year, month)[1])
+    closed = {dt.date(year, 1, 1), dt.date(year, 5, 1),
+              dt.date(year, 12, 25), dt.date(year, 12, 26)}
+    if month in (3, 4):
+        easter = easter_sunday(year)
+        closed.update((easter - dt.timedelta(days=2), easter + dt.timedelta(days=1)))
+    if year in (1999, 2001):
+        closed.add(dt.date(year, 12, 31))
+    while day.weekday() >= 5 or day in closed:
         day -= dt.timedelta(days=1)
     return day.isoformat()
+
+
+def year_end_reference_date(year):
+    return month_end_reference_date(year, 12)
 
 
 def parse(body, now):
