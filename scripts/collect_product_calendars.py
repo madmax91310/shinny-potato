@@ -136,13 +136,20 @@ def coinshares_calendar(payload, share, now, url):
     inception=float(overview['sinceInceptionPerformance'].rstrip('%'))
     if not math.isfinite(inception) or abs(values[snapshot_index]-100-inception)>.02:
         reject('CoinShares normalized product convention mismatch')
+    # The issuer's product series is valued on weekdays, including the
+    # December bank holidays in its published calendars. Its 2021–2025
+    # year-end levels are all on the final weekday. Ignore the date of the
+    # fetch and wait for that exact level if the year-end snapshot is late.
+    levels=dict(zip(dates[:snapshot_index+1],values[:snapshot_index+1]))
     endpoints={}
-    for date,value in zip(dates[:snapshot_index+1],values[:snapshot_index+1]):
-        if date.month==12 and date.day>=24:endpoints[date.year]=(date,value)
+    for year in range(launch.year,now.year):
+        date=dt.date(year,12,31)
+        while date.weekday()>=5:date-=dt.timedelta(days=1)
+        if date not in levels:reject(f'CoinShares year-end product observation missing: {date.isoformat()}')
+        endpoints[year]=levels[date]
     years={}
     for y in range(launch.year+1,now.year):
-        if y not in endpoints or y-1 not in endpoints:reject('CoinShares year-end product observation missing')
-        years[str(y)]=bounded_return(round((endpoints[y][1]/endpoints[y-1][1]-1)*100,2))
+        years[str(y)]=bounded_return(round((endpoints[y]/endpoints[y-1]-1)*100,2))
     return performance(share,years,stamp,url,proof(json.dumps(payload,sort_keys=True).encode()),
                        'calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels')
 
