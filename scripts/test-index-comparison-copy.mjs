@@ -30,7 +30,8 @@ assert(text.startsWith('MSCI World ou MSCI ACWI :'))
 assert(!text.includes('FTSE All-World'))
 for (const index of world.indices) assert(text.includes(`${index.name} : ${index.indexFacts.constituents.toLocaleString('fr-FR').replaceAll('\u202f', ' ')} valeurs`))
 assert(text.includes('📈 Les performances des deux indices, en dollars et dividendes réinvestis :'))
-assert(text.includes('🔵 MSCI ACWI\n2023 : +22,81 % · 2024 : +18,02 % · 2025 : +22,87 %'))
+const acwi = getIndexComparisonPerformance(world).find(row => row.key === 'acwi')
+assert(text.includes('🔵 MSCI ACWI\n' + acwi.years.map(year => `${year} : ${fmtPct(acwi.calendarReturns[year])}`).join(' · ')))
 assert(text.endsWith('💬 Entre ces deux indices, lequel correspond le mieux à ton portefeuille ?'))
 assert(!/GPEA, lancé|Fonds trop récent|performances en euros|frais du fonds inclus|parts ou actifs/.test(text))
 // Le changement d’un rendement de part ne doit jamais changer celui de l’indice.
@@ -48,7 +49,7 @@ for (const family of FAMILIES.flatMap(getIndexComparisonPairs)) {
   rows.forEach(row => {
     assert(row.source.url.startsWith('https://'), row.key)
     assert(!/UCITS|Amundi|iShares|Vanguard|Xtrackers/.test(row.label), row.key)
-    for (const year of [2023, 2024, 2025]) assert(tweet.includes(`${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`))
+    for (const year of row.years) assert(tweet.includes(`${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`))
   })
   const key = rows[0].key
   assert(!buildTweetText(family, { [key]: { ytdEnabled: true, ytd: '' } }).includes('YTD saisi'))

@@ -877,7 +877,7 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       ],
       "performance": {
         "kind": "indice",
-        "detail": "MSCI Japan IMI · JPY · dividendes réinvestis",
+        "detail": "MSCI Japan IMI · JPY · dividendes bruts réinvestis",
         "date": "Années calendaires 2023–2025"
       },
       "source": {
@@ -885,7 +885,7 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
         "url": "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf"
       },
       "currency": "JPY",
-      "method": "dividendes réinvestis",
+      "method": "dividendes bruts réinvestis",
       "note": null,
       "checkedAt": "2026-10-04",
       "periodStart": "2023-01-01",

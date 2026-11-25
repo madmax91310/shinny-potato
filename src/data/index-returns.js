@@ -479,9 +479,10 @@ export function getIndexReturns(id, asOf) {
 export function getCurrentIndexReturnSeries(id, asOf, { rolling = false, length = null } = {}) {
   const previous = INDEX_RETURNS[id]?.[asOf];
   if (!previous) throw new Error(`Rendements d’indice absents : ${id}/${asOf}`);
-  const current = automatedIndices[id]?.returns;
   const detail = previous.performance.detail;
   const variant = /hors dividendes|price|cours spot|cours de référence/i.test(detail) ? 'PRICE' : /nets?|NET/i.test(detail) ? 'NET' : /bruts?|GROSS/i.test(detail) ? 'GROSS' : 'TOTAL';
+  const sourceId = variant === 'NET' && ['world', 'acwi'].includes(id) ? `${id}-net` : id;
+  const current = automatedIndices[sourceId]?.returns;
   if (!current || current.currency !== previous.metadata.currency || current.variant !== variant || current.asOf < asOf) return previous;
   const years = new Set(rolling ? latestCommonYears([Object.fromEntries(current.values)], { length: length ?? previous.values.length }) : previous.values.map(([year]) => year));
   if (!years.size) return previous;

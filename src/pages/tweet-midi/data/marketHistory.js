@@ -1,12 +1,13 @@
 import {anniversaryPriceComparisonIssue} from '../../../data/anniversary-price-quality.js'
 import {resolveAnniversaryLevel} from '../../../data/anniversary-levels.js'
 import { qualifyHistoryWindow, requireHistoryWindow } from '../../../data/history-window-quality.js';
+import { lastCompleteYear } from '../../../data/annual-window.js';
 import { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 export { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 // Shared calculator series plus exact official indices dedicated to anniversaries.
 import { performanceBasisLabel, isNavTotalReturn } from '../../../lib/performance-conventions.js';
 import {
-  ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
+  ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
 import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../../lib/investment-series.js";
 import { createAnniversaryYearOptions } from '../../../lib/history-dates.js'
@@ -20,8 +21,6 @@ const INDEX_ASSETS = Object.fromEntries(Object.entries(INDEX_HISTORY).map(([id, 
 }]));
 const ASSETS = { ...SHARED_ASSETS, ...INDEX_ASSETS };
 function getAssetMinDate(id) { return INDEX_ASSETS[id]?.points[0].date ?? sharedMinDate(id); }
-
-const LATEST_YEAR = Number(LATEST_YM.slice(0, 4));
 
 // getAssetMinDate (plancher LVMH pré-2020-12 non vérifié) déplacé le 04/09/2026 dans
 // src/data/market-history.js — c'était la seule protection contre les points LVMH "NON
@@ -105,11 +104,12 @@ export function getLastRealPointOfYear(assetId, year) {
 // celle de l'année précédente — donc l'année de départ elle-même a besoin d'une clôture vérifiée
 // pour l'année N-1, sinon sa ligne ne peut pas être calculée sans deviner un point (ex. LVMH :
 // le plancher vérifié est 2020-12, donc 2020 n'a pas de clôture N-1 vérifiée et n'est pas une
-// année de départ valide — 2021 l'est). Exclut aussi l'année en cours (celle de LATEST_YM) :
-// elle n'a qu'un point partiel, jamais une vraie clôture annuelle.
+// année de départ valide — 2021 l'est). Dès janvier, les points de décembre
+// qualifiés suffisent pour l'année qui vient de se terminer.
 export function getAnnualReturnStartYears(assetId) {
+  const lastYear = lastCompleteYear();
   return getAssetAvailableYears(assetId).filter(
-    (year) => year < LATEST_YEAR && annualClose(assetId, year - 1) && annualClose(assetId, year) && qualifyHistoryWindow(ASSETS[assetId], `${year - 1}-12`, `${year}-12`, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) }).qualified,
+    (year) => year <= lastYear && annualClose(assetId, year - 1) && annualClose(assetId, year) && qualifyHistoryWindow(ASSETS[assetId], `${year - 1}-12`, `${year}-12`, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) }).qualified,
   );
 }
 
@@ -124,7 +124,8 @@ function annualClose(assetId, year) {
 // interpolés au-delà de ce que l'actif couvre réellement.
 export function getAnnualReturns(assetId, startYear) {
   const out = [];
-  for (let year = startYear; year <= LATEST_YEAR - 1; year++) {
+  const lastYear = lastCompleteYear();
+  for (let year = startYear; year <= lastYear; year++) {
     const prev = annualClose(assetId, year - 1);
     const cur = annualClose(assetId, year);
     // A cumulative return must never silently skip an unavailable year.

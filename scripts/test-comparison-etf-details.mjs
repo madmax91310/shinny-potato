@@ -30,8 +30,10 @@ for (const [isin, record] of Object.entries(AUTOMATED_ETF)) {
  }
 }
 const text = emerging.etfs.flatMap(fund => buildComparisonEtfDetails(fund)).join('\n')
-for (const isin of ['IE00BTJRMP35', 'FR0013412020']) assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance(isin).rows.find(r => r.year === 2025).pct)}`))
-assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance('IE00BKM4GZ66').rows.find(r => r.year === 2025).pct)}`))
+for (const fund of emerging.etfs) {
+  const { year, pct } = getComparisonPerformance(fund.isin).rows[0]
+  assert.ok(text.includes(`${year} : ${comparisonPct(pct)}`))
+}
 assert.equal((text.match(/🏭 /g)||[]).length,3)
 assert.equal((text.match(/🏢 /g)||[]).length,3)
 assert.equal(COMPARISON_ETF_DETAILS.FR0013412020.basis, 'tracked-index')

@@ -5,7 +5,7 @@ import { REVIEWED_EXPOSURE_COPY } from '../src/data/etf-presentation-copy.js'
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js'
 import { buildText, accountLabel, buildFactRows } from '../src/pages/etf-sheets/lib.js'
 import { presentationComposition, presentationCountries } from '../src/pages/etf-sheets/presentationDetails.js'
-import { formatTweetPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js'
+import { formatTweetPerformance, getAnnualPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js'
 assert.deepEqual(new Set(reviewedIds),new Set(ETFS.map(e=>e.id)),'Toute nouvelle fiche exige une revue explicite')
 assert.deepEqual(new Set(Object.keys(REVIEWED_EXPOSURE_COPY)),new Set(reviewedIds))
 assert.equal(new Set(ETFS.map(e=>e.isin)).size,ETFS.length)
@@ -23,7 +23,10 @@ for(const etf of ETFS) {
   for(const heading of ['🔍 Ce que tu achètes','✅ Pourquoi s’y intéresser ?','⚠️ Le point de vigilance','💬 '])assert(text.includes(heading),etf.id)
   assert(text.includes(`🆔 ISIN : ${etf.isin}`),etf.id)
   assert(text.includes(`💸 ${copy.feeLabel} : ${etf.ter.replace(/(\d)\s*%/g, '$1 %')}`),etf.id)
-  assert.doesNotMatch(text, /Performances annuelles|^[🟢🔴] \d{4}\s*:/mu, etf.id)
+  const annual = getAnnualPerformance(copy)
+  const section = annual && formatTweetPerformance(annual, { annualOnly: true })
+  if (section) assert(text.includes(section), etf.id)
+  else assert.doesNotMatch(text, /Performances annuelles|^[🟢🔴] \d{4}\s*:/mu, etf.id)
   assert.doesNotMatch(text, /^Indice suivi :|Le fonds utilise un swap : il échange|Capitalisation et\/ou distribution/m, etf.id)
   if (text.includes('🟡 Matières premières de l’indice suivi')) assert(!text.includes('🔄 '),etf.id)
   if (etf.category === 'Obligataires') assert(!text.includes('À elles trois,'),etf.id)

@@ -1,4 +1,5 @@
 import { qualifyHistoryWindow, requireHistoryWindow } from '../../data/history-window-quality.js'
+import { lastCompleteYear } from '../../data/annual-window.js'
 const MONTH = /^\d{4}-(0[1-9]|1[0-2])$/
 export const monthIndex = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7)) - 1
 export function monthAt(index) { return `${Math.floor(index / 12)}-${String(index % 12 + 1).padStart(2, '0')}` }
@@ -27,8 +28,9 @@ export function commonCoverage(assets) {
   if (annual && assets.some(a => a.basis !== assets[0].basis)) throw new Error('Les conventions des calendriers annuels doivent être identiques.')
   if (['monthly-average', 'price-index', 'futures-price'].includes(assets[0].basis)) throw new Error('Cette convention ne permet pas encore un classement homogène avec dividendes réinvestis.')
   if (assets.some(a => ['monthly-average', 'price-index', 'futures-price'].includes(a.basis))) throw new Error('Cette convention ne permet pas un classement homogène.')
+  const lastYear = lastCompleteYear()
   if (annual) {
-    const years = Object.keys(assets[0].years).map(Number).filter(y => assets.every(a => Number.isFinite(a.years[y]))).sort((a, b) => a - b)
+    const years = Object.keys(assets[0].years).map(Number).filter(y => y <= lastYear && assets.every(a => Number.isFinite(a.years[y]))).sort((a, b) => a - b)
     if (!years.length) throw new Error('Aucune année civile complète commune.')
     return { start: `${years[0] - 1}-12`, end: `${years.at(-1)}-12`, years, currency: assets[0].currency, basis: assets[0].basis, frequency: 'annual' }
   }
@@ -36,7 +38,7 @@ export function commonCoverage(assets) {
   const end = assets.map(a => a.points.at(-1).date).sort()[0]
   if (start >= end) throw new Error('Les actifs ne partagent pas de période complète.')
   const years = []
-  for (let year = Number(start.slice(0, 4)); year <= Number(end.slice(0, 4)); year++) {
+  for (let year = Number(start.slice(0, 4)); year <= Math.min(lastYear, Number(end.slice(0, 4))); year++) {
     if (`${year - 1}-12` >= start && `${year}-12` <= end && assets.every(a => qualifyHistoryWindow(a, `${year - 1}-12`, `${year}-12`).qualified)) years.push(year)
   }
   const basis = assets.every(a => a.basis === assets[0].basis) ? assets[0].basis : 'mixed-total'

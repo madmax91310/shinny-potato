@@ -93,15 +93,28 @@ def msci_returns(text, config, now):
     if not re.search(r'CUMULATIVE INDEX PERFORMANCE\s*[—–-]\s*'+variant+r' RETURNS \('+currency+r'\)', text):
         reject('MSCI index return currency or variant mismatch')
     block = text.split('ANNUAL PERFORMANCE (%)',1)[1].split('INDEX PERFORMANCE',1)[0]
+    column = config.get('returnColumn')
+    row_pattern = r'(?:^|\s{2,})(20\d{2})\s+(-?\d+\.\d+)\s'
+    value_group = 2
+    if column:
+        # MSCI publishes these two exact NET USD series side by side in the
+        # ACWI factsheet. A changed header must stop the extraction.
+        columns = ('MSCI ACWI', 'MSCI World')
+        if column not in columns or column != config['name'] or not re.search(
+            r'\bYear\s+MSCI ACWI\s+MSCI World\s+Emerging\s+Markets\b', block
+        ):
+            reject('MSCI ACWI / World annual performance columns not identified')
+        row_pattern = r'(?:^|\s{2,})(20\d{2})\s+(-?\d+\.\d+)\s+(-?\d+\.\d+)\s+-?\d+\.\d+\s*$'
+        value_group += columns.index(column)
     years = []
     for line in block.splitlines():
-        m = re.search(r'(?:^|\s{2,})(20\d{2})\s+(-?\d+\.\d+)\s',line)
+        m = re.search(row_pattern, line)
         if m:
             year = int(m[1])
             if year >= now.year or year in [p[0] for p in years]:
                 reject('Duplicate or unfinished MSCI calendar year')
             if year >= 2020:
-                years.append([year, bounded_return(float(m[2]))])
+                years.append([year, bounded_return(float(m[value_group]))])
     if not any(all(year in [p[0] for p in years] for year in range(end-4,end+1)) for end in range(now.year-1,2024,-1)):
         reject('Missing MSCI completed calendar years')
     return sorted(years, reverse=True)

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { indexObservation } from '../src/pages/factsheet-tweets/editorial.js'
 import { completeAutomatedRecord } from '../src/data/automated-index-sheets.js'
 import AUTOMATED_INDEX_RECORDS from '../src/data/automated-indices.json' with { type: 'json' }
+import { lastCompleteYear } from '../src/data/annual-window.js'
 
 // Every complete automated index has a sheet; the count follows the registry instead of a frozen figure.
 assert.ok(SHEETS.length >= 40, 'au moins les quarante sujets historiques')
@@ -23,7 +24,7 @@ for (const sheet of SHEETS) {
   if (sectors > 100.15 || sectors < 50 && !sheet.methodologyPanels) throw new Error(`${sheet.id}: secteurs incohérents : ${sectors}`)
   if (!sheet.source.every((source) => source.url.startsWith('https://'))) throw new Error(`${sheet.id}: source absente`)
   if (!sheet.snapshot || !sheet.performance.date || !sheet.performance.detail) throw new Error(`${sheet.id}: dates ou méthode absentes`)
-  if (!sheet.returns?.length || sheet.returns.some(([year, value]) => year < 2021 || year > 2025 || !Number.isFinite(value))) throw new Error(`${sheet.id}: rendements incomplets`)
+  if (!sheet.returns?.length || sheet.returns.some(([year, value]) => year < 2021 || year > lastCompleteYear() || !Number.isFinite(value))) throw new Error(`${sheet.id}: rendements incomplets`)
   if (sheet.performance.kind === 'ETF' && (!sheet.isin || !text.includes(`performances de l’ETF ${sheet.isin}`))) throw new Error(`${sheet.id}: confusion indice/ETF`)
   if (sheet.performance.kind === 'indice' && text.includes('performances de l’ETF')) throw new Error(`${sheet.id}: fausse attribution des rendements`)
   if (/undefined|NaN/.test(text)) throw new Error(`${sheet.id}: texte invalide`)
