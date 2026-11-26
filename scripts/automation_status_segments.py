@@ -178,7 +178,11 @@ def build_manifest(state, known=()):
             continue
         value = monitor[key]
         if isinstance(value, dict):
-            values = {identity: pack_incident(row) for identity, row in value.items()}
+            values = {}
+            for identity, row in value.items():
+                if isinstance(row, dict) and row.get('lastSeenAt') and row['lastSeenAt'] == monitor.get('checkedAt'):
+                    row = {k: v for k, v in row.items() if k != 'lastSeenAt'} | {'seenAtMonitorCheck': True}
+                values[identity] = pack_incident(row)
         else:
             values = [pack_incident(row) for row in value]
             episodes[key] = {hashlib.sha256(json_bytes(row)).hexdigest(): row for row in values}
@@ -282,24 +286,30 @@ def restore_manifest(manifest, load):
     descriptors = manifest['incidentLists']
     lists = reader.table(descriptors['attemptedDataIds'])
 
-    def restore_incident(row):
-        if not isinstance(row, dict) or 'attemptedDataIdsRef' not in row:
+    monitor = state['monitoring']
+
+    def restore_incident(row, active=False):
+        if not isinstance(row, dict):
             return row
-        row = dict(row)
-        digest = row.pop('attemptedDataIdsRef')
-        if digest not in lists or 'attemptedDataIds' in row or not isinstance(lists[digest], list):
-            raise ValueError('Périmètre d’incident introuvable')
-        row['attemptedDataIds'] = lists[digest]
+        if 'attemptedDataIdsRef' in row:
+            row = dict(row)
+            digest = row.pop('attemptedDataIdsRef')
+            if digest not in lists or 'attemptedDataIds' in row or not isinstance(lists[digest], list):
+                raise ValueError('Périmètre d’incident introuvable')
+            row['attemptedDataIds'] = lists[digest]
+        if active and 'seenAtMonitorCheck' in row:
+            if row['seenAtMonitorCheck'] is not True or 'lastSeenAt' in row or not isinstance(monitor.get('checkedAt'), str):
+                raise ValueError('Date du contrôle de l’incident invalide')
+            row = {k: v for k, v in row.items() if k != 'seenAtMonitorCheck'} | {'lastSeenAt': monitor['checkedAt']}
         return row
 
-    monitor = state['monitoring']
     episodes = {}
     for key in HISTORY[:-1]:
         if key not in descriptors:
             continue
         rows = reader.table(descriptors[key])
         if isinstance(rows, dict):
-            monitor[key] = {k: restore_incident(v) for k, v in rows.items()}
+            monitor[key] = {k: restore_incident(v, active=key == 'active') for k, v in rows.items()}
         else:
             rows.reverse()
             monitor[key] = [restore_incident(v) for v in rows]

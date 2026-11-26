@@ -13,7 +13,7 @@ from automation_status_storage import encode_status, pack_proof_checks
 
 def fixture():
     ids = ['ETF:é', 'asset:EUR', 'ETF:é', 'asset:USD']
-    active = {'id': 'f', 'name': 'ETF', 'attemptedDataIds': ids, 'observations': [{'date': '2026-11-26'}]}
+    active = {'id': 'f', 'name': 'ETF', 'lastSeenAt': '2026-11-26', 'attemptedDataIds': ids, 'observations': [{'date': '2026-11-26'}]}
     resolution = {**active, 'resolvedAt': '2026-11-25', 'resolutionEvidence': {'sha256': 'abc'}}
     retired = {'id': 'r', 'name': 'ETF retiré', 'attemptedDataIds': ids}
     receipt = {'recordedAt': '2026-11-25', 'evidence': {'scopeRef': 'a' * 64}}
@@ -63,6 +63,15 @@ class Segments(unittest.TestCase):
         self.assertNotEqual(first, last)
         historical_pages = first['incidentLists']['resolved']['pages']
         self.assertIn(historical_pages[0], last['incidentLists']['resolved']['pages'])
+
+    def test_clock_only_update_reuses_active_incident_segments(self):
+        state = fixture()
+        old, files, known = build_manifest(state)
+        state['monitoring']['checkedAt'] = '2026-11-27'
+        state['monitoring']['active']['f']['lastSeenAt'] = '2026-11-27'
+        manifest, new, _ = build_manifest(state, known)
+        self.assertEqual(old['incidentLists'], manifest['incidentLists'])
+        self.assertEqual(restore_manifest(manifest, (files | new).__getitem__)[0], state)
 
     def test_corruption_missing_and_excess_are_rejected(self):
         manifest, files, _ = build_manifest(fixture())

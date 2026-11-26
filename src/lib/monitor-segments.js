@@ -83,16 +83,25 @@ export async function readMonitorProjection(manifest, load) {
   if (current.schemaVersion !== 1 || !record(current.workflows) || !record(current.monitoring)) {
     throw new Error('État courant du moniteur invalide')
   }
-  const restore = row => {
+  const restore = (row, isActive = false) => {
     if (!record(row)) throw new Error('Incident invalide')
-    if (!Object.hasOwn(row, 'attemptedDataIdsRef')) return row
-    const { attemptedDataIdsRef, ...rest } = row
-    if (Object.hasOwn(row, 'attemptedDataIds') || !Object.hasOwn(lists, attemptedDataIdsRef) ||
-        !Array.isArray(lists[attemptedDataIdsRef])) throw new Error('Périmètre d’incident introuvable')
-    return { ...rest, attemptedDataIds: lists[attemptedDataIdsRef] }
+    if (Object.hasOwn(row, 'attemptedDataIdsRef')) {
+      const { attemptedDataIdsRef, ...rest } = row
+      if (Object.hasOwn(row, 'attemptedDataIds') || !Object.hasOwn(lists, attemptedDataIdsRef) ||
+          !Array.isArray(lists[attemptedDataIdsRef])) throw new Error('Périmètre d’incident introuvable')
+      row = { ...rest, attemptedDataIds: lists[attemptedDataIdsRef] }
+    }
+    if (isActive && Object.hasOwn(row, 'seenAtMonitorCheck')) {
+      const { seenAtMonitorCheck, ...rest } = row
+      if (seenAtMonitorCheck !== true || Object.hasOwn(row, 'lastSeenAt') || typeof current.monitoring.checkedAt !== 'string') {
+        throw new Error('Date du contrôle de l’incident invalide')
+      }
+      row = { ...rest, lastSeenAt: current.monitoring.checkedAt }
+    }
+    return row
   }
   return { ...current, monitoring: { ...current.monitoring,
-    active: Object.fromEntries(Object.entries(active).map(([key, row]) => [key, restore(row)])),
-    resolved: resolved.reverse().map(restore), ...(descriptors.retired ? { retired: retired.reverse().map(restore) } : {}),
+    active: Object.fromEntries(Object.entries(active).map(([key, row]) => [key, restore(row, true)])),
+    resolved: resolved.reverse().map(row => restore(row)), ...(descriptors.retired ? { retired: retired.reverse().map(row => restore(row)) } : {}),
   } }
 }
