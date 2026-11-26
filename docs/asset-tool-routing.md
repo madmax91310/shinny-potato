@@ -1,6 +1,6 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-11-25 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-11-26 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
@@ -247,7 +247,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares € Govt Bond 5-7yr UCITS ETF EUR (Dist) | IE00B4WXJG34 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares Core Euro Government Bond UCITS ETF (Dist) | IE00B4WXJJ64 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | IE00B52MJY50 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
-| iShares MSCI Canada UCITS ETF | IE00B52SF786 | Oui | Oui | manual | Partiel / Oui | Complète | Oui / Oui / Oui | — |
+| iShares MSCI Canada UCITS ETF | IE00B52SF786 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI USA UCITS ETF (Acc) | IE00B52SFT06 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI South Africa UCITS ETF | IE00B52XQP83 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI Australia UCITS ETF | IE00B5377D42 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
@@ -327,7 +327,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | IE00BLCHJB90 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers S&P 500 Equal Weight UCITS ETF 1C | IE00BLNMYC90 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Health Care UCITS ETF | IE00BM67HK77 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Xtrackers MSCI World Utilities UCITS ETF | IE00BM67HQ30 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
+| Xtrackers MSCI World Utilities UCITS ETF | IE00BM67HQ30 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Materials UCITS ETF | IE00BM67HS53 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Industrials UCITS ETF 1C | IE00BM67HV82 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Global X Nasdaq 100 Covered Call UCITS ETF | IE00BM8R0J59 | Oui | — | automatic | Oui / Oui | — | Oui / Oui / Oui | — |
