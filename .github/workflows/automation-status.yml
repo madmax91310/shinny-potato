@@ -39,6 +39,11 @@ on:
       - "scripts/automation-report-contracts.json"
       - "scripts/test_automation_product.py"
       - "scripts/automation_status_storage.py"
+      - "scripts/automation_status_segments.py"
+      - "src/lib/monitor-segments.js"
+      - "public/monitor-segment-storage-capabilities.json"
+      - "src/pages/data-review/AutomationFailures.jsx"
+      - "scripts/test_automation_status_segments.py"
       - "scripts/monitor_incident_history.py"
       - "scripts/test_automation_incident_history.py"
       - "src/lib/monitor-incident-history.js"
@@ -73,6 +78,10 @@ on:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
       - 'scripts/automation_status_storage.py'
+      - 'scripts/automation_status_segments.py'
+      - 'src/lib/monitor-segments.js'
+      - 'public/monitor-segment-storage-capabilities.json'
+      - 'src/pages/data-review/AutomationFailures.jsx'
       - 'scripts/monitor_incident_history.py'
       - 'scripts/test_automation_incident_history.py'
       - 'src/lib/monitor-incident-history.js'

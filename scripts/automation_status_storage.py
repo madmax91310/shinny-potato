@@ -122,7 +122,7 @@ def pack_report_scopes(state):
             result['scopeRef']=key
             result['scopeSummary']={**({'kind':scope['kind']}if 'kind'in scope else{}),
                 **{k+'Count':len(scope[k])for k in ('expectedIds','requestedIds','networkRequestedIds')if isinstance(scope.get(k),list)}}
-        elif proof and value.get('scopeRef')not in (None,*registry.keys()):
+        elif proof and value.get('scopeRef') is not None and value['scopeRef'] not in registry:
             raise ValueError('Périmètre de preuve référencé absent')
         return result
     result=visit({k:v for k,v in state.items()if k not in ('reportScopes','reportScopeSchemaVersion')})

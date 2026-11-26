@@ -34,8 +34,12 @@ async function expandProofChecks(state) {
   const {proofCheckStorage,proofCheckRecords,...rest} = state
   return {...rest,workflows:Object.fromEntries(workflows)}
 }
-export async function decodeMonitorStorage(input) {
+export async function decodeMonitorStorage(input, loadSegment) {
   try {
+    if (input?.monitorStorage === 'sha256-segments-v1') {
+      const { readMonitorProjection } = await import('./monitor-segments.js')
+      return await readMonitorProjection(input, loadSegment)
+    }
     let state = input
     if (input && typeof input === 'object' && Object.hasOwn(input,'monitorStorage')) {
       if (!keys(input,['schemaVersion','monitorStorage','decodedBytes','sha256','data']) || input.schemaVersion !== 2 || input.monitorStorage !== 'gzip+base64-v1') throw Error()

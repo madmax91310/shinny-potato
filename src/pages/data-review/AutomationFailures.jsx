@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { TOOLS } from '../../tools.js'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
 import { decodeMonitorStorage } from '../../lib/monitor-storage.js'
+import { fetchMonitorSegment } from '../../lib/monitor-segments.js'
 const toolTitle = path => TOOLS.find(tool => tool.to === path)?.navLabel ?? path
 
 const recoveryLabel = value => ({ reserved: 'Relance réservée', dispatched: 'Relance demandée', waiting: 'Nouvelle tentative programmée', 'awaiting-current-run': 'Une exécution est déjà en cours ou attend son bilan', 'budget-exhausted': 'Limite de relances atteinte pour 24 heures', 'dispatch-failed': 'Demande de relance échouée ; nouvelle tentative différée' }[value] ?? null)
@@ -27,15 +28,16 @@ export default function AutomationFailures({review}) {
     async function refresh() {
       controller?.abort()
       controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), 12000)
+      const request = controller
+      const timeout = setTimeout(() => request.abort(), 12000)
       try {
-        const response = await fetch(AUTOMATION_STATUS_URL, {cache: 'no-store', signal: controller.signal})
+        const response = await fetch(AUTOMATION_STATUS_URL, {cache: 'no-store', signal: request.signal})
         if (!response.ok) throw new Error('Statut indisponible')
-        const status = await decodeMonitorStorage(await response.json())
+        const status = await decodeMonitorStorage(await response.json(), path => fetchMonitorSegment(new URL(path, AUTOMATION_STATUS_URL), request.signal))
         const rows = automationOverview(status)
         const next = automationFailures(status)
-        if (active) { setFullStatus(status); setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
-      } catch { if (active) setUnavailable(true) }
+        if (active && controller === request) { setFullStatus(status); setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
+      } catch { if (active && controller === request) setUnavailable(true) }
       finally { clearTimeout(timeout) }
     }
     async function checkMonitor(){try{const error=await fetchMonitorExecutionHealth({signal:AbortSignal.timeout(12000)});if(active)setMonitorExecutionError(error)}catch{if(active)setMonitorExecutionError('Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer.')}}
