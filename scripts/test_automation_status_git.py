@@ -59,6 +59,22 @@ class StatusGitTransport(unittest.TestCase):
         self.assertEqual(self.run_git(self.repo, 'rev-parse', 'HEAD'), self.checkout_head)
         self.assertEqual((self.repo / '.git/index').read_bytes(), self.index)
 
+    def test_segmented_manifest_and_segments_share_the_same_commit(self):
+        from automation_status_segments import build_manifest, json_bytes, restore_manifest
+        state = {'schemaVersion': 1, 'workflows': {},
+                 'monitoring': {'active': {}, 'resolved': [], 'events': []}}
+        manifest, files, _ = build_manifest(state)
+        payload = self.payload() | {'content': base64.b64encode(json_bytes(manifest)).decode(), 'segments': files}
+        result = transport.write_status(None, 'automation-status.json', payload, repo=self.repo)
+        with transport.read_segments('automation-status', 'automation-status.json', result['content']['sha'], repo=self.repo) as (load, head):
+            self.assertEqual(head, result['commit']['sha'])
+            restored, _ = restore_manifest(self.remote_json(), load)
+        self.assertEqual(restored, state)
+        with self.assertRaisesRegex(ValueError, 'a changé'):
+            with transport.read_segments('automation-status', 'automation-status.json', self.original, repo=self.repo):
+                self.fail('Un ancien manifeste ne peut pas emprunter la tête courante')
+        self.assertEqual((self.repo / '.git/index').read_bytes(), self.index)
+
     def test_old_observation_cannot_overwrite_new_status(self):
         payload = self.payload()
         transport.write_status(None, 'automation-status.json', payload, repo=self.repo)

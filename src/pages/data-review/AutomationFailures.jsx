@@ -27,15 +27,16 @@ export default function AutomationFailures({review}) {
     async function refresh() {
       controller?.abort()
       controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), 12000)
+      const request = controller
+      const timeout = setTimeout(() => request.abort(), 12000)
       try {
-        const response = await fetch(AUTOMATION_STATUS_URL, {cache: 'no-store', signal: controller.signal})
+        const response = await fetch(AUTOMATION_STATUS_URL, {cache: 'no-store', signal: request.signal})
         if (!response.ok) throw new Error('Statut indisponible')
-        const status = await decodeMonitorStorage(await response.json())
+        const status = await decodeMonitorStorage(await response.json(), { url: AUTOMATION_STATUS_URL, signal: request.signal })
         const rows = automationOverview(status)
         const next = automationFailures(status)
-        if (active) { setFullStatus(status); setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
-      } catch { if (active) setUnavailable(true) }
+        if (active && controller === request) { setFullStatus(status); setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
+      } catch { if (active && controller === request) setUnavailable(true) }
       finally { clearTimeout(timeout) }
     }
     async function checkMonitor(){try{const error=await fetchMonitorExecutionHealth({signal:AbortSignal.timeout(12000)});if(active)setMonitorExecutionError(error)}catch{if(active)setMonitorExecutionError('Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer.')}}

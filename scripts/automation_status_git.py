@@ -5,18 +5,54 @@ exact JSON and its reservation boundary instead of dropping incidents/proofs.
 Small documents keep the existing Contents API contract.
 """
 import base64
+from contextlib import contextmanager
 import os
 from pathlib import Path
 import subprocess
 import tempfile
+from threading import Lock
 
 ROOT = Path(__file__).resolve().parents[1]
 # Transport cutover only, not a financial, retention or freshness threshold.
 SMALL_ENCODED_DOCUMENT = 1024 * 1024
 
 
+@contextmanager
+def read_segments(branch, path, expected, repo=ROOT):
+    from automation_status_segments import MAX_FILE
+    ref = 'refs/heads/' + branch
+    subprocess.run(['git', 'fetch', '--quiet', '--no-tags', '--depth=1', 'origin', ref],
+                   cwd=repo, check=True, timeout=120, capture_output=True)
+    head = subprocess.check_output(['git', 'rev-parse', 'FETCH_HEAD'], cwd=repo, timeout=10).decode().strip()
+    actual = subprocess.check_output(['git', 'rev-parse', f'{head}:{path}'], cwd=repo, timeout=10).decode().strip()
+    if actual != expected:
+        raise ValueError('Le manifeste du moniteur a changé pendant sa lecture')
+    with subprocess.Popen(['git', 'cat-file', '--batch'], cwd=repo,
+                          stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL) as process:
+        lock = Lock()
+
+        def load(file):
+            with lock:
+                process.stdin.write(f'{head}:{file}\n'.encode())
+                process.stdin.flush()
+                info = process.stdout.readline().split()
+                if len(info) != 3 or info[1] != b'blob' or not 0 < int(info[2]) <= MAX_FILE:
+                    raise ValueError('Segment Git du moniteur absent ou invalide')
+                size = int(info[2])
+                result = process.stdout.read(size)
+                if len(result) != size or process.stdout.read(1) != b'\n':
+                    raise ValueError('Segment Git du moniteur incomplet')
+                return result
+
+        try:
+            yield load, head
+        finally:
+            process.stdin.close()
+
+
 def write_status(api, path, payload, repo=None):
-    if len(payload['content']) <= SMALL_ENCODED_DOCUMENT:
+    segments = payload.get('segments')
+    if segments is None and len(payload['content']) <= SMALL_ENCODED_DOCUMENT:
         return api(f'/contents/{path}', 'PUT', payload)
     repo = Path(repo) if repo is not None else ROOT
     branch = payload['branch']
@@ -44,6 +80,8 @@ def write_status(api, path, payload, repo=None):
         mode, kind, current = meta.split()
         if actual_path != path or mode != '100644' or kind != 'blob':
             raise ValueError('Unexpected monitor file identity/mode')
+    if payload.get('expectedHead', head) != head:
+        raise ValueError('Monitor status changed; preserve current branch and recompute')
     if current != payload.get('sha'):
         raise ValueError('Monitor status changed; preserve current branch and recompute')
     blob = git('hash-object', '-w', '--stdin', input=body, stage='write blob')
@@ -51,7 +89,16 @@ def write_status(api, path, payload, repo=None):
     with tempfile.TemporaryDirectory(prefix='automation-status-index-') as folder:
         env = {**os.environ, 'GIT_INDEX_FILE': str(Path(folder) / 'index')}
         git('read-tree', head, env=env, stage='read tree')
-        git('update-index', '--add', '--cacheinfo', '100644', blob, path, env=env, stage='update private index')
+        index = [f'100644 {blob}\t{path}\n']
+        if segments:
+            from automation_status_segments import segment_path
+            for segment, raw in segments.items():
+                digest = Path(segment).stem
+                if segment != segment_path(digest):
+                    raise ValueError('Chemin de segment invalide')
+                segment_blob = git('hash-object', '-w', '--stdin', input=raw, stage='write segment')
+                index.append(f'100644 {segment_blob}\t{segment}\n')
+        git('update-index', '--index-info', input=''.join(index).encode(), env=env, stage='update private index')
         tree = git('write-tree', env=env, stage='write tree')
     commit = git('-c', 'user.name=github-actions[bot]', '-c',
                  'user.email=41898282+github-actions[bot]@users.noreply.github.com',

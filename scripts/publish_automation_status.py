@@ -26,6 +26,8 @@ from automation_history_coverage import recover_skipped_history_gaps
 from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
 from monitor_incident_history import incident_history_reader_ready, pack_incident_history
 from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready,pack_proof_checks,pack_scope_archives,scope_reader_ready
+from automation_status_git import read_segments
+from automation_status_segments import FORMAT as SEGMENT_FORMAT, build_manifest, json_bytes, readers_ready, restore_manifest
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
@@ -1391,13 +1393,17 @@ def review_projection_evidence(projection, manifest, build):
             'codeSha': build['sha'], 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
 
 
-def decode_json_file(api, file):
+def decode_json_file(api, file, read_segmented=None):
     """Read the exact observed blob when the contents API omits a large body."""
     content = file.get('content') if file.get('encoding') == 'base64' else None
     if not content:
         content = api(f"/git/blobs/{file['sha']}")['content']
     decoded = json.loads(base64.b64decode(content))
     if file.get('path', PATH) == PATH:
+        if isinstance(decoded, dict) and decoded.get('monitorStorage') == SEGMENT_FORMAT:
+            if read_segmented is None:
+                raise ValueError('Lecteur de segments du moniteur absent')
+            decoded = read_segmented(decoded, file['sha'])
         decoded = decode_status(decoded)
     return expand_report_archives(decoded) if file.get('path', PATH) == PATH and isinstance(decoded, dict) and isinstance(decoded.get('workflows'), dict) else decoded
 
@@ -1555,15 +1561,26 @@ def main():
     root = f'https://api.github.com/repos/{repo}'
     def api(path, method='GET', data=None):
         return request_json(root+path, token, method, data)
+    known_segments = set()
+    snapshot_head = None
+
+    def read_segmented(manifest, blob):
+        nonlocal known_segments, snapshot_head
+        with read_segments(BRANCH, PATH, blob) as (load, head):
+            state, known_segments = restore_manifest(manifest, load)
+        snapshot_head = head
+        return state
+
     try:
         file = api(f'/contents/{PATH}?ref={BRANCH}')
-        state = decode_json_file(api, file)
-        sha = file['sha']
     except urllib.error.HTTPError as e:
         if e.code != 404:
             raise
         state = {'schemaVersion': 1, 'workflows': {}}
         sha = None
+    else:
+        state = decode_json_file(api, file, read_segmented)
+        sha = file['sha']
     state=include_configured_workflows(state)
     def reports_for_run(run,jobs):
         workflow=run['path'].split('/')[-1]
@@ -1820,22 +1837,38 @@ def main():
     state=observe_monitor_history(state,api,repo,dt.datetime.now(dt.timezone.utc).isoformat(),monitor_job_log)
     state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
     state=pack_report_scopes(state)
-    compressed = reader_ready(repo)
+    segmented = snapshot_head is not None or readers_ready(repo)
+    compressed = segmented or reader_ready(repo)
     # The public decoder must demonstrably understand the additive receipt
     # registry before a writer emits it. No change to the 256 MiB envelope.
-    if compressed and reader_ready(repo, proof_checks=True):
+    if segmented or compressed and reader_ready(repo, proof_checks=True):
         state = pack_proof_checks(state)
-    if compressed and scope_reader_ready(repo):
+    if not segmented and compressed and scope_reader_ready(repo):
         state = pack_scope_archives(state)
-    if compressed and incident_history_reader_ready(repo):
+    if not segmented and compressed and incident_history_reader_ready(repo):
         state = pack_incident_history(state)
-    print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',state.get('reportScopeArchives',{}))))+' périmètres de preuve uniques ; aucun incident retiré.')
-    encoded = encode_status(state, compressed=compressed)
-    print('Transport du moniteur : '+('gzip vérifié, lecteur public disponible' if compressed else 'JSON historique, nouveau lecteur public non démontré'))
-    payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
+    def encode_segmented(value):
+        manifest, files, visited = build_manifest(value, known_segments)
+        known_segments.update(visited)
+        body = json_bytes(manifest) + b'\n'
+        print(f'Stockage du moniteur v3 : manifeste {len(body)} octets, '
+              f'{len(files)} segments nouveaux ({sum(map(len, files.values()))} octets), '
+              f'{len(visited)} segments référencés ; aucun incident retiré.', flush=True)
+        return {'content': base64.b64encode(body).decode(), 'segments': files}
+
+    if segmented:
+        transport = encode_segmented(state)
+    else:
+        size = len(json_bytes(state)) + 1
+        print(f'Stockage du moniteur historique : {size} octets de JSON compact.', flush=True)
+        transport = {'content': encode_status(state, compressed=compressed)}
+    payload = {'message': 'Update automation failure status', 'branch': BRANCH, **transport}
     if sha:
         payload['sha'] = sha
-    persist_and_dispatch(api, PATH, payload, state, recovery_plans, compressed=compressed)
+    if snapshot_head is not None:
+        payload['expectedHead'] = snapshot_head
+    persist_and_dispatch(api, PATH, payload, state, recovery_plans, compressed=compressed,
+                         encode=encode_segmented if segmented else None)
     # Persist incidents before notifying. Bot issue/comment receipts make retries idempotent.
     sync_monitoring_issue(state['monitoring'], api, repo)
     print(f'Statuts publiés : {len(state["workflows"])} automatisations')
