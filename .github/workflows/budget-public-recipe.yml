@@ -22,6 +22,7 @@ jobs:
         width: [1440, 390, 320]
     env:
       BUDGET_PUBLIC_BASE: https://madmax91310.github.io/shinny-potato
+      RECIPE_WIDTH: ${{ matrix.width }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -34,7 +35,7 @@ jobs:
       - name: Read actual public version and check trusted ancestry
         id: published
         run: |
-          curl --fail --retry 3 --silent --show-error "$BUDGET_PUBLIC_BASE/build-info.json?recipe=$GITHUB_RUN_ID" > /tmp/budget-public-before.json
+          curl --fail --retry 3 --max-time 15 --silent --show-error "$BUDGET_PUBLIC_BASE/build-info.json?recipe=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-$RECIPE_WIDTH" > /tmp/budget-public-before.json
           SHA=$(node -e 'const fs=require("fs"),p=JSON.parse(fs.readFileSync("/tmp/budget-public-before.json")); if(!/^[a-f0-9]{40}$/.test(p.sha)||(p.dataSha!==undefined&&!/^[a-f0-9]{40}$/.test(p.dataSha)))throw Error("Invalid public identifiers"); process.stdout.write(p.sha)')
           git fetch --filter=blob:none origin "$SHA"
           git merge-base --is-ancestor "$SHA" origin/master
@@ -57,12 +58,33 @@ jobs:
           node scripts/playwright-budget-studio.mjs ${{ matrix.width }}
           BUDGET_BATCH=studio node scripts/playwright-budget-new-profiles.mjs ${{ matrix.width }}
       - name: Verify public code stayed stable and record code/data versions
-        if: steps.published.outputs.supported == 'true'
+        if: ${{ !cancelled() && steps.published.outputs.supported == 'true' }}
         run: |
-          curl --fail --retry 3 --silent --show-error "$BUDGET_PUBLIC_BASE/build-info.json?recipe-end=$GITHUB_RUN_ID" > /tmp/budget-public-after.json
-          node --input-type=module -e 'import fs from "node:fs";const before=JSON.parse(fs.readFileSync("/tmp/budget-public-before.json")),after=JSON.parse(fs.readFileSync("/tmp/budget-public-after.json"));if(before.sha!==after.sha)throw Error("Public code changed during the recipe; rerun against the new snapshot");if(after.dataSha!==undefined&&!/^[a-f0-9]{40}$/.test(after.dataSha))throw Error("Invalid final dataSha");fs.mkdirSync("test-artifacts/budget-public",{recursive:true});fs.writeFileSync("test-artifacts/budget-public/versions.json",JSON.stringify({before,after,width:Number(process.env.RECIPE_WIDTH),codeStable:true,dataIdentity:after.dataSha?{kind:"git-dataSha",value:after.dataSha}:{kind:"not-advertised",note:"This Pages lane does not advertise a separate dataSha; no value inferred."}},null,2));'
-        env:
-          RECIPE_WIDTH: ${{ matrix.width }}
+          curl --fail --retry 3 --max-time 15 --silent --show-error "$BUDGET_PUBLIC_BASE/build-info.json?recipe-end=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-$RECIPE_WIDTH" > /tmp/budget-public-after.json || rm -f /tmp/budget-public-after.json
+          node --input-type=module <<'JS'
+          import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+          const before = JSON.parse(readFileSync('/tmp/budget-public-before.json', 'utf8'))
+          let after = null
+          let error = null
+          try {
+            const candidate = JSON.parse(readFileSync('/tmp/budget-public-after.json', 'utf8'))
+            const sha = /^[a-f0-9]{40}$/
+            if (!sha.test(candidate?.sha) || (candidate.dataSha !== undefined && !sha.test(candidate.dataSha))) {
+              throw new Error('Invalid final public identifiers')
+            }
+            after = candidate
+          } catch (cause) {
+            error = cause.code === 'ENOENT' ? 'Final public version unavailable' : cause instanceof SyntaxError ? 'Invalid final public version JSON' : cause.message
+          }
+          const codeStable = after === null ? null : before.sha === after.sha
+          if (codeStable === false) error = 'Public code changed during the recipe; rerun against the new snapshot'
+          const dataIdentity = after === null ? { kind: 'unverified' } : after.dataSha
+            ? { kind: 'git-dataSha', value: after.dataSha }
+            : { kind: 'not-advertised', note: 'This Pages lane does not advertise a separate dataSha; no value inferred.' }
+          mkdirSync('test-artifacts/budget-public', { recursive: true })
+          writeFileSync('test-artifacts/budget-public/versions.json', JSON.stringify({ before, after, width: Number(process.env.RECIPE_WIDTH), codeStable, dataIdentity, error }, null, 2) + '\n')
+          if (error) throw new Error(error)
+          JS
       - uses: actions/upload-artifact@v7.0.0
         if: always()
         with:

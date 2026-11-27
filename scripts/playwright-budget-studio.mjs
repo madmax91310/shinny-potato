@@ -8,13 +8,62 @@ import { BUDGET_PROFILES, BUDGET_NOEMIE_PREVIOUS } from '../src/pages/budget-pro
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 const base=process.env.BUDGET_PUBLIC_BASE||'http://127.0.0.1:4498/shinny-potato'
 const server=process.env.BUDGET_PUBLIC_BASE?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4498','--strictPort'],{stdio:'ignore'})
-const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})})
+let browser
 const widths=process.argv.length>2?process.argv.slice(2).map(Number):[1440,390,320]
 assert(widths.every(w=>[1440,390,320].includes(w)))
 const out=process.env.BUDGET_ARTIFACTS||'test-artifacts/budget-studio';mkdirSync(out,{recursive:true})
 const key='el-budget-workspace-v2',guillaume=BUDGET_PROFILES.find(p=>p.name==='Guillaume'),second=BUDGET_PROFILES.find(p=>p.name==='Émilie'),keptText='Mon texte personnel à garder exactement.\nMes propres questions.'
 const fixture={version:4,drafts:[{profile:guillaume,text:keptText,edited:true,textFinance:budgetFinancialReference(guillaume)}],activeId:guillaume.id,published:[guillaume.id],publicationDates:{[guillaume.id]:'2026-10-12'},used:[second.id],queued:[guillaume.id,second.id]}
 const receipts=[]
+const draftField = page => page.getByLabel('Texte prêt à publier', { exact: true })
+
+function diagnosticMessage(message) {
+ return message.replace(/https?:\/\/[^\s"'<>]+/g, url => url.split(/[?#]/, 1)[0]).slice(0, 1600)
+}
+
+async function runScenario(width, scenario, exercise) {
+ const context = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
+ const page = await context.newPage()
+ const diagnostics = { pageErrors: [], console: [], failedRequests: [], httpErrors: [], resources: [] }
+ const remember = (list, entry) => { if (list.length < 60) list.push(entry) }
+ const resource = request => ({ url: diagnosticMessage(request.url()), type: request.resourceType() })
+ page.on('pageerror', error => remember(diagnostics.pageErrors, diagnosticMessage(error.stack || error.message)))
+ page.on('console', message => {
+  if (['error', 'warning'].includes(message.type())) remember(diagnostics.console, {
+   level: message.type(), message: diagnosticMessage(message.text()), url: diagnosticMessage(message.location().url || ''),
+  })
+ })
+ page.on('requestfailed', request => remember(diagnostics.failedRequests, { ...resource(request), error: request.failure()?.errorText }))
+ page.on('response', response => {
+  const details = { ...resource(response.request()), status: response.status(), contentType: response.headers()['content-type'] }
+  if (details.status >= 400) remember(diagnostics.httpErrors, details)
+  else if (['document', 'script', 'stylesheet'].includes(details.type)) remember(diagnostics.resources, details)
+ })
+ try {
+  await exercise(page, context)
+  assert.deepEqual(diagnostics.pageErrors, [])
+ } catch (error) {
+  const path = `${out}/${width}-${scenario}-diagnostics.json`
+  writeFileSync(path, JSON.stringify({ width, scenario, error: diagnosticMessage(error.message), ...diagnostics }, null, 2) + '\n')
+  console.error(`Budget Studio ${width}px (${scenario}): ${path}`)
+  throw error
+ } finally {
+  await context.close()
+ }
+}
+
+async function waitForStudio(page) {
+ const failure = page.getByRole('heading', { name: 'L’outil n’a pas pu s’afficher', exact: true })
+ await expect(draftField(page).or(failure).first()).toBeVisible()
+ if (await failure.isVisible()) throw new Error('Le Budget Studio affiche « L’outil n’a pas pu s’afficher ».')
+}
+
+async function openStudio(page) {
+ await page.goto(base + '/le-budget-de', { waitUntil: 'domcontentloaded' })
+ await waitForStudio(page)
+ await page.evaluate(() => document.fonts.ready)
+}
+
 async function readZip(path){
  const bytes=new Uint8Array(readFileSync(path)),view=new DataView(bytes.buffer),files=[]
  let offset=0
@@ -30,13 +79,27 @@ async function pngReady(page) {
 }
 try{
  if(server)await waitPreview(server,base)
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})})
  for(const width of widths){
-  const ctx=await browser.newContext({viewport:{width,height:950},permissions:['clipboard-read','clipboard-write'],reducedMotion:'reduce'})
+  await runScenario(width, 'empty-storage', async page => {
+   await openStudio(page)
+   await expect(draftField(page)).toHaveValue(/\S/)
+   await page.getByRole('group', { name: 'Choisir un profil', exact: true }).locator('[data-value="finary-cyber-24-2026-08-27"]').click()
+   await expect(page.locator('.budget-totals > div').filter({ hasText: 'Reste si le plan est suivi' }).locator('dd')).toHaveText(/^130\s€$/)
+   await expect(draftField(page)).toHaveValue(/Reste si le plan est suivi : 130\s€.*\/ mois/)
+  })
+  await runScenario(width, 'legacy-draft', async (page, ctx) => {
   await ctx.addInitScript(({key,fixture})=>{if(!localStorage.getItem(key))localStorage.setItem(key,JSON.stringify(fixture))},{key,fixture})
-  const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/le-budget-de');await page.evaluate(()=>document.fonts.ready)
-  await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(keptText)
+  await openStudio(page)
+  const text = draftField(page)
+  await expect(text).toHaveValue(keptText)
   const state=()=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)),key)
   await expect.poll(async()=>(await state()).version).toBe(5)
+  await page.reload({ waitUntil: 'domcontentloaded' })
+  await waitForStudio(page)
+  await expect(text).toHaveValue(keptText)
+  const restored = await state()
+  for (const property of ['activeId', 'published', 'publicationDates', 'queued', 'used']) assert.deepEqual(restored[property], fixture[property])
   await page.getByText(/^Ma file de publication ·/).click()
   const queue=page.getByRole('region',{name:'File de publication'})
   await queue.getByLabel('Date prévue pour Guillaume',{exact:true}).fill('2026-12-05')
@@ -71,9 +134,19 @@ try{
   const manualQuestion='Vous gardez cette provision toute l’année ?'
   await page.getByLabel('Questions pour les lecteurs',{exact:true}).fill(manualQuestion)
   await page.getByRole('button',{name:'Descendre dépenses 1',exact:true}).click()
-  const text=page.getByLabel('Texte prêt à publier')
   await expect(text).toHaveValue(/Provision Cadeaux : 8,33/)
   const generated=await text.inputValue();assert.equal((generated.match(/\?/g)||[]).length,1);assert(generated.includes(manualQuestion));assert(generated.indexOf('Courses')<generated.indexOf('Provision Cadeaux'))
+  const savings = page.getByText('Épargne et projets', { exact: true })
+  const transfers = page.getByRole('group', { name: 'Versements', exact: true })
+  await savings.click()
+  await transfers.getByRole('button', { name: 'Ajouter un poste', exact: true }).click()
+  await page.getByLabel('Versements · poste 1', { exact: true }).fill('Livret')
+  await page.getByLabel('Versements · montant 1', { exact: true }).fill('1800')
+  await transfers.getByText('Options du poste 1', { exact: true }).click()
+  await transfers.getByRole('combobox').selectOption('planned')
+  await expect(page.locator('.budget-totals > div').filter({ hasText: 'Déficit si le plan est suivi' }).locator('dd')).toHaveText(/^-108,33\s€$/)
+  await expect(text).toHaveValue(/Déficit si le plan est suivi : -108,33\s€/)
+  await savings.click()
   const originalId=(await state()).activeId
   await text.fill('Mon texte sur mesure à conserver.')
   // An annual amount changes the monthly ledger, without replacing custom text.
@@ -114,7 +187,7 @@ try{
   await page.getByLabel('Gestion des conflits',{exact:true}).selectOption('use-imported')
   await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click()
   assert.deepEqual((await state()).queued,[guillaume.id,second.id]);assert.equal((await state()).scheduledDates[guillaume.id],'2026-12-06')
-  await page.reload();await expect(text).toHaveValue(exactText)
+  await page.reload({ waitUntil: 'domcontentloaded' });await waitForStudio(page);await expect(text).toHaveValue(exactText)
   assert.deepEqual((await state()).published,fixture.published);assert.deepEqual((await state()).publicationDates,fixture.publicationDates)
   await page.getByRole('button',{name:'Profils',exact:true}).click()
   const david=BUDGET_PROFILES.find(p=>p.id==='editorial-studio-alternance-demenagement-2026-11-16')
@@ -163,9 +236,8 @@ try{
    await expect(pngButton).toBeEnabled()
   }
   assert.deepEqual((await state()).published,fixture.published)
-  assert.deepEqual(errors,[])
   receipts.push({width,legacyVersion:4,currentVersion:5,annualAmount:120,monthlyProvision:10,manualQuestionsPreserved:true,customDraftsPreserved:true,zipFiles:files.map(f=>f.name),exactPng:true,singleImageZip:true,queueImportConflicts:true,publishedUnchanged:true})
-  await ctx.close()
+  })
  }
  if (widths.includes(390)) {
   const previous = BUDGET_NOEMIE_PREVIOUS
@@ -173,24 +245,24 @@ try{
   const scheduledDates = { [previous.id]: '2026-12-13' }
   const legacy = { version: 5, drafts: [{ profile: previous, text: personalized, textFinance: budgetFinancialReference(previous), edited: true }],
     activeId: previous.id, published: [previous.id], publicationDates: { [previous.id]: '2026-10-12' }, used: [], queued: [previous.id], scheduledDates }
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, permissions: ['clipboard-read','clipboard-write'] })
+  await runScenario(390, 'noemie-migration', async (page, ctx) => {
   await ctx.addInitScript(({ key, legacy }) => { if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(legacy)) }, { key, legacy })
-  const page = await ctx.newPage()
-  await page.goto(base + '/le-budget-de')
-  const field = page.getByLabel('Texte prêt à publier')
+  await openStudio(page)
+  const field = draftField(page)
   const expected = personalized.replace('4 400 €', '3\u202f500\u00a0€').replace('2 600 €', '2\u202f670\u00a0€')
   await expect(field).toHaveValue(expected)
   await expect(page.getByText(/4 400 €.*3\s500/)).toBeVisible()
   await expect(page.getByText(/Les montants du budget ont changé/)).toBeVisible()
   await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
   assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected)
-  await page.reload()
+  await page.reload({ waitUntil: 'domcontentloaded' })
+  await waitForStudio(page)
   await expect(field).toHaveValue(expected)
   const restored = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key)
   for (const field of ['activeId', 'published', 'publicationDates', 'queued', 'scheduledDates']) assert.deepEqual(restored[field], legacy[field])
   assert.equal(restored.drafts[0].textCorrections.length, 2)
-  await ctx.close()
+  })
  }
  writeFileSync(`${out}/receipt-${widths.join('-')}.json`,JSON.stringify(receipts,null,2)+'\n')
  console.log(`Budget studio: duplication, manual questions, annual provisions, row ordering, queue planning/order conflicts, exact text + real PNG ZIP, legacy migration and personalized drafts verified at ${widths.join('/')}.`)
-}finally{await browser.close();server?.kill()}
+}finally{await browser?.close();server?.kill()}
