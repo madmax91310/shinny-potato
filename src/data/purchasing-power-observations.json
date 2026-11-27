@@ -68,7 +68,7 @@
       "general": {
         "seriesId": "011814630",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-        "sourceUpdatedAt": "2026-11-13",
+        "sourceUpdatedAt": "2026-11-27",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
         "scope": "FE",
         "frequency": "M",
@@ -480,14 +480,23 @@
           "2026-09": "DEF",
           "2026-10": "DEF"
         },
-        "pendingObservations": [],
-        "sha256": "da5ad649f939d8af3cc25e367723f4f3f12af43fbcd369b28def252ac9cb1e6a",
-        "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+        "pendingObservations": [
+          {
+            "month": "2026-11",
+            "value": 102.78,
+            "quality": "P",
+            "observationStatus": "P",
+            "reason": "official-provisional-incomplete-calendar-month",
+            "includedInActiveHistory": false
+          }
+        ],
+        "sha256": "b3e3e39ecd7547221167547e846baebd914472e1a915f363088e5983c6277a45",
+        "checkedAt": "2026-11-27T17:42:44.855134+00:00"
       },
       "alimentation": {
         "seriesId": "011813717",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-        "sourceUpdatedAt": "2026-11-13",
+        "sourceUpdatedAt": "2026-11-27",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
         "scope": "FE",
         "frequency": "M",
@@ -899,14 +908,23 @@
           "2026-09": "DEF",
           "2026-10": "DEF"
         },
-        "pendingObservations": [],
-        "sha256": "50a8ba411f0153c4cb2d8d6dcb9db2e0adb6c42931586ae7b7f21ecd49f63878",
-        "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+        "pendingObservations": [
+          {
+            "month": "2026-11",
+            "value": 101.49,
+            "quality": "P",
+            "observationStatus": "P",
+            "reason": "official-provisional-incomplete-calendar-month",
+            "includedInActiveHistory": false
+          }
+        ],
+        "sha256": "3b390e59e3d4b70850412316c05e92acd69e0ee4a26611df54d33bd030ca0da3",
+        "checkedAt": "2026-11-27T17:42:44.855134+00:00"
       },
       "energie": {
         "seriesId": "011813864",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-        "sourceUpdatedAt": "2026-11-13",
+        "sourceUpdatedAt": "2026-11-27",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
         "scope": "FE",
         "frequency": "M",
@@ -1318,12 +1336,21 @@
           "2026-09": "DEF",
           "2026-10": "DEF"
         },
-        "pendingObservations": [],
-        "sha256": "001e70f05287f6b946ce00ffe86d470d2c6822ceed6604e9147ef01a5dd33a18",
-        "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+        "pendingObservations": [
+          {
+            "month": "2026-11",
+            "value": 119.12,
+            "quality": "P",
+            "observationStatus": "P",
+            "reason": "official-provisional-incomplete-calendar-month",
+            "includedInActiveHistory": false
+          }
+        ],
+        "sha256": "3d6c97066baf8188d199844c3179cc7e095a3095112da931fff415cccff1e1f1",
+        "checkedAt": "2026-11-27T17:42:44.855134+00:00"
       }
     },
-    "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+    "checkedAt": "2026-11-27T17:42:44.855134+00:00"
   },
   "irl": {
     "asOf": "2026-Q3",
@@ -1542,10 +1569,10 @@
         "2026-Q3": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "44e3ab31332abb993da483d3d29cd8362861cd98ae21bd496882f6f2b0900877",
-      "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+      "sha256": "241526f48e3df1223f0954fd794b656c172250051b2cc37b7ba96422c3bd7e81",
+      "checkedAt": "2026-11-27T17:42:44.855134+00:00"
     },
-    "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+    "checkedAt": "2026-11-27T17:42:44.855134+00:00"
   },
   "smic": {
     "asOf": "2026-11",
@@ -2172,10 +2199,10 @@
         "2026-11": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "02eaff44502d87d826e2cf28a5e012cd9666490189be360eb7ba4d41af664df9",
-      "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+      "sha256": "52f6696f587426ea92ac2202e03d4b3b0a82fa51decf5448311d767d34609a7e",
+      "checkedAt": "2026-11-27T17:42:44.855134+00:00"
     },
-    "checkedAt": "2026-11-26T18:18:54.130665+00:00"
+    "checkedAt": "2026-11-27T17:42:44.855134+00:00"
   },
   "schemaVersion": 1
 }
