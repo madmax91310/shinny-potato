@@ -73,6 +73,15 @@ def parse(raw, config):
         published = match.group(0) if match else None
     else:
         soup = BeautifulSoup(raw, 'html.parser')
+        url = config.get('downloadUrl') or config.get('url', '')
+        if urllib.parse.urlsplit(url).hostname == 'www.amf-france.org':
+            heading = soup.select_one('h1')
+            heading_text = ' '.join(heading.get_text(' ', strip=True).split()).casefold() if heading else ''
+            if heading_text in ('accès temporairement suspendu', 'access temporarily unavailable'):
+                notice = ' '.join(soup.get_text(' ', strip=True).split()).casefold()
+                if ('mise à jour de sécurité hautement critique' in notice
+                        or 'highly critical security update' in notice):
+                    raise ValueError('AMF : accès temporairement suspendu (avis de maintenance)')
         for tag in soup.select('script,style,nav,footer,header,noscript'):
             tag.decompose()
         body = soup.select_one(config.get('selector', 'main')) or soup.select_one('main') or soup.body
