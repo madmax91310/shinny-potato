@@ -2881,11 +2881,11 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "LYNRJ.PA",
-          "excerpt": "FR0010524777 | Euronext Paris | NRJ FP | EUR | LYNRJ.PA",
-          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-11-27",
-          "sha256": "f3cb4fd0c96f204492c28e492dc292fccd6a690e5ade2db0394fd5d7dbde7640",
-          "evidenceId": "FR0010524777-XPAR-NRJ-EUR"
+          "evidenceId": "FR0010524777-XPAR-NRJ-EUR",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF",
+          "checkedAt": "2026-11-28",
+          "excerpt": "FR0010524777 | Euronext Paris              EUR                 NRJ FP                                ENERIV                          LYNRJ.PA",
+          "sha256": "207aba915a16abaeb9a87795671be016ec0316ec7a7b16317857ba28cd5304dc"
         },
         {
           "ticker": "NRJU",
@@ -2893,11 +2893,11 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "NRJU.L",
-          "excerpt": "FR0010524777 | LSE | NRJU LN | USD | NRJU.L",
-          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-11-27",
-          "sha256": "f3cb4fd0c96f204492c28e492dc292fccd6a690e5ade2db0394fd5d7dbde7640",
-          "evidenceId": "FR0010524777-XLON-NRJU-USD"
+          "evidenceId": "FR0010524777-XLON-NRJU-USD",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF",
+          "checkedAt": "2026-11-28",
+          "excerpt": "FR0010524777 | LSE                    USD                NRJU LN                                NRJUIV                            NRJU.L",
+          "sha256": "207aba915a16abaeb9a87795671be016ec0316ec7a7b16317857ba28cd5304dc"
         },
         {
           "ticker": "ENER",
@@ -3432,11 +3432,11 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "AMGOLD.PA",
-          "excerpt": "FR0013416716 | Euronext Paris | GOLD FP | EUR | AMGOLD.PA",
+          "evidenceId": "FR0013416716-XPAR-GOLD-EUR",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-11-27",
-          "sha256": "9017a86c537045bfdfffc26a4ff94b7b342b6ad9e264d14c2e8a0dda71def774",
-          "evidenceId": "FR0013416716-XPAR-GOLD-EUR"
+          "checkedAt": "2026-11-28",
+          "excerpt": "FR0013416716 | Euronext Paris EUR GOLD FP AMGOLD.PA FR0013416716",
+          "sha256": "c1a451aca80a1a0a6919a713b0816c56f95155ec6eef4a01b4b60ede1a6ea90b"
         },
         {
           "ticker": "GLDA",
@@ -3444,11 +3444,11 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "GLDA.DE",
-          "excerpt": "FR0013416716 | Xetra | GLDA GY | EUR | GLDA.DE",
+          "evidenceId": "FR0013416716-XETR-GLDA-EUR",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-11-27",
-          "sha256": "9017a86c537045bfdfffc26a4ff94b7b342b6ad9e264d14c2e8a0dda71def774",
-          "evidenceId": "FR0013416716-XETR-GLDA-EUR"
+          "checkedAt": "2026-11-28",
+          "excerpt": "FR0013416716 | Xetra EUR GLDA GY GLDA.DE FR0013416716",
+          "sha256": "c1a451aca80a1a0a6919a713b0816c56f95155ec6eef4a01b4b60ede1a6ea90b"
         },
         {
           "ticker": "GLDD",
@@ -3456,11 +3456,11 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "GLDD.L",
-          "excerpt": "FR0013416716 | LSE | GLDD LN | USD | GLDD.L",
+          "evidenceId": "FR0013416716-XLON-GLDD-USD",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-11-27",
-          "sha256": "9017a86c537045bfdfffc26a4ff94b7b342b6ad9e264d14c2e8a0dda71def774",
-          "evidenceId": "FR0013416716-XLON-GLDD-USD"
+          "checkedAt": "2026-11-28",
+          "excerpt": "FR0013416716 | LSE USD GLDD LN GLDD.L FR0013416716",
+          "sha256": "c1a451aca80a1a0a6919a713b0816c56f95155ec6eef4a01b4b60ede1a6ea90b"
         },
         {
           "ticker": "GOLD",
@@ -6496,8 +6496,8 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://bourse.fortuneo.fr/trackers/cours-ishares-quantum-computing-ucits-etf-usd-acc-QANT-IE000C6ITGC8-918",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE000C6ITGC8",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-quantum-computing-ucits-etf-usd-acc-QANT-IE000C6ITGC8-918",
         "https://bourse.fortuneo.fr/api/search?term=IE000C6ITGC8"
       ]
     },
@@ -7214,9 +7214,9 @@
       },
       "urls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE000L6ZMMC4",
+        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
         "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
         "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/x-ftse-all-world-etf-1c-IE000L6ZMMC4-XALL-EUR-ETFP-EUR-XSWX/seance"
       ]
@@ -7359,39 +7359,36 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "mic": "XETR",
           "exchange": "Xetra",
+          "mic": "XETR",
           "currency": "EUR",
           "symbol": "XDWM.DE",
-          "excerpt": "IE00BM67HS53 | XETRA | XDWM GY | EUR | XDWM.DE",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-27",
-          "sha256": "f20f707c3a2e636594491b9b01bca8584f405fcc4510b71aa696eec614eb3a6e",
-          "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR"
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-28",
+          "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
+          "excerpt": "IE00BM67HS53 | XETRA | XDWM | EUR | XDWM.DE"
         },
         {
           "ticker": "XDWM",
-          "mic": "ETFP",
           "exchange": "Borsa Italiana",
+          "mic": "ETFP",
           "currency": "EUR",
           "symbol": "XDWM.MI",
-          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-27",
-          "sha256": "f20f707c3a2e636594491b9b01bca8584f405fcc4510b71aa696eec614eb3a6e",
-          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-28",
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
+          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM | EUR | XDWM.MI"
         },
         {
           "ticker": "XDWM",
-          "mic": "XLON",
           "exchange": "London Stock Exchange",
+          "mic": "XLON",
           "currency": "USD",
           "symbol": "XDWM.L",
-          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM LN | USD | XDWM.L",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-27",
-          "sha256": "f20f707c3a2e636594491b9b01bca8584f405fcc4510b71aa696eec614eb3a6e",
-          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD"
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-28",
+          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
+          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM | USD | XDWM.L"
         },
         {
           "ticker": "XSMW",
@@ -7479,9 +7476,9 @@
       },
       "urls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00BTJRMP35",
+        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
         "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
         "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-emerg-markets-u-IE00BTJRMP35-XMME-EUR-ETFP/seance"
       ]
@@ -7521,9 +7518,9 @@
       },
       "urls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
         "https://www.justetf.com/fr/etf-profile.html?isin=LU1875395870",
+        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
+        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
         "https://etf.dws.com/api/pdp/fr-fr/etf/LU1875395870/pdpMetaTagsTealium",
         "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-nikkei-225-ucits-etf-LU1875395870-XDJE-EUR-ETFP/seance"
       ]
@@ -7551,9 +7548,9 @@
       },
       "urls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
-        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
         "https://www.justetf.com/fr/etf-profile.html?isin=LU2196470426",
+        "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
+        "https://etf.deutsche-am.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
         "https://etf.dws.com/api/pdp/fr-fr/etf/LU2196470426/pdpMetaTagsTealium",
         "https://www.boursedirect.fr/fr/marche/xetra/xtr-nikkei-225-1c-yn-LU2196470426-XNKY-EUR-XETR/seance"
       ]
@@ -8686,8 +8683,8 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://bourse.fortuneo.fr/trackers/cours-ishares-china-large-cap-ucits-etf-usd-dis-FXC-IE00B02KXK85-46",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00B02KXK85",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-china-large-cap-ucits-etf-usd-dis-FXC-IE00B02KXK85-46",
         "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-china-large-cap-ucits-IE00B02KXK85-FXC-EUR-XAMS/seance",
         "https://bourse.fortuneo.fr/api/search?term=IE00B02KXK85"
       ]
@@ -9043,8 +9040,8 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-usa-ucits-etf-usd-acc-CSUS-IE00B52SFT06-46",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00B52SFT06",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-usa-ucits-etf-usd-acc-CSUS-IE00B52SFT06-46",
         "https://bourse.fortuneo.fr/api/search?term=IE00B52SFT06"
       ]
     },
@@ -9318,8 +9315,8 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308751&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-ucits-etf-usd-acc-ICHN-IE00BJ5JPG56-918",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JPG56",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-ucits-etf-usd-acc-ICHN-IE00BJ5JPG56-918",
         "https://www.boursedirect.fr/fr/marche/xetra/ishsiv-msci-china-dl-a-IE00BJ5JPG56-ICGA-EUR-XETR/seance",
         "https://bourse.fortuneo.fr/api/search?term=IE00BJ5JPG56"
       ]
@@ -9447,8 +9444,8 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-a-ucits-etf-usd-acc-CNYA-IE00BQT3WG13-46",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00BQT3WG13",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-a-ucits-etf-usd-acc-CNYA-IE00BQT3WG13-46",
         "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-china-a-ucits-etf-IE00BQT3WG13-CNYA-EUR-XAMS/seance",
         "https://bourse.fortuneo.fr/api/search?term=IE00BQT3WG13"
       ]
@@ -10139,11 +10136,11 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "PHAU.L",
-          "excerpt": "JE00B1VS3770 | LSE USD PHAU PHAU LN PHAU.L B1VS377 JE00B1VS3770 A0N6XK 24/04/2007",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770/",
-          "checkedAt": "2026-11-27",
-          "sha256": "8d36e1d8891f0f7f883b95b10b294d71f1ba3c5fa51f90499bac19711b3602ff",
-          "evidenceId": "JE00B1VS3770-XLON-PHAU-USD"
+          "evidenceId": "JE00B1VS3770-XLON-PHAU-USD",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+          "checkedAt": "2026-11-28",
+          "excerpt": "JE00B1VS3770 | LSE                         USD               PHAU              PHAU LN              PHAU.L              B1VS377       JE00B1VS3770",
+          "sha256": "8d36e1d8891f0f7f883b95b10b294d71f1ba3c5fa51f90499bac19711b3602ff"
         },
         {
           "ticker": "VZLD",
@@ -10151,11 +10148,11 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "VZLD.DE",
-          "excerpt": "JE00B1VS3770 | Xetra EUR VZLD VZLD GY VZLD.DE B91LSF5 JE00B1VS3770 A0N6XK 08/05/2007",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770/",
-          "checkedAt": "2026-11-27",
-          "sha256": "8d36e1d8891f0f7f883b95b10b294d71f1ba3c5fa51f90499bac19711b3602ff",
-          "evidenceId": "JE00B1VS3770-XETR-VZLD-EUR"
+          "evidenceId": "JE00B1VS3770-XETR-VZLD-EUR",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+          "checkedAt": "2026-11-28",
+          "excerpt": "JE00B1VS3770 | Xetra                       EUR               VZLD               VZLD GY             VZLD.DE             B91LSF5       JE00B1VS3770",
+          "sha256": "8d36e1d8891f0f7f883b95b10b294d71f1ba3c5fa51f90499bac19711b3602ff"
         }
       ],
       "peaExpectation": {
@@ -10193,11 +10190,11 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "BTCW.L",
-          "excerpt": "GB00BJYDH287 | LSE USD BTCW BTCW LN BTCW.L BSGZJM9 GB00BJYDH287 A3GKGK 28/05/2024",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287/",
-          "checkedAt": "2026-11-27",
-          "sha256": "36a0e24d9d648a4c966b5e90d3bb6cc8673956d8bfcc566855a4c33c3eb42a7a",
-          "evidenceId": "GB00BJYDH287-XLON-BTCW-USD"
+          "evidenceId": "GB00BJYDH287-XLON-BTCW-USD",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+          "checkedAt": "2026-11-28",
+          "excerpt": "GB00BJYDH287 | LSE                       USD                BTCW              BTCW LN              BTCW.L             BSGZJM9    GB00BJYDH287",
+          "sha256": "36a0e24d9d648a4c966b5e90d3bb6cc8673956d8bfcc566855a4c33c3eb42a7a"
         },
         {
           "ticker": "WBTC",
@@ -10205,11 +10202,11 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "BTCW.PA",
-          "excerpt": "GB00BJYDH287 | Euronext(FR) EUR WBTC WBTC FP BTCW.PA BN6SR18 GB00BJYDH287 A3GKGK 01/06/2021",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287/",
-          "checkedAt": "2026-11-27",
-          "sha256": "36a0e24d9d648a4c966b5e90d3bb6cc8673956d8bfcc566855a4c33c3eb42a7a",
-          "evidenceId": "GB00BJYDH287-XPAR-WBTC-EUR"
+          "evidenceId": "GB00BJYDH287-XPAR-WBTC-EUR",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+          "checkedAt": "2026-11-28",
+          "excerpt": "GB00BJYDH287 | Euronext(FR)              EUR                WBTC              WBTC FP             BTCW.PA             BN6SR18    GB00BJYDH287",
+          "sha256": "36a0e24d9d648a4c966b5e90d3bb6cc8673956d8bfcc566855a4c33c3eb42a7a"
         }
       ],
       "peaExpectation": {
@@ -10528,11 +10525,11 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "BTCE.DE",
-          "excerpt": "DE000A27Z304 | XETRA | EUR | BTCE GY | BTCE.DE",
+          "evidenceId": "DE000A27Z304-XETR-BTCE-EUR",
           "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-          "checkedAt": "2026-11-27",
-          "sha256": "3f8e99ca9a5fc3d4fb9fddd8ea8058e691aac35bfea8ac7e99f2a588d26fae54",
-          "evidenceId": "DE000A27Z304-XETR-BTCE-EUR"
+          "checkedAt": "2026-11-28",
+          "excerpt": "DE000A27Z304 | XETRA EUR Ticker BTCE GY Listing date: 18.06.20 ISIN DE000A27Z304 WKN A27Z30 Valoren - BTCE GY SEDOL BMWSLR9 RIC BTCE.DE",
+          "sha256": "81c19959c5106a8130d94a6af49c77c133d5e136b8b37b1111f7876998b59856"
         },
         {
           "ticker": "BTCE",
@@ -10542,9 +10539,9 @@
           "symbol": "BTCE.PA",
           "evidenceId": "DE000A27Z304-XPAR-BTCE-EUR",
           "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-          "checkedAt": "2026-11-27",
+          "checkedAt": "2026-11-28",
           "excerpt": "DE000A27Z304 | Euronext PAR EUR Ticker BTCE FP Listing date: 01.06.21 ISIN DE000A27Z304 WKN - Valoren - BTCE FP SEDOL BN0ZB02 RIC BTCE.PA",
-          "sha256": "a4ec031d1d7441ba06127adb4a93941e257ef29ba21bcf44729f8a4cf04795cb"
+          "sha256": "81c19959c5106a8130d94a6af49c77c133d5e136b8b37b1111f7876998b59856"
         },
         {
           "ticker": "BTCF",
@@ -10915,11 +10912,11 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "ETHE.L",
-          "excerpt": "GB00BLD4ZM24 | LSE USD ETHE LN Equity BTKTC69 14/01/2025",
+          "evidenceId": "GB00BLD4ZM24-XLON-ETHE-USD",
           "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
-          "checkedAt": "2026-11-27",
-          "sha256": "6c9ae03c393efe3568c83ad36c32060533b2d2cc4da8d9a4ffd291164499bb34",
-          "evidenceId": "GB00BLD4ZM24-XLON-ETHE-USD"
+          "checkedAt": "2026-11-28",
+          "excerpt": "GB00BLD4ZM24 | LSE                                      USD                                       ETHE LN Equity                          BTKTC69                                  14/01/2025",
+          "sha256": "6c9ae03c393efe3568c83ad36c32060533b2d2cc4da8d9a4ffd291164499bb34"
         },
         {
           "ticker": "CETH",
@@ -10927,11 +10924,11 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "CETH.DE",
-          "excerpt": "GB00BLD4ZM24 | Börse Xetra EUR CETH GY Equity BKPKL67 7/6/2021",
+          "evidenceId": "GB00BLD4ZM24-XETR-CETH-EUR",
           "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
-          "checkedAt": "2026-11-27",
-          "sha256": "6c9ae03c393efe3568c83ad36c32060533b2d2cc4da8d9a4ffd291164499bb34",
-          "evidenceId": "GB00BLD4ZM24-XETR-CETH-EUR"
+          "checkedAt": "2026-11-28",
+          "excerpt": "GB00BLD4ZM24 | Börse Xetra                              EUR                                       CETH GY Equity                          BKPKL67                                  7/6/2021",
+          "sha256": "6c9ae03c393efe3568c83ad36c32060533b2d2cc4da8d9a4ffd291164499bb34"
         }
       ],
       "peaExpectation": {
@@ -11324,39 +11321,42 @@
       "listings": [
         {
           "ticker": "WCLD",
-          "mic": "XLON",
           "exchange": "London Stock Exchange",
+          "mic": "XLON",
           "currency": "USD",
           "symbol": "WCLD.L",
-          "excerpt": "IE00BJGWQN72 | LSE USD WCLD WCLD LN WCLD.L BK77FY2 IE00BJGWQN72 A2PQVE 06/09/2019",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72/",
-          "checkedAt": "2026-11-27",
-          "sha256": "33de878ddfb4394d52215cda44deef542af6aaaf4c41800efbb17088f8271f46",
-          "evidenceId": "IE00BJGWQN72-XLON-WCLD-USD"
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+          "checkedAt": "2026-11-28",
+          "sourceDocumentAsOf": "2026-10-30",
+          "evidenceId": "IE00BJGWQN72-XLON-WCLD-USD",
+          "excerpt": "LSE                       USD                WCLD               WCLD LN                WCLD.L            BK77FY2       IE00BJGWQN72          A2PQVE            06/09/2019",
+          "sha256": "33de878ddfb4394d52215cda44deef542af6aaaf4c41800efbb17088f8271f46"
         },
         {
           "ticker": "WCLD",
-          "mic": "ETFP",
           "exchange": "Borsa Italiana",
+          "mic": "ETFP",
           "currency": "EUR",
           "symbol": "WCLD.MI",
-          "excerpt": "IE00BJGWQN72 | Borsa Italiana EUR WCLD WCLD IM WCLD.MI BK77G05 IE00BJGWQN72 A2PQVE 07/10/2019",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72/",
-          "checkedAt": "2026-11-27",
-          "sha256": "33de878ddfb4394d52215cda44deef542af6aaaf4c41800efbb17088f8271f46",
-          "evidenceId": "IE00BJGWQN72-ETFP-WCLD-EUR"
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+          "checkedAt": "2026-11-28",
+          "sourceDocumentAsOf": "2026-10-30",
+          "evidenceId": "IE00BJGWQN72-ETFP-WCLD-EUR",
+          "excerpt": "Borsa Italiana            EUR                WCLD               WCLD IM                WCLD.MI           BK77G05       IE00BJGWQN72          A2PQVE            07/10/2019",
+          "sha256": "33de878ddfb4394d52215cda44deef542af6aaaf4c41800efbb17088f8271f46"
         },
         {
           "ticker": "WTEJ",
-          "mic": "XETR",
           "exchange": "Xetra",
+          "mic": "XETR",
           "currency": "EUR",
           "symbol": "WTEJ.DE",
-          "excerpt": "IE00BJGWQN72 | Xetra EUR WTEJ WTEJ GY WTEJ.DE BJS9KV2 IE00BJGWQN72 A2PQVE 14/10/2019",
-          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72/",
-          "checkedAt": "2026-11-27",
-          "sha256": "33de878ddfb4394d52215cda44deef542af6aaaf4c41800efbb17088f8271f46",
-          "evidenceId": "IE00BJGWQN72-XETR-WTEJ-EUR"
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+          "checkedAt": "2026-11-28",
+          "sourceDocumentAsOf": "2026-10-30",
+          "evidenceId": "IE00BJGWQN72-XETR-WTEJ-EUR",
+          "excerpt": "Xetra                     EUR                 WTEJ              WTEJ GY                WTEJ.DE           BJS9KV2       IE00BJGWQN72          A2PQVE            14/10/2019",
+          "sha256": "33de878ddfb4394d52215cda44deef542af6aaaf4c41800efbb17088f8271f46"
         }
       ],
       "peaExpectation": {
@@ -11569,39 +11569,36 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "mic": "XETR",
           "exchange": "Xetra",
+          "mic": "XETR",
           "currency": "EUR",
           "symbol": "XDWU.DE",
-          "excerpt": "IE00BM67HQ30 | XETRA | XDWU GY | EUR | XDWU.DE",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-27",
-          "sha256": "decbb9665fc3a2acf18608017d996e4fec2bcaf42d66b4f41af8fd8481ac21f3",
-          "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR"
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-28",
+          "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR",
+          "excerpt": "IE00BM67HQ30 | XETRA | XDWU | EUR | XDWU.DE"
         },
         {
           "ticker": "XDWU",
-          "mic": "ETFP",
           "exchange": "Borsa Italiana",
+          "mic": "ETFP",
           "currency": "EUR",
           "symbol": "XDWU.MI",
-          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-27",
-          "sha256": "decbb9665fc3a2acf18608017d996e4fec2bcaf42d66b4f41af8fd8481ac21f3",
-          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-28",
+          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR",
+          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU | EUR | XDWU.MI"
         },
         {
           "ticker": "XDWU",
-          "mic": "XLON",
           "exchange": "London Stock Exchange",
+          "mic": "XLON",
           "currency": "USD",
           "symbol": "XDWU.L",
-          "excerpt": "IE00BM67HQ30 | London Stock Exchange | XDWU LN | USD | XDWU.L",
-          "sourceUrl": "https://etf.deutsche-am.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-27",
-          "sha256": "decbb9665fc3a2acf18608017d996e4fec2bcaf42d66b4f41af8fd8481ac21f3",
-          "evidenceId": "IE00BM67HQ30-XLON-XDWU-USD"
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-28",
+          "evidenceId": "IE00BM67HQ30-XLON-XDWU-USD",
+          "excerpt": "IE00BM67HQ30 | London Stock Exchange | XDWU | USD | XDWU.L"
         },
         {
           "ticker": "XWUS",
@@ -11639,11 +11636,11 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "IPDM.L",
-          "excerpt": "IE00B4556L06 | London Stock Exchange | IPDM | USD | IPDM.L",
-          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-11-27",
-          "sha256": "a811133b0adbe75412cecf1e51be0ae6d268ca482cb624255d4ec7a9ce587775",
-          "evidenceId": "IE00B4556L06-XLON-IPDM-USD"
+          "evidenceId": "IE00B4556L06-XLON-IPDM-USD",
+          "sourceUrl": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y",
+          "checkedAt": "2026-11-28",
+          "excerpt": "IE00B4556L06 | London Stock Exchange IPDM USD 11/Apr/2011 B4556L0 IPDM LN IPDM.L",
+          "sha256": "304d567ad5b282ba1a1785d471a96372a5f549b9f613bc73058e4987110faa49"
         },
         {
           "ticker": "SPDM",
@@ -11665,8 +11662,10 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4556L06",
         "https://www.quantalys.com/Fonds/71765",
-        "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4556L06"
+        "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y",
+        "https://www.blackrock.com/fr/particuliers/products/256574/ishares-physical-palladium-etc-fund"
       ]
     },
     {
@@ -11716,8 +11715,8 @@
       },
       "urls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://www.quantalys.com/Fonds/71766",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4LHWP62",
+        "https://www.quantalys.com/Fonds/71766",
         "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-physical-platinum-etc-IE00B4LHWP62-SPLT-EUR-ETFP/seance"
       ]
     },
